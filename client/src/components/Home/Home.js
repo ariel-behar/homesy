@@ -1,7 +1,16 @@
+import styles from './Home.module.css';
+
 const Home = () => {
     return (
-         <p>This is going to be the main content</p>
-    )
+        <section className={styles.homePageSection}>
+            <p>Services</p>
+            <form method="POST" action="">
+                <input type="text" placeholder="What service?" />
+                <input type="text" placeholder="Where?" />
+                <input type="submit" />
+            </form>
+        </section>
+    );
 };
 
 export default Home;
