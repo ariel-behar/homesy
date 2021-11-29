@@ -1,5 +1,6 @@
 const express = require('express');
 const chalk = require('chalk')
+const cors = require('cors');
 
 const dbName = 'home-services';
 const PORT = process.env.PORT || '3030';
@@ -8,6 +9,10 @@ const initDatabase = require('../config/initDatabase.js');
 const routes = require('./routes/routes.js')
 
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
 
 app.use(routes);
 
