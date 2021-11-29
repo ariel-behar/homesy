@@ -26,16 +26,14 @@ const Register = () => {
                     },                                     
                     body: JSON.stringify(user),
                 })
-                .then(res => res)
+                .then(res => res.json())
                 .then(resResult => {
-                    console.log(resResult)
-                    if(resResult.status == "200"){
-                        navigate('/')
-                    } else {
-                        console.log('An error occurred while attempting to register')
-                    }
-                })
+                    localStorage.setItem('userId', resResult._id)
+                    localStorage.setItem('username', resResult.username)
+                    localStorage.setItem('AUTH_TOKEN', resResult.AUTH_TOKEN)
 
+                    navigate('/')
+                })
             } catch (error) {
                 console.error(error)
             }
