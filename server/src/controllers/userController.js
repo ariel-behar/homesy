@@ -2,17 +2,15 @@ const router = require('express').Router();
 const cors = require('cors')
 const authService = require('../services/authService.js');
 
-//Get All
-// router.get('/users', async (req,res) => {
-//     let user = await authService.getAll();
-//     console.log('users:', user)
+router.post('/register', async (req, res) => {
+    let {username, password} = req.body;
     
-//     res.send(user);
-// })
-
-router.post('/users', (req, res) => {
-    let user = req.body;
-    console.log('user:', user)
+    try {
+        let response = await authService.register(username, password);
+        res.json(response);
+    } catch (error) {
+        console.log(error)
+    }  
 })
 
 
