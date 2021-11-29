@@ -6,8 +6,8 @@ import Header from './components/Header/Header.js';
 
 import Home from "./components/Home/Home.js";
 import AllListings from './components/AllListings/AllListings.js';
-import Details from './components/Details/Details.js';
-import Create from './components/Create/Create.js';
+import Details from './components/HomeServices/Details/Details.js';
+import Create from './components/HomeServices/Create/Create.js';
 
 import Login from './components/Users/Login/Login.js';
 import Register from './components/Users/Register/Register.js';

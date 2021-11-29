@@ -14,7 +14,7 @@ const Header = ({
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
                     <NavLink to="/" > Home </NavLink>
-                    <NavLink to="/services/all-listings" > All Listings </NavLink>
+                    <NavLink to="/home-services/all-listings" > All Listings </NavLink>
                     {/* <NavLink to="/services/:listingId/details/" > Details </NavLink> */}
                     { isAuthenticated 
                         ? <LoggedUserNavButtons user={user}/> 

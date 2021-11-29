@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom';
 function LoggedUserNavButtons({
     user
 }) {
+    let userName = user.firstName.toLowerCase();
+
     return (
         <>  
-            <NavLink to="/services/create" > Create </NavLink>
+            <NavLink to="/home-services/create" > Create Listing </NavLink>
             <span>Hello, {user.firstName}</span>
             <NavLink to="/logout"> Logout </NavLink>
         </>
