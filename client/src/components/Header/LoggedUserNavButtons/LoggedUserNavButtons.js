@@ -1,12 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 function LoggedUserNavButtons({
-    username
+    user
 }) {
     return (
         <>  
-            <span>Hello, {username}</span>
-            <NavLink to="/logout" activeClassName="active" > Logout </NavLink>
+            <NavLink to="/services/create" > Create </NavLink>
+            <span>Hello, {user.firstName}</span>
+            <NavLink to="/logout"> Logout </NavLink>
         </>
     )
 }
