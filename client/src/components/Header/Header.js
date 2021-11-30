@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-import styles from "./Header.module.css";
+// import styles from "./Header.module.css";
 import GuestNavButtons from "./GuestNavButtons/GuestNavButtons.js";
 import LoggedUserNavButtons from "./LoggedUserNavButtons/LoggedUserNavButtons.js";
 

@@ -17,6 +17,10 @@ const homeServiceSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    imageUrl: {
+        type: String,
+        required: true,
+    },
     isVaccinated: {
         type: String,
         required: true,
