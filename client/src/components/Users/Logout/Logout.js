@@ -9,7 +9,7 @@ const Logout = ({
     useEffect(() => {
         authService.logout();
         onLogOut();
-    }, [])
+    })
 
     return (
         <Navigate to="/login" replace={true} />

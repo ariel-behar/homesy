@@ -5,8 +5,7 @@ import Footer from './components/Footer/Footer.js';
 import Header from './components/Header/Header.js';
 
 import Home from "./components/Home/Home.js";
-import AllListings from './components/AllListings/AllListings.js';
-import Details from './components/HomeServices/Details/Details.js';
+import AllListings from './components/HomeServices/AllListings/AllListings.js';
 import Create from './components/HomeServices/Create/Create.js';
 
 import Login from './components/Users/Login/Login.js';
@@ -68,11 +67,10 @@ function App() {
             <main id="main" className="container">
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/services/all-listings" element={<AllListings />} />
-                    <Route path="/services/:listingId/details" element={<Details />} />
-                    <Route path="/services/create" element={<Create />} />
+                    <Route path="/home-services/all-listings" element={<AllListings />} />
+                    <Route path="/home-services/create" element={<Create />} />
                     <Route path="/login" element={<Login onLogin={onLogin} />} />
-                    <Route path="/register" element={<Register onRegister={onRegister}/>} />
+                    <Route path="/register" element={<Register onRegister={onRegister} />} />
                     <Route path="/logout" element={<Logout onLogOut={onLogOut} />} />
                 </Routes>
             </main>

@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { useState, useEffect } from 'react';
 
 import styles from "./Header.module.css";
 import GuestNavButtons from "./GuestNavButtons/GuestNavButtons.js";
