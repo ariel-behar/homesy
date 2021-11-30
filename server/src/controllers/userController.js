@@ -36,9 +36,9 @@ router.post('/login', async (req, res) => {
         
         if (user) {
             let payload = {
-                userId: user._id,
+                _id: user._id,
                 firstName: user.firstName,
-                email: user.email
+                email: user.email,
             };
 
             let AUTH_TOKEN = jwt.sign(payload, process.env.AUTH_TOKEN_SECRET);
