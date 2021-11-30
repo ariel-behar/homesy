@@ -26,4 +26,14 @@ router.get('/:homeServiceId', async (req, res) => {
     res.json(result);
 });
 
+router.put('/:homeServiceId', async (req, res) => {
+    let homeServiceId = req.params.homeServiceId;
+    let homeService = req.body;
+
+    let result = await homeServicesService.updateOne(homeServiceId, homeService);
+
+    res.json(result);
+});
+
+
 module.exports = router;

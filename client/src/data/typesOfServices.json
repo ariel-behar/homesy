@@ -1,0 +1,22 @@
+[
+    {
+        "_id": 1,
+        "value": "hairdresser",
+        "name": "Hairdresser"
+    },
+    {
+        "_id": 2,
+        "value": "teaching",
+        "name": "Teaching"
+    },
+    {
+        "_id": 3,
+        "value": "cleaning",
+        "name": "Cleaning"
+    },
+    {
+        "_id": 4,
+        "value": "homeRepairs",
+        "name": "Home Repairs"
+    }
+]   

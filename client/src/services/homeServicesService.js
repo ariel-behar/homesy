@@ -9,3 +9,5 @@ export const create = (homeService) => {
 export const getAll = () => request(homeServicesUrl, 'GET');
 
 export const getOne = (homeServiceId) => request(`${homeServicesUrl}/${homeServiceId}`, 'GET');
+
+export const updateOne = (homeServiceId, homeService) => request(`${homeServicesUrl}/${homeServiceId}`, 'PUT', 'application/json', homeService);

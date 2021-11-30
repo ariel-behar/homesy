@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
-
+import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
+import typesOfServices from '../../../data/typesOfServices.json';
 
 const Create = () => {
     const navigate = useNavigate();
@@ -37,10 +38,13 @@ const Create = () => {
     return (
         <form method="POST" action="" onSubmit={onFormSubmit}>
             <select name="typeOfService" id="serviceType">
-                <option value="hairdresser">Hairdresser</option>
-                <option value="teaching">Teaching</option>
-                <option value="cleaning">Cleaning</option>
-                <option value="homeRepairs">Home Repairs</option>
+                {typesOfServices.map(x => {
+                    return (
+                        <SelectOptions key={x._id} value={x.value}>
+                            {x.name}
+                        </SelectOptions>
+                    );
+                })}
             </select>
 
             <textarea name="description" placeholder="Elaborate further about your service..." cols="30" rows="5"></textarea>
