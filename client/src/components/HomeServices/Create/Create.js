@@ -1,22 +1,34 @@
+import { useNavigate } from 'react-router-dom';
+
+import * as homeServicesService from '../../../services/homeServicesService.js';
+
+
 const Create = () => {
-    const onFormSubmit = e => {
+    const navigate = useNavigate();
+
+    const onFormSubmit = async (e) => {
         e.preventDefault();
 
         let formData = new FormData(e.currentTarget);
         
         let typeOfService = formData.get('typeOfService');
-        console.log('typeOfService:', typeOfService)
         let description = formData.get('description');
-        console.log('description:', description)
         let price = formData.get('price');
-        console.log('price:', price)
         let cityOfOperation = formData.get('cityOfOperation');
-        console.log('cityOfOperation:', cityOfOperation)
         let isVaccinated = formData.get('isVaccinated');
-        console.log('isVaccinated:', isVaccinated)
+
+        let service = {
+            typeOfService,
+            description,
+            price,
+            cityOfOperation,
+            isVaccinated,
+            creator: localStorage.getItem('userId')
+        };
+
+        let response = await homeServicesService.create(service);
         
-
-
+        navigate('/home-services/all-listings');
     }
 
     return (

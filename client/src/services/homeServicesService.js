@@ -1,4 +1,7 @@
+import request from "../utils/request.js"; // request = (url, method, contentType, body);
 
-export const create = () => {
-    
-}
+const homeServicesUrl = 'http://localhost:3030/home-services'
+
+export const create = (homeService) => {
+    return request(`${homeServicesUrl}/create`, 'POST', 'application/json', homeService);
+};
