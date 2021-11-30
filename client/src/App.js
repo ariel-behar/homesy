@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import AuthContext from './contexts/authContext.js';
+
 import Footer from './components/Footer/Footer.js';
 import Header from './components/Header/Header.js';
 
@@ -41,20 +43,28 @@ function App() {
 
     }, [])
 
-    const onRegister = email => {
+    const onRegister = (userId, firstName, email) => {
         setUserInfo({
             isAuthenticated: true,
-            user: email,
+            user: {
+                userId,
+                firstName,
+                email,
+            },
         });
     };
 
 
-    const onLogin = (email) => {
+    const onLogin = (userId, firstName, email) => {
         setUserInfo({
             isAuthenticated: true,
-            user: email,
+            user: {
+                userId,
+                firstName,
+                email,
+            },
         });
-    }
+    };
 
     const onLogOut = () => {
         setUserInfo({
@@ -64,25 +74,27 @@ function App() {
     }
 
     return (
-        <>
-            <Header {...userInfo} />
+        <AuthContext.Provider value={userInfo}>
+            <>
+                <Header />
 
-            <main id="main" className="container">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/home-services/all-listings" element={<AllListings />} />
-                    <Route path="/home-services/create" element={<Create />} />
-                    <Route path="/home-services/:homeServiceId/details" element={<Details />} />
-                    <Route path="/home-services/:homeServiceId/edit" element={<Edit />} />
+                <main id="main" className="container">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/home-services/all-listings" element={<AllListings />} />
+                        <Route path="/home-services/create" element={<Create />} />
+                        <Route path="/home-services/:homeServiceId/details" element={<Details />} />
+                        <Route path="/home-services/:homeServiceId/edit" element={<Edit />} />
 
-                    <Route path="/login" element={<Login onLogin={onLogin} />} />
-                    <Route path="/register" element={<Register onRegister={onRegister} />} />
-                    <Route path="/logout" element={<Logout onLogOut={onLogOut} />} />
-                </Routes>
-            </main>
+                        <Route path="/login" element={<Login onLogin={onLogin} />} />
+                        <Route path="/register" element={<Register onRegister={onRegister} />} />
+                        <Route path="/logout" element={<Logout onLogOut={onLogOut} />} />
+                    </Routes>
+                </main>
 
-            <Footer />
-        </>
+                <Footer />
+            </>
+        </AuthContext.Provider>
     );
 }
 

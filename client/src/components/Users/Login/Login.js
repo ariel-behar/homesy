@@ -16,7 +16,6 @@ const Login = ({
         let password = formData.get('password');
 
         let user = {
-            
             email,
             password,
         };
@@ -29,7 +28,7 @@ const Login = ({
             localStorage.setItem('email', response.email);
             localStorage.setItem('AUTH_TOKEN', response.AUTH_TOKEN);
 
-            onLogin(response.email);
+            onLogin(response._id, response.firstName, response.email);
 
             navigate('/');
         } catch (error) {

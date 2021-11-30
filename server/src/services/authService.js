@@ -26,7 +26,7 @@ exports.login = async (email, password) => {
         return {
             _id: user._id, 
             firstName: user.firstName, 
-            email: user.firstName
+            email: user.email
         }
     } else {
         throw new Error('invalid user');

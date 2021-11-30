@@ -35,7 +35,7 @@ const Register = ({
                 localStorage.setItem('email', response.email);
                 localStorage.setItem('AUTH_TOKEN', response.AUTH_TOKEN);
 
-                await onRegister(response.email);
+                await onRegister(response._id, response.firstName, response.email);
 
                 navigate('/');
             } catch (error) {

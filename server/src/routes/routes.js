@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const userController = require('../controllers/userController.js')
+const authController = require('../controllers/authController.js');
 const homeServicesController = require('../controllers/homeServicesController.js');
 
 
-router.use("/users", userController);
+router.use("/users", authController);
 router.use('/home-services', homeServicesController)
 
 
