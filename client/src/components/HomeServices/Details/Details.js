@@ -1,9 +1,11 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
 
 const Details = () => {
+    const navigate = useNavigate();
+
     const { homeServiceId } = useParams();
     let [service, setService] = useState({});
 
@@ -13,6 +15,20 @@ const Details = () => {
                 setService(result);
             })
     }, [homeServiceId]);
+
+    const onDeleteButtonClick = async e => {
+        e.preventDefault();
+
+        let userResponse = window.confirm('Are you sure you want to delete this service?');
+
+        if (userResponse) {
+            console.log('Yes');
+
+            await homeServicesService.deleteOne(homeServiceId);
+
+            navigate('/home-services/all-listings');
+        } 
+    };
 
     return (
         <>
@@ -27,9 +43,9 @@ const Details = () => {
                         <Link to={`/home-services/${service[0]._id}/edit`} className="btn btn-primary">
                             Edit
                         </Link>
-                        <Link to="#" className="btn btn-danger">
+                        <button className="btn btn-danger" onClick={onDeleteButtonClick}>
                             Delete
-                        </Link>
+                        </button>
                     </div>
                     <div className="card-footer text-muted">[INSERT SOMETHING HERE]</div>
                 </div>

@@ -7,3 +7,5 @@ exports.getAll = () => HomeService.find({}).lean();
 exports.getOne = homeServiceId => HomeService.find({ _id: homeServiceId }).lean();
 
 exports.updateOne = (homeServiceId, homeService) => HomeService.findByIdAndUpdate(homeServiceId, homeService);
+
+exports.deleteOne = (homeServiceId) => HomeService.findByIdAndDelete(homeServiceId);

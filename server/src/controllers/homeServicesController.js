@@ -35,5 +35,13 @@ router.put('/:homeServiceId', async (req, res) => {
     res.json(result);
 });
 
+router.delete('/:homeServiceId', async (req, res) => {
+    let homeServiceId = req.params.homeServiceId;
+
+    let result = await homeServicesService.deleteOne(homeServiceId);
+
+    res.json(result);
+});
+
 
 module.exports = router;

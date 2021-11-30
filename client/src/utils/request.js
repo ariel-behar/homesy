@@ -4,6 +4,14 @@ const request = (url, method, contentType, body) => {
             .then(res => res.json())
             .then(result => result);
     } 
+    
+    else if (method === 'DELETE'){
+        return fetch(`${url}`, {
+            method: `${method}`,
+        })
+            .then(res => res.json())
+            .then(result => result);
+    }
 
     return fetch(`${url}`, {
         method: `${method}`,

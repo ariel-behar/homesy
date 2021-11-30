@@ -60,13 +60,13 @@ const Edit = () => {
                         })}
                     </select>
 
-                    <textarea name="description" placeholder="Elaborate further about your service..." cols="30" rows="5"></textarea>
+                    <textarea name="description" placeholder="Elaborate further about your service..." cols="30" rows="5" defaultValue={service[0].description}></textarea>
 
-                    <input type="number" name="price" placeholder="Price" required />
+                    <input type="number" name="price" placeholder="Price" defaultValue={service[0].price} required />
 
-                    <input type="text" name="cityOfOperation" placeholder="City of Operation" required />
+                    <input type="text" name="cityOfOperation" placeholder="City of Operation" defaultValue={service[0].cityOfOperation} required />
 
-                    <input type="text" name="imageUrl" placeholder="Insert Image URL" required />
+                    <input type="text" name="imageUrl" placeholder="Insert Image URL" defaultValue={service[0].imageUrl} required />
 
                     <p>Are you vaccinated?</p>
                     <label htmlFor="YesIsVaccinated">Yes</label>
