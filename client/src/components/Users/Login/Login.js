@@ -41,8 +41,8 @@ const Login = ({
         <div>
             <h3>Login</h3>
             <form method="POST" action="" onSubmit={onSubmitFormHandler}>
-                <input type="text" name="email" placeholder="Email" />
-                <input type="password" name="password" placeholder="Password" />
+                <input type="text" name="email" placeholder="Email" required />
+                <input type="password" name="password" placeholder="Password" required />
                 <input type="submit" />
             </form>
 

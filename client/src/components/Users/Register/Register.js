@@ -48,13 +48,13 @@ const Register = ({
         <div>
             <h3>Register</h3>
             <form method="POST" onSubmit={onSubmitFormHandler}>
-                <input type="text" name="firstName" placeholder="First Name" />
-                <input type="text" name="lastName" placeholder="Last Name" />
+                <input type="text" name="firstName" placeholder="First Name" required />
+                <input type="text" name="lastName" placeholder="Last Name" required />
 
-                <input type="text" name="email" placeholder="Email" />
+                <input type="text" name="email" placeholder="Email" required />
 
-                <input type="password" name="password" placeholder="Password" />
-                <input type="password" name="repeatPassword" placeholder="Repeat password" />
+                <input type="password" name="password" placeholder="Password" required />
+                <input type="password" name="repeatPassword" placeholder="Repeat password" required />
                 <input type="submit" />
             </form>
 

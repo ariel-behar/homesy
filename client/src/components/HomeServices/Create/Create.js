@@ -49,18 +49,18 @@ const Create = () => {
 
             <textarea name="description" placeholder="Elaborate further about your service..." cols="30" rows="5"></textarea>
 
-            <input type="number" name="price" placeholder="Price" />
+            <input type="number" name="price" placeholder="Price" required />
 
-            <input type="text" name="cityOfOperation" placeholder="City of Operation" />
+            <input type="text" name="cityOfOperation" placeholder="City of Operation" required />
 
-            <input type="text" name="imageUrl" placeholder="Insert Image URL" />
+            <input type="text" name="imageUrl" placeholder="Insert Image URL" required />
 
             <p>Are you vaccinated?</p>
             <label htmlFor="YesIsVaccinated">Yes</label>
-            <input type="radio" name="isVaccinated" id="YesIsVaccinated" defaultValue="Yes" />
+            <input type="radio" name="isVaccinated" id="YesIsVaccinated" defaultValue="Yes" required />
 
             <label htmlFor="NoIsVaccinated">No</label>
-            <input type="radio" name="isVaccinated" id="NoIsVaccinated" defaultValue="No" />
+            <input type="radio" name="isVaccinated" id="NoIsVaccinated" defaultValue="No" required />
             <input type="submit" />
         </form>
     );
