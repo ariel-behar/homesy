@@ -11,7 +11,6 @@ import Home from "./components/Home/Home.js";
 import AllListings from './components/HomeServices/AllListings/AllListings.js';
 import Create from './components/HomeServices/Create/Create.js';
 import Details from './components/HomeServices/Details/Details.js';
-import Edit from './components/HomeServices/Edit/Edit.js';
 
 import Login from './components/Users/Login/Login.js';
 import Register from './components/Users/Register/Register.js';
@@ -67,7 +66,6 @@ function App() {
                         <Route path="/home-services/all-listings" element={<AllListings />} />
                         <Route path="/home-services/create" element={<Create />} />
                         <Route path="/home-services/:homeServiceId/*" element={<Details />} />
-                        {/* <Route path="/home-services/:homeServiceId/edit" element={<Edit />} /> */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/logout" element={<Logout />} />

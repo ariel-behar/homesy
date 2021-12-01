@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
@@ -69,7 +69,8 @@ const Edit = ({
 
                     <label htmlFor="NoIsVaccinated">No</label>
                     <input type="radio" name="isVaccinated" id="NoIsVaccinated" defaultValue="No" required />
-                    <input type="submit" />
+                    <input type="submit" className="btn btn-primary" />
+                    <Link to={`/home-services/${homeServiceId}`} className="btn btn-danger">Cancel</Link>
                 </form>
             ) : (
                 <p>Loading...</p>
