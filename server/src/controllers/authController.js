@@ -33,7 +33,6 @@ router.post('/login', async (req, res) => {
 
     try {
         let user = await authService.login(email, password);   
-        console.log('user:', user)
         
         if (user) {
             let payload = {
