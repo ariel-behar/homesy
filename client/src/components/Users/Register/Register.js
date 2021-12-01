@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import AuthContext from "../../../contexts/authContext.js";
 import * as authService from '../../../services/authService.js';
 
-const Register = ({
-    onRegister
-}) => {
+const Register = () => {
+    let { login } = useContext(AuthContext)
     const navigate = useNavigate();
 
     const onSubmitFormHandler = async (e) => {
@@ -18,7 +19,7 @@ const Register = ({
         let password = formData.get('password');
         let repeatPassword = formData.get('repeatPassword');
 
-        let user = {
+        let userObj = {
             firstName,
             lastName,
             email,
@@ -27,15 +28,19 @@ const Register = ({
 
         if(password === repeatPassword) {
             try {
-                let response = await authService.register(user);
-                console.log('response:', response)
+                let userResponse = await authService.register(userObj);
 
-                localStorage.setItem('userId', response._id);
-                localStorage.setItem('firstName', response.firstName)
-                localStorage.setItem('email', response.email);
-                localStorage.setItem('AUTH_TOKEN', response.AUTH_TOKEN);
+                localStorage.setItem('userId', userResponse._id);
+                localStorage.setItem('firstName', userResponse.firstName)
+                localStorage.setItem('email', userResponse.email);
+                localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
 
-                await onRegister(response._id, response.firstName, response.email);
+                login({
+                    userId: userResponse._id,
+                    firstName: userResponse.firstName,
+                    email: userResponse.email,
+                    AUTH_TOKEN: userResponse.AUTH_TOKEN,
+                });
 
                 navigate('/');
             } catch (error) {

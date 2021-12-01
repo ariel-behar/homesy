@@ -19,62 +19,44 @@ import Logout from './components//Users/Logout/Logout.js';
 
 import "./App.css";
 
+const initialUserState = {
+    userId: '',
+    firstName: '',
+    email: '',
+    AUTH_TOKEN: '',
+};
 
 function App() {
-    const [userInfo, setUserInfo] = useState({ isAuthenticated: false, user: '' });
+    const [user, setUser] = useState(initialUserState);
 
     useEffect(() => {
         let userId = localStorage.getItem('userId');
         let firstName = localStorage.getItem('firstName');
         let email = localStorage.getItem('email');
+        let AUTH_TOKEN = localStorage.getItem('AUTH_TOKEN');
 
-        let user = {
+        let userObj = {
             userId,
             firstName,
-            email
+            email,
+            AUTH_TOKEN
         };
 
-        if (user.userId && user.firstName && user.email) {
-            setUserInfo({
-                isAuthenticated: true,
-                user,
-            });
+        if (userId && firstName && email && AUTH_TOKEN) {
+            setUser(userObj);
         }
-
     }, [])
 
-    const onRegister = (userId, firstName, email) => {
-        setUserInfo({
-            isAuthenticated: true,
-            user: {
-                userId,
-                firstName,
-                email,
-            },
-        });
-    };
+    const login = (userData) => {
+        setUser(userData)
+    }
 
-
-    const onLogin = (userId, firstName, email) => {
-        setUserInfo({
-            isAuthenticated: true,
-            user: {
-                userId,
-                firstName,
-                email,
-            },
-        });
-    };
-
-    const onLogOut = () => {
-        setUserInfo({
-            isAuthenticated: false,
-            user: '',
-        });
+    const logout = () => {
+        setUser(initialUserState);
     }
 
     return (
-        <AuthContext.Provider value={userInfo}>
+        <AuthContext.Provider value={{user, login, logout}}>
             <>
                 <Header />
 
@@ -85,10 +67,9 @@ function App() {
                         <Route path="/home-services/create" element={<Create />} />
                         <Route path="/home-services/:homeServiceId/details" element={<Details />} />
                         <Route path="/home-services/:homeServiceId/edit" element={<Edit />} />
-
-                        <Route path="/login" element={<Login onLogin={onLogin} />} />
-                        <Route path="/register" element={<Register onRegister={onRegister} />} />
-                        <Route path="/logout" element={<Logout onLogOut={onLogOut} />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/logout" element={<Logout />} />
                     </Routes>
                 </main>
 
