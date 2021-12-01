@@ -18,6 +18,7 @@ import Register from './components/Users/Register/Register.js';
 import Logout from './components//Users/Logout/Logout.js';
 
 import "./App.css";
+import PageNotFound from './components/PageNotFound/PageNotFound.js';
 
 const initialUserState = {
     userId: '',
@@ -56,7 +57,7 @@ function App() {
     }
 
     return (
-        <AuthContext.Provider value={{user, login, logout}}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             <>
                 <Header />
 
@@ -65,11 +66,12 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/home-services/all-listings" element={<AllListings />} />
                         <Route path="/home-services/create" element={<Create />} />
-                        <Route path="/home-services/:homeServiceId/details" element={<Details />} />
-                        <Route path="/home-services/:homeServiceId/edit" element={<Edit />} />
+                        <Route path="/home-services/:homeServiceId/*" element={<Details />} />
+                        {/* <Route path="/home-services/:homeServiceId/edit" element={<Edit />} /> */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/logout" element={<Logout />} />
+                        <Route path="*" element={<PageNotFound />} />
                     </Routes>
                 </main>
 

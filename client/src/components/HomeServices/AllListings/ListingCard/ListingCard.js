@@ -12,7 +12,7 @@ const ListingCard = ({
                     <p className="card-text">{service.description}</p>
                     <p className="card-text">{service.price} BGN</p>
                     <Link 
-                    to={`/home-services/${service._id}/details`} 
+                    to={`/home-services/${service._id}`} 
                     state={{from: service}}
                     className="btn btn-primary">
                         See more

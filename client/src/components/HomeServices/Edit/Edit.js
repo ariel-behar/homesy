@@ -5,18 +5,12 @@ import * as homeServicesService from '../../../services/homeServicesService.js';
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
 
-const Edit = () => {
+const Edit = ({
+    service,
+    homeServiceId,
+    renderEditedService
+}) => {
     const navigate = useNavigate();
-
-    const { homeServiceId } = useParams();
-    let [service, setService] = useState({});
-    
-    useEffect(() => {
-        homeServicesService.getOne(homeServiceId)
-            .then(result => {
-                setService(result);
-            });
-    }, [homeServiceId]);
 
     const onFormSubmit = async (e) => {
         e.preventDefault();
@@ -31,7 +25,7 @@ const Edit = () => {
 
         let isVaccinated = formData.get('isVaccinated');
 
-        let service = {
+        let homeServiceObj = {
             typeOfService,
             description,
             price,
@@ -41,16 +35,17 @@ const Edit = () => {
             creator: localStorage.getItem('userId')
         };
 
-        await homeServicesService.updateOne(homeServiceId, service);
+        await homeServicesService.updateOne(homeServiceId, homeServiceObj);
+        renderEditedService(homeServiceObj);
         
-        navigate('/home-services/all-listings');
+        navigate(`/home-services/${homeServiceId}`);
     }
 
     return (
         <>
-            {service.length > 0 ? (
+            {service ? (
                 <form method="POST" action="" onSubmit={onFormSubmit}>
-                    <select name="typeOfService" id="serviceType" defaultValue={service[0].typeOfService}>
+                    <select name="typeOfService" id="serviceType" defaultValue={service.typeOfService}>
                         {typesOfServices.map(x => {
                             return (
                                 <SelectOptions key={x._id} value={x.value}>
@@ -60,13 +55,13 @@ const Edit = () => {
                         })}
                     </select>
 
-                    <textarea name="description" placeholder="Elaborate further about your service..." cols="30" rows="5" defaultValue={service[0].description}></textarea>
+                    <textarea name="description" placeholder="Elaborate further about your service..." cols="30" rows="5" defaultValue={service.description}></textarea>
 
-                    <input type="number" name="price" placeholder="Price" defaultValue={service[0].price} required />
+                    <input type="number" name="price" placeholder="Price" defaultValue={service.price} required />
 
-                    <input type="text" name="cityOfOperation" placeholder="City of Operation" defaultValue={service[0].cityOfOperation} required />
+                    <input type="text" name="cityOfOperation" placeholder="City of Operation" defaultValue={service.cityOfOperation} required />
 
-                    <input type="text" name="imageUrl" placeholder="Insert Image URL" defaultValue={service[0].imageUrl} required />
+                    <input type="text" name="imageUrl" placeholder="Insert Image URL" defaultValue={service.imageUrl} required />
 
                     <p>Are you vaccinated?</p>
                     <label htmlFor="YesIsVaccinated">Yes</label>

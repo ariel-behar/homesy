@@ -20,7 +20,7 @@ router.post('/create', async (req, res) => {
 
 router.get('/:homeServiceId', async (req, res) => {
     let homeServiceId = req.params.homeServiceId;
-
+    
     let result = await homeServicesService.getOne(homeServiceId);
 
     res.json(result);
