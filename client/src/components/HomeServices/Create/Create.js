@@ -3,8 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import * as homeServicesService from '../../../services/homeServicesService.js';
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
+import { useContext } from 'react';
+import AuthContext from '../../../contexts/authContext.js';
+import ErrorContext from '../../../contexts/errorContext.js';
 
 const Create = () => {
+    const { user } = useContext(AuthContext);
+    const { displayError } = useContext(ErrorContext);
     const navigate = useNavigate();
 
     const onFormSubmit = async (e) => {
@@ -30,9 +35,16 @@ const Create = () => {
             creator: localStorage.getItem('userId')
         };
 
-        await homeServicesService.create(service);
-        
-        navigate('/home-services/all-listings');
+        //Server not working error
+        try {
+            let response = await homeServicesService.create(service, user.AUTH_TOKEN);
+
+            navigate('/home-services/all-listings');
+        } catch (error) {
+            let newError = await error;
+            displayError(newError.message);
+        }
+
     }
 
     return (

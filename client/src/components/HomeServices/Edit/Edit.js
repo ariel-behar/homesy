@@ -1,5 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';

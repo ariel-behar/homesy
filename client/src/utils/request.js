@@ -1,27 +1,48 @@
-const request = (url, method, contentType, body) => {
+const request = (url, method, authToken, body) => {
     if(method === 'GET') {
-        return fetch(`${url}`)
-            .then(res => res.json())
-            .then(result => result);
+        return fetch(`${url}`, {
+            headers: {
+                'Auth-Token': authToken,
+            },
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw res.json();
+            }
+            return res.json();
+        });
     } 
     
     else if (method === 'DELETE'){
         return fetch(`${url}`, {
-            method: `${method}`,
+            method: 'DELETE',
+            headers: {
+                'Auth-Token': authToken,
+            },
         })
-            .then(res => res.json())
-            .then(result => result);
+            .then(res => {
+                if (!res.ok) {
+                    throw res.json();
+                }
+                return res.json();
+            });
     }
 
     return fetch(`${url}`, {
         method: `${method}`,
         headers: {
-            'Content-Type': `${contentType}`,
+            'Content-Type': 'application/json',
+            'Auth-Token': authToken
         },
         body: JSON.stringify(body),
     })
-        .then(res => res.json())
-        .then(result => result);
+        .then(res => {
+            if(!res.ok){
+                throw res.json();
+            }
+            return res.json();
+        })
+
 };
 
 export default request;

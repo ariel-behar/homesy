@@ -2,14 +2,14 @@ import request from "../utils/request.js"; // request = (url, method, contentTyp
 
 const homeServicesUrl = 'http://localhost:3030/home-services'
 
-export const create = (homeService) => {
-    return request(`${homeServicesUrl}/create`, 'POST', 'application/json', homeService);
+export const create = (homeService, authToken) => {
+    return request(`${homeServicesUrl}/create`, 'POST', authToken, homeService);
 };
 
 export const getAll = () => request(homeServicesUrl, 'GET');
 
 export const getOne = (homeServiceId) => request(`${homeServicesUrl}/${homeServiceId}`, 'GET');
 
-export const updateOne = (homeServiceId, homeService) => request(`${homeServicesUrl}/${homeServiceId}`, 'PUT', 'application/json', homeService);
+export const updateOne = (homeServiceId, homeService, authToken) => request(`${homeServicesUrl}/${homeServiceId}`, 'PUT', authToken, homeService);
 
-export const deleteOne = (homeServiceId) => request(`${homeServicesUrl}/${homeServiceId}`, 'DELETE');
+export const deleteOne = (homeServiceId, authToken) => request(`${homeServicesUrl}/${homeServiceId}`, 'DELETE', authToken);
