@@ -1,10 +1,12 @@
 import { useParams, Link, useNavigate, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
 import Edit from '../Edit/Edit.js';
+import AuthContext from '../../../contexts/authContext.js';
 
 const Details = () => {
+    const {user} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const { homeServiceId } = useParams();
@@ -18,6 +20,7 @@ const Details = () => {
         homeServicesService.getOne(homeServiceId)
             .then(result => {
                 setService(result[0]);
+                console.log(result);
             })
     }, [homeServiceId]);
 
@@ -33,6 +36,18 @@ const Details = () => {
         } 
     };
 
+    const creatorUserButtons = (
+        <>
+            <Link to={`/home-services/${service._id}/edit`} className="btn btn-primary">
+                                Edit
+            </Link>
+            <button className="btn btn-danger" onClick={onDeleteButtonClick}>
+                Delete
+            </button>
+        </>
+    )
+    
+
     return (
         <>
             {service ? (
@@ -43,12 +58,12 @@ const Details = () => {
                         <h5 className="card-title">{service.typeOfService}</h5>
                         <p className="card-text">{service.description}</p>
                         <p className="card-text">{service.price} BGN</p>
-                        <Link to={`/home-services/${service._id}/edit`} className="btn btn-primary">
-                            Edit
-                        </Link>
-                        <button className="btn btn-danger" onClick={onDeleteButtonClick}>
-                            Delete
-                        </button>
+
+                        { service.creator === user.userId 
+                            ?  creatorUserButtons
+                            : ''
+                        }
+                       
                     </div>
                     <div className="card-footer text-muted">[INSERT SOMETHING HERE]</div>
                 </div>
