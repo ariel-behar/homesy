@@ -32,11 +32,11 @@ const Edit = ({
             cityOfOperation,
             imageUrl,
             isVaccinated,
-            creator: localStorage.getItem('userId')
         };
 
         await homeServicesService.updateOne(homeServiceId, homeServiceObj);
-        renderEditedService(homeServiceObj);
+
+        renderEditedService({ ...homeServiceObj, creator: service.creator, _id: homeServiceId });
         
         navigate(`/home-services/${homeServiceId}`);
     }

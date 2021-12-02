@@ -20,7 +20,6 @@ const Details = () => {
         homeServicesService.getOne(homeServiceId)
             .then(result => {
                 setService(result[0]);
-                console.log(result);
             })
     }, [homeServiceId]);
 
@@ -48,6 +47,7 @@ const Details = () => {
     )
     
 
+
     return (
         <>
             {service ? (
@@ -61,7 +61,7 @@ const Details = () => {
 
                         { service.creator === user.userId 
                             ?  creatorUserButtons
-                            : ''
+                            : <p>{service.creator, user.userId}</p>
                         }
                        
                     </div>
