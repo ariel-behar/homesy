@@ -38,11 +38,12 @@ const Create = () => {
         //Server not working error
         try {
             let response = await homeServicesService.create(service, user.AUTH_TOKEN);
+            console.log('response:', response)
 
             navigate('/home-services/all-listings');
         } catch (error) {
             let newError = await error;
-            displayError(newError.message);
+            displayError(newError);
         }
 
     }

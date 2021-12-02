@@ -13,9 +13,14 @@ router.post('/create',isAuth, async (req, res) => {
     let homeService = req.body;
 
     if(res.locals.user) {
-        let result = await homeServicesService.create(homeService);
+        console.log(homeService)
+        try {
+            let result = await homeServicesService.create();
 
-        res.json(result);
+            res.json(result); 
+        } catch (error) {
+            res.status(500).json(error);
+        }
     } else {
         res.status(401).json({ code: 401, message: 'Unauthorized request' });
     }

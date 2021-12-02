@@ -70,7 +70,7 @@ function App() {
                 <>
                     <Header />
                     { error
-                        ? <h3>Oops! {error} </h3>
+                        ? <h3>Oops! {error.code} {error.code ? ":" : ""} {error.message} </h3>
                         : ""
                     }
                     
