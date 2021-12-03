@@ -19,7 +19,7 @@ const Details = () => {
     useEffect(() => {
         homeServicesService.getOne(homeServiceId)
             .then(result => {
-                setService(result[0]);
+                setService(result);
             })
     }, [homeServiceId]);
 

@@ -13,9 +13,8 @@ router.post('/create',isAuth, async (req, res) => {
     let homeService = req.body;
 
     if(res.locals.user) {
-        console.log(homeService)
         try {
-            let result = await homeServicesService.create();
+            let result = await homeServicesService.create(homeService);
 
             res.json(result); 
         } catch (error) {
@@ -38,9 +37,31 @@ router.put('/:homeServiceId', isAuth, async (req, res) => {
     let homeServiceId = req.params.homeServiceId;
     let homeService = req.body;
 
-    let result = await homeServicesService.updateOne(homeServiceId, homeService);
+    try {
+        let actualHomeServiceFromDb = await homeServicesService.getOne(homeServiceId);
+            console.log('actualHomeServiceFromDb.creator', actualHomeServiceFromDb.creator);
+            console.log(res.locals.userId);
+        if(actualHomeServiceFromDb.creator == res.locals.userId ){
+            console.log('actualHomeServiceFromDb.creator', actualHomeServiceFromDb.creator);
+            console.log(res.locals.userId);
+            try {
+                let result = await homeServicesService.updateOne(homeServiceId, homeService);
 
-    res.json(result);
+                res.json(result);
+            } catch (error) {
+                throw { code: 500, message: error };
+            }
+        } else {
+            throw { code: 401, message: 'Unauthorized request' };
+        }
+    } catch (error) {
+        if(error.code) {
+            res.status(error.code).json(error);
+        }
+        res.status(500).json(error);
+        
+    }
+
 });
 
 router.delete('/:homeServiceId', isAuth, async (req, res) => {

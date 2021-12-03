@@ -24,7 +24,7 @@ exports.login = async (email, password) => {
 
     if(isValid) {
         return {
-            _id: user._id, 
+            userId: user._id, 
             firstName: user.firstName, 
             email: user.email
         }
@@ -32,4 +32,5 @@ exports.login = async (email, password) => {
         throw new Error('invalid user');
     }
 }
+
 

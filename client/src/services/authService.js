@@ -10,7 +10,8 @@ export const login = user => {
     return request(`${usersUrl}/login`, 'POST', 'application/json', user);
 };
 
-export const logout = () => {
+export const logout = (authToken) => {
     localStorage.clear();
+    return request(`${usersUrl}/logout`, 'GET', authToken);
 };
 

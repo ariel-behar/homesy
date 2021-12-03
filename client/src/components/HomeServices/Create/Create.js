@@ -37,8 +37,7 @@ const Create = () => {
 
         //Server not working error
         try {
-            let response = await homeServicesService.create(service, user.AUTH_TOKEN);
-            console.log('response:', response)
+            await homeServicesService.create(service, user.AUTH_TOKEN);
 
             navigate('/home-services/all-listings');
         } catch (error) {

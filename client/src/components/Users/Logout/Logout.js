@@ -5,10 +5,10 @@ import * as authService from "../../../services/authService.js";
 import AuthContext from "../../../contexts/authContext.js";
 
 const Logout = () => {
-    const { logout } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
 
     useEffect(() => {
-        authService.logout();
+        authService.logout(user.AUTH_TOKEN);
         logout();
     })
 

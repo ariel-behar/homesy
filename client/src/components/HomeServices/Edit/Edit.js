@@ -3,12 +3,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as homeServicesService from '../../../services/homeServicesService.js';
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
+import { useContext } from 'react';
+import AuthContext from '../../../contexts/authContext.js';
+import ErrorContext from '../../../contexts/errorContext.js';
 
 const Edit = ({
     service,
     homeServiceId,
     renderEditedService
 }) => {
+    const { user } = useContext(AuthContext)
+    const { displayError } = useContext(ErrorContext);
     const navigate = useNavigate();
 
     const onFormSubmit = async (e) => {
@@ -33,11 +38,18 @@ const Edit = ({
             isVaccinated,
         };
 
-        await homeServicesService.updateOne(homeServiceId, homeServiceObj);
+        try {
+            let response = await homeServicesService.updateOne(homeServiceId, homeServiceObj, user.AUTH_TOKEN);
+            console.log('response:', response)
 
-        renderEditedService({ ...homeServiceObj, creator: service.creator, _id: homeServiceId });
-        
-        navigate(`/home-services/${homeServiceId}`);
+            renderEditedService({ ...homeServiceObj, creator: service.creator, _id: homeServiceId });
+
+            navigate(`/home-services/${homeServiceId}`);
+        } catch (error) {
+            console.log(error)
+            let newError = await error;
+            displayError(newError);
+        }
     }
 
     return (

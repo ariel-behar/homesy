@@ -5,6 +5,7 @@ require('dotenv').config()
 const router = require('express').Router();
 
 const authService = require('../services/authService.js');
+const { isAuth } = require('../middlewares/authMiddleware.js')
 
 router.post('/register', async (req, res) => {
     let { firstName, lastName, email, password } = req.body;
@@ -36,7 +37,7 @@ router.post('/login', async (req, res) => {
         
         if (user) {
             let payload = {
-                _id: user._id,
+                userId: user._id,
                 firstName: user.firstName,
                 email: user.email,
             };
@@ -48,7 +49,12 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-    
+})
+
+router.get('/logout', isAuth, (req, res) => {
+    delete res.locals.user
+
+    res.json({ok:true})
 })
 
 module.exports = router;
