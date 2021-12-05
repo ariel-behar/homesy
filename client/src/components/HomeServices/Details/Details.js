@@ -6,7 +6,7 @@ import Edit from '../Edit/Edit.js';
 import { useAuth } from '../../../contexts/AuthContext.js';
 
 const Details = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const navigate = useNavigate();
 
     const { homeServiceId } = useParams();
@@ -45,7 +45,6 @@ const Details = () => {
             </button>
         </>
     )
-    
 
     return (
         <>
@@ -60,7 +59,7 @@ const Details = () => {
 
                         { service.creator === user.userId 
                             ?  creatorUserButtons
-                            : <p>{service.creator, user.userId}</p>
+                            : ''
                         }
                        
                     </div>

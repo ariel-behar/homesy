@@ -15,14 +15,14 @@ router.post('/register', async (req, res) => {
 
         if (user) {
             let payload = {
-                _id: user._id,
+                userId: user._id,
                 firstName: user.firstName,
                 email: user.email,
             };
 
             let AUTH_TOKEN = jwt.sign(payload, process.env.AUTH_TOKEN_SECRET);
 
-            return res.send({ ...payload, AUTH_TOKEN });
+            return res.json({ ...payload, AUTH_TOKEN });
         }
     } catch (error) {
         console.log(error);
@@ -36,14 +36,11 @@ router.post('/login', async (req, res) => {
         let user = await authService.login(email, password);   
         
         if (user) {
-            let payload = {
-                userId: user._id,
-                firstName: user.firstName,
-                email: user.email,
-            };
+            let payload = user;
 
             let AUTH_TOKEN = jwt.sign(payload, process.env.AUTH_TOKEN_SECRET);
-            return res.send({ ...payload, AUTH_TOKEN }); // SHOULD BE res.json???????
+
+            return res.json({ ...payload, AUTH_TOKEN });
         }
         
     } catch (error) {

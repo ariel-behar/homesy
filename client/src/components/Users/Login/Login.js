@@ -24,18 +24,18 @@ const Login = () => {
         try {
             let userResponse = await authService.login(userObj);
 
-            await localStorage.setItem('userId', userResponse._id);
+            await localStorage.setItem('userId', userResponse.userId);
             await localStorage.setItem('firstName', userResponse.firstName);
             await localStorage.setItem('email', userResponse.email);
             await localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
             
             // onLogin(userResponse._id, userResponse.firstName, userResponse.email);
             login({
-                userId: userResponse._id,
+                userId: userResponse.userId,
                 firstName: userResponse.firstName,
                 email: userResponse.email,
-                AUTH_TOKEN: userResponse.AUTH_TOKEN
-            })
+                AUTH_TOKEN: userResponse.AUTH_TOKEN,
+            });
 
             navigate('/');
         } catch (error) {

@@ -30,13 +30,13 @@ const Register = () => {
             try {
                 let userResponse = await authService.register(userObj);
 
-                localStorage.setItem('userId', userResponse._id);
+                localStorage.setItem('userId', userResponse.userId);
                 localStorage.setItem('firstName', userResponse.firstName)
                 localStorage.setItem('email', userResponse.email);
                 localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
 
                 login({
-                    userId: userResponse._id,
+                    userId: userResponse.userId,
                     firstName: userResponse.firstName,
                     email: userResponse.email,
                     AUTH_TOKEN: userResponse.AUTH_TOKEN,
