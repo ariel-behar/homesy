@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import AuthContext from './contexts/authContext.js';
-import ErrorContext from './contexts/errorContext.js';
+import { AuthProvider } from './contexts/AuthContext.js';
+import ErrorContext from './contexts/ErrorContext.js';
 
 import Footer from './components/Footer/Footer.js';
 import Header from './components/Header/Header.js';
@@ -20,42 +20,14 @@ import Logout from './components//Users/Logout/Logout.js';
 import "./App.css";
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
 
-const initialUserState = {
-    userId: '',
-    firstName: '',
-    email: '',
-    AUTH_TOKEN: '',
-};
+// NEed to continue with the Edit page. in the authController you are sending the AUTH_token res.send. COnsider changing it + you need to implement proper error handling for the authController processes
 
 function App() {
-    const [user, setUser] = useState(initialUserState);
     const [error, setError ] = useState('');
-
+    
     useEffect(() => {
-        let userId = localStorage.getItem('userId');
-        let firstName = localStorage.getItem('firstName');
-        let email = localStorage.getItem('email');
-        let AUTH_TOKEN = localStorage.getItem('AUTH_TOKEN');
 
-        let userObj = {
-            userId,
-            firstName,
-            email,
-            AUTH_TOKEN
-        };
-
-        if (userId && firstName && email && AUTH_TOKEN) {
-            setUser(userObj);
-        }
     }, [error])
-
-    const login = (userData) => {
-        setUser(userData)
-    }
-
-    const logout = () => {
-        setUser(initialUserState);
-    }
 
     const displayError = (newError) => {
         setError(newError);
@@ -66,14 +38,17 @@ function App() {
 
     return (
         <ErrorContext.Provider value={{ displayError }}>
-            <AuthContext.Provider value={{ user, login, logout }}>
+            <AuthProvider>
                 <>
                     <Header />
-                    { error
-                        ? <h3>Oops! {error.code} {error.code ? ":" : ""} {error.message} </h3>
-                        : ""
-                    }
-                    
+                    {error ? (
+                        <h3>
+                            Oops! {error.code} {error.code ? ':' : ''} {error.message}{' '}
+                        </h3>
+                    ) : (
+                        ''
+                    )}
+
                     <main id="main" className="container">
                         <Routes>
                             <Route path="/" element={<Home />} />
@@ -89,7 +64,7 @@ function App() {
 
                     <Footer />
                 </>
-            </AuthContext.Provider>
+            </AuthProvider>
         </ErrorContext.Provider>
     );
 }

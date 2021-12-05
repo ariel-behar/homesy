@@ -1,14 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { useContext } from 'react';
 
-import AuthContext from '../../contexts/authContext.js';
+import { useAuth } from '../../contexts/AuthContext.js';
 // import styles from "./Header.module.css";
 import GuestNavButtons from "./GuestNavButtons/GuestNavButtons.js";
 import LoggedUserNavButtons from "./LoggedUserNavButtons/LoggedUserNavButtons.js";
 
 
 const Header = () => {
-    const { user } = useContext(AuthContext)
+    const { user } = useAuth();
     
     return (
         <header>

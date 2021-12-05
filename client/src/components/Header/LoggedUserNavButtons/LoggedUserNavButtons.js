@@ -1,9 +1,8 @@
-import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import AuthContext from '../../../contexts/authContext.js';
+import { useAuth } from '../../../contexts/AuthContext.js';
 
 function LoggedUserNavButtons() {
-    let { user } = useContext(AuthContext)
+    let { user } = useAuth()
 
     return (
         <>  

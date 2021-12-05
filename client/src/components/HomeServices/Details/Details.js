@@ -1,12 +1,12 @@
 import { useParams, Link, useNavigate, Routes, Route } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
 import Edit from '../Edit/Edit.js';
-import AuthContext from '../../../contexts/authContext.js';
+import { useAuth } from '../../../contexts/AuthContext.js';
 
 const Details = () => {
-    const {user} = useContext(AuthContext);
+    const {user} = useAuth();
     const navigate = useNavigate();
 
     const { homeServiceId } = useParams();
@@ -46,7 +46,6 @@ const Details = () => {
         </>
     )
     
-
 
     return (
         <>

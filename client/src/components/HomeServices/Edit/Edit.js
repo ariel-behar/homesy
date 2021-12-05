@@ -1,18 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { useAuth } from '../../../contexts/AuthContext.js';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
+import { isAuth } from "../../../hoc/isAuth.js";
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
-import { useContext } from 'react';
-import AuthContext from '../../../contexts/authContext.js';
-import ErrorContext from '../../../contexts/errorContext.js';
+import ErrorContext from '../../../contexts/ErrorContext.js';
 
 const Edit = ({
     service,
     homeServiceId,
     renderEditedService
 }) => {
-    const { user } = useContext(AuthContext)
+    const { user } = useAuth()
     const { displayError } = useContext(ErrorContext);
     const navigate = useNavigate();
 
@@ -90,4 +91,4 @@ const Edit = ({
     );
 };
 
-export default Edit;
+export default isAuth(Edit);
