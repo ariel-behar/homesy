@@ -10,6 +10,7 @@ const { isAuth } = require('../middlewares/authMiddleware.js')
 router.post('/register', async (req, res) => {
     let { firstName, lastName, email, password } = req.body;
 
+
     try {
         let user = await authService.register(firstName, lastName, email, password);
 
@@ -25,7 +26,8 @@ router.post('/register', async (req, res) => {
             return res.json({ ...payload, AUTH_TOKEN });
         }
     } catch (error) {
-        console.log(error);
+        console.log(await error)
+        res.status(500).json(error)
     }
 });
 

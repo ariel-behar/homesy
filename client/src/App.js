@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { AuthProvider } from './contexts/AuthContext.js';
 import ErrorContext from './contexts/ErrorContext.js';
@@ -20,31 +20,59 @@ import PageNotFound from './components/PageNotFound/PageNotFound.js';
 // You need to implement proper error handling for the authController processes
 
 function App() {
-    const [error, setError ] = useState('');
+    const [error, setError ] = useState([]);
     
-    useEffect(() => {
-
-    }, [error])
-
     const displayError = (newError) => {
-        setError(newError);
+        if(newError.hasOwnProperty('errors')){
+            let newErrors = [];
+
+            Object.keys(newError.errors).forEach(err => {
+                newErrors.push({
+                    message: `${newError.errors[err].message}`,
+                });
+            });
+
+            setError(newErrors);
+        } else {
+            if (newError.message === 'Failed to fetch') {
+                newError.code = 500;
+                newError.message = 'Communication with server has failed';
+            }
+
+            setError([newError]);
+        }
+         
         setTimeout(() => {
             setError('');
         }, 3000);
     }
+
+    const errorMessageTemplate = error => {
+        return (
+            <>
+                <h3> Oops!</h3>
+
+                {error.map(error => {
+                    return (
+                        <p>
+                            {error.code ? `${error.code} : ` : ''} {error.message}{' '}
+                        </p>
+                    );
+                })}
+            </>
+        );
+    };
+
 
     return (
         <ErrorContext.Provider value={{ displayError }}>
             <AuthProvider>
                 <>
                     <Header />
-                    {error ? (
-                        <h3>
-                            Oops! {error.code} {error.code ? ':' : ''} {error.message}{' '}
-                        </h3>
-                    ) : (
-                        ''
-                    )}
+                    {error 
+                    ? errorMessageTemplate(error)
+                    : ''
+                    }
 
                     <main id="main" className="container">
                         <Routes>

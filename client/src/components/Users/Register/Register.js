@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import {AuthContext} from "../../../contexts/AuthContext.js";
+import { useAuth } from "../../../contexts/AuthContext.js";
+import ErrorContext from '../../../contexts/ErrorContext.js';
 import * as authService from '../../../services/authService.js';
 
 const Register = () => {
-    let { login } = useContext(AuthContext)
+    const { login } = useAuth();
+    const { displayError } = useContext(ErrorContext);
     const navigate = useNavigate();
 
     const onSubmitFormHandler = async (e) => {
@@ -29,23 +31,30 @@ const Register = () => {
         if(password === repeatPassword) {
             try {
                 let userResponse = await authService.register(userObj);
+                console.log('userResponse:', userResponse)
 
-                localStorage.setItem('userId', userResponse.userId);
-                localStorage.setItem('firstName', userResponse.firstName)
-                localStorage.setItem('email', userResponse.email);
-                localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
+                // localStorage.setItem('userId', userResponse.userId);
+                // localStorage.setItem('firstName', userResponse.firstName)
+                // localStorage.setItem('email', userResponse.email);
+                // localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
 
-                login({
-                    userId: userResponse.userId,
-                    firstName: userResponse.firstName,
-                    email: userResponse.email,
-                    AUTH_TOKEN: userResponse.AUTH_TOKEN,
-                });
+                // login({
+                //     userId: userResponse.userId,
+                //     firstName: userResponse.firstName,
+                //     email: userResponse.email,
+                //     AUTH_TOKEN: userResponse.AUTH_TOKEN,
+                // });
 
-                navigate('/');
+                // navigate('/');
             } catch (error) {
-                console.error(error)
+                console.log(await error)
+                displayError(await error)
             }
+        } else {
+            let error = {
+                message: 'Password and repeat password must match'
+            }
+            displayError(error);
         }
     }
 

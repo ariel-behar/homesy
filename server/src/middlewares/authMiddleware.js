@@ -23,6 +23,4 @@ exports.isAuth = function (req, res, next) {
         console.log('My error', error)
         res.status(500).json({ code: 500, message: 'A problem occurred during User authentication' });
     }
-
-
 }

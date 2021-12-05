@@ -10,7 +10,13 @@ exports.register = (firstName, lastName, email, password) => {
                 password = hash;
                 return User.create({ firstName, lastName, email, password });
             })
-            .catch(error => console.log('An error occurred while hashing password: ', error));
+            .catch(error => {
+                if (error.message === 'data and salt arguments required') {
+                    throw { code: 500, message: 'An error occurred while attempting to sign you up. Please try again ' };
+                }
+                
+                throw error;
+            });
 };
 
 exports.login = async (email, password) => {
