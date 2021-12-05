@@ -39,11 +39,8 @@ router.put('/:homeServiceId', isAuth, async (req, res) => {
 
     try {
         let actualHomeServiceFromDb = await homeServicesService.getOne(homeServiceId);
-            console.log('actualHomeServiceFromDb.creator', actualHomeServiceFromDb.creator);
-            console.log(res.locals.userId);
-        if(actualHomeServiceFromDb.creator == res.locals.userId ){
-            console.log('actualHomeServiceFromDb.creator', actualHomeServiceFromDb.creator);
-            console.log(res.locals.userId);
+
+        if(actualHomeServiceFromDb.creator == res.locals.user.userId ){
             try {
                 let result = await homeServicesService.updateOne(homeServiceId, homeService);
 
@@ -66,10 +63,13 @@ router.put('/:homeServiceId', isAuth, async (req, res) => {
 
 router.delete('/:homeServiceId', isAuth, async (req, res) => {
     let homeServiceId = req.params.homeServiceId;
+    try {
+        let result = await homeServicesService.deleteOne(homeServiceId);
 
-    let result = await homeServicesService.deleteOne(homeServiceId);
-
-    res.json(result);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json(error)
+    }
 });
 
 module.exports = router;

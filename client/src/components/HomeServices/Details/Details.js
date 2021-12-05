@@ -1,13 +1,13 @@
-import { useParams, Link, useNavigate, Routes, Route } from 'react-router-dom';
+import { useParams, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
 import Edit from '../Edit/Edit.js';
 import { useAuth } from '../../../contexts/AuthContext.js';
+import CreatorUserButtons from './CreatorUserButtons/CreatorUserButtons.js';
 
 const Details = () => {
     const { user } = useAuth();
-    const navigate = useNavigate();
 
     const { homeServiceId } = useParams();
     let [service, setService] = useState('');
@@ -23,29 +23,6 @@ const Details = () => {
             })
     }, [homeServiceId]);
 
-    const onDeleteButtonClick = async e => {
-        e.preventDefault();
-
-        let userResponse = window.confirm('Are you sure you want to delete this service?');
-
-        if (userResponse) {
-            await homeServicesService.deleteOne(homeServiceId);
-
-            navigate('/home-services/all-listings');
-        } 
-    };
-
-    const creatorUserButtons = (
-        <>
-            <Link to={`/home-services/${service._id}/edit`} className="btn btn-primary">
-                                Edit
-            </Link>
-            <button className="btn btn-danger" onClick={onDeleteButtonClick}>
-                Delete
-            </button>
-        </>
-    )
-
     return (
         <>
             {service ? (
@@ -58,7 +35,7 @@ const Details = () => {
                         <p className="card-text">{service.price} BGN</p>
 
                         { service.creator === user.userId 
-                            ?  creatorUserButtons
+                            ?  <CreatorUserButtons service={service} homeServiceId={homeServiceId} />
                             : ''
                         }
                        

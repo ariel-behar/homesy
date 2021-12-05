@@ -41,8 +41,7 @@ const Create = () => {
 
             navigate('/home-services/all-listings');
         } catch (error) {
-            let newError = await error;
-            displayError(newError);
+            displayError(await error);
         }
 
     }

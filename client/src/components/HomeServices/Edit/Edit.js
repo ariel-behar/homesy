@@ -40,16 +40,13 @@ const Edit = ({
         };
 
         try {
-            let response = await homeServicesService.updateOne(homeServiceId, homeServiceObj, user.AUTH_TOKEN);
-            console.log('response:', response)
+            await homeServicesService.updateOne(homeServiceId, homeServiceObj, user.AUTH_TOKEN);
 
             renderEditedService({ ...homeServiceObj, creator: service.creator, _id: homeServiceId });
 
             navigate(`/home-services/${homeServiceId}`);
         } catch (error) {
-            console.log(error)
-            let newError = await error;
-            displayError(newError);
+            displayError(await error);
         }
     }
 

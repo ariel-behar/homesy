@@ -6,13 +6,10 @@ import ErrorContext from './contexts/ErrorContext.js';
 
 import Footer from './components/Footer/Footer.js';
 import Header from './components/Header/Header.js';
-
 import Home from "./components/Home/Home.js";
-
 import AllListings from './components/HomeServices/AllListings/AllListings.js';
 import Create from './components/HomeServices/Create/Create.js';
 import Details from './components/HomeServices/Details/Details.js';
-
 import Login from './components/Users/Login/Login.js';
 import Register from './components/Users/Register/Register.js';
 import Logout from './components//Users/Logout/Logout.js';
@@ -20,7 +17,7 @@ import Logout from './components//Users/Logout/Logout.js';
 import "./App.css";
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
 
-// NEed to continue with the Edit page. in the authController you are sending the AUTH_token res.send. COnsider changing it + you need to implement proper error handling for the authController processes
+// You need to implement proper error handling for the authController processes
 
 function App() {
     const [error, setError ] = useState('');

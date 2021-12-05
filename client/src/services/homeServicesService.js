@@ -2,9 +2,7 @@ import request from "../utils/request.js"; // request = (url, method, contentTyp
 
 const homeServicesUrl = 'http://localhost:3030/home-services'
 
-export const create = (homeService, authToken) => {
-    return request(`${homeServicesUrl}/create`, 'POST', authToken, homeService);
-};
+export const create = (homeService, authToken) => request(`${homeServicesUrl}/create`, 'POST', authToken, homeService);
 
 export const getAll = () => request(homeServicesUrl, 'GET');
 
