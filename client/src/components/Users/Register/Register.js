@@ -31,28 +31,26 @@ const Register = () => {
         if(password === repeatPassword) {
             try {
                 let userResponse = await authService.register(userObj);
-                console.log('userResponse:', userResponse)
 
-                // localStorage.setItem('userId', userResponse.userId);
-                // localStorage.setItem('firstName', userResponse.firstName)
-                // localStorage.setItem('email', userResponse.email);
-                // localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
+                localStorage.setItem('userId', userResponse.userId);
+                localStorage.setItem('firstName', userResponse.firstName)
+                localStorage.setItem('email', userResponse.email);
+                localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
 
-                // login({
-                //     userId: userResponse.userId,
-                //     firstName: userResponse.firstName,
-                //     email: userResponse.email,
-                //     AUTH_TOKEN: userResponse.AUTH_TOKEN,
-                // });
+                login({
+                    userId: userResponse.userId,
+                    firstName: userResponse.firstName,
+                    email: userResponse.email,
+                    AUTH_TOKEN: userResponse.AUTH_TOKEN,
+                });
 
-                // navigate('/');
+                navigate('/');
             } catch (error) {
-                console.log(await error)
                 displayError(await error)
             }
         } else {
             let error = {
-                message: 'Password and repeat password must match'
+                message: 'Password and Repeat Password must match'
             }
             displayError(error);
         }

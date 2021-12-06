@@ -17,10 +17,8 @@ import Logout from './components//Users/Logout/Logout.js';
 import "./App.css";
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
 
-// You need to implement proper error handling for the authController processes
-
 function App() {
-    const [error, setError ] = useState([]);
+    const [error, setError ] = useState('');
     
     const displayError = (newError) => {
         if(newError.hasOwnProperty('errors')){
