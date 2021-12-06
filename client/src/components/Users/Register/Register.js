@@ -13,13 +13,7 @@ const Register = () => {
     const onSubmitFormHandler = async (e) => {
         e.preventDefault();
 
-        let formData = new FormData(e.currentTarget);
-
-        let firstName = formData.get('firstName');
-        let lastName = formData.get('lastName');
-        let email = formData.get('email');
-        let password = formData.get('password');
-        let repeatPassword = formData.get('repeatPassword');
+        let { firstName , lastName, email, password, repeatPassword} = Object.fromEntries(new FormData(e.currentTarget));
 
         let userObj = {
             firstName,

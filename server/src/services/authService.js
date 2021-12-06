@@ -23,20 +23,22 @@ exports.login = async (email, password) => {
     let user = await User.findOne({email}).lean();
 
     if(!user) {
-        throw new Error('Invalid username or password');
+        throw { code: 400, message: 'Invalid username or password' };
     }
 
     let isValid = await bcrypt.compare(password, user.password);
 
-    if(isValid) {
+    if (isValid) {
         return {
-            userId: user._id, 
-            firstName: user.firstName, 
-            email: user.email
-        }
+            userId: user._id,
+            firstName: user.firstName,
+            email: user.email,
+        };
     } else {
-        throw new Error('invalid user');
+        throw { code: 400, message: 'Invalid username or password' };
     }
+    
+    
 }
 
 

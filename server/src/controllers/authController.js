@@ -1,4 +1,3 @@
-const cors = require('cors');
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
@@ -6,22 +5,24 @@ const router = require('express').Router();
 
 const authService = require('../services/authService.js');
 const { isAuth } = require('../middlewares/authMiddleware.js')
+const logUserIn = require('../utils/logUserIn.js')
 
 router.post('/register', async (req, res) => {
     let { firstName, lastName, email, password } = req.body;
-    try {
-        let user = await authService.register(firstName, lastName, email, password);
 
-        if (user) {
-            let payload = {
-                userId: user._id,
-                firstName: user.firstName,
-                email: user.email,
+    try {
+        let userResponse = await authService.register(firstName, lastName, email, password);
+
+        if (userResponse) {
+            let user = {
+                userId: userResponse._id,
+                firstName: userResponse.firstName,
+                email: userResponse.email,
             };
 
-            let AUTH_TOKEN = jwt.sign(payload, process.env.AUTH_TOKEN_SECRET);
+            let AUTH_TOKEN = logUserIn(user);
 
-            return res.json({ ...payload, AUTH_TOKEN });
+            return res.json({ ...user, AUTH_TOKEN });
         }
     } catch (error) {
         res.status(500).json(error)
@@ -35,15 +36,12 @@ router.post('/login', async (req, res) => {
         let user = await authService.login(email, password);   
         
         if (user) {
-            let payload = user;
+           let AUTH_TOKEN = logUserIn(user);
 
-            let AUTH_TOKEN = jwt.sign(payload, process.env.AUTH_TOKEN_SECRET);
-
-            return res.json({ ...payload, AUTH_TOKEN });
+           return res.json({ ...user, AUTH_TOKEN });
         }
-        
     } catch (error) {
-        console.log('error');
+        res.status(500).json(error);
     }
 })
 

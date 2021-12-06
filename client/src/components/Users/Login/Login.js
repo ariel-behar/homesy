@@ -1,20 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react'
 
-import {AuthContext} from '../../../contexts/AuthContext.js';
+import { useAuth } from '../../../contexts/AuthContext.js';
 import * as authService from '../../../services/authService.js';
+import ErrorContext from '../../../contexts/ErrorContext.js';
 
 const Login = () => {
+    const { login } = useAuth();
+    const { displayError } = useContext(ErrorContext);
+
     const navigate = useNavigate();
-    let { login } = useContext(AuthContext);
 
     const onSubmitFormHandler = async (e) => {
         e.preventDefault();
 
-        let formData = new FormData(e.currentTarget);
-
-        let email = formData.get('email');
-        let password = formData.get('password');
+        let { email, password} = Object.fromEntries(new FormData(e.currentTarget));
 
         let userObj = {
             email,
@@ -24,12 +24,11 @@ const Login = () => {
         try {
             let userResponse = await authService.login(userObj);
 
-            await localStorage.setItem('userId', userResponse.userId);
-            await localStorage.setItem('firstName', userResponse.firstName);
-            await localStorage.setItem('email', userResponse.email);
-            await localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
+            localStorage.setItem('userId', userResponse.userId);
+            localStorage.setItem('firstName', userResponse.firstName);
+            localStorage.setItem('email', userResponse.email);
+            localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
             
-            // onLogin(userResponse._id, userResponse.firstName, userResponse.email);
             login({
                 userId: userResponse.userId,
                 firstName: userResponse.firstName,
@@ -39,7 +38,8 @@ const Login = () => {
 
             navigate('/');
         } catch (error) {
-            console.error(error);
+            console.log(await error)
+            displayError(await error);
         }
     };
 
