@@ -1,21 +1,35 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { useAuth } from '../../../contexts/AuthContext.js';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useAuthContext } from '../../../contexts/AuthContext.js';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
-import { isAuth } from "../../../hoc/isAuth.js";
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
 import ErrorContext from '../../../contexts/ErrorContext.js';
 
 const Edit = ({
-    service,
     homeServiceId,
     renderEditedService
 }) => {
-    const { user } = useAuth()
+    const { user, isAuthorized } = useAuthContext()
     const { displayError } = useContext(ErrorContext);
     const navigate = useNavigate();
+
+    let [service, setService] = useState('');
+
+    useEffect(() => {
+        homeServicesService.getOne(homeServiceId)
+            .then(result => {
+                setService(result);
+            });
+
+
+        if(!isAuthorized(service.creator)) {
+            displayError({ code: 400, message: 'Unauthorized access' });
+            navigate(`/home-services/all-listings`);
+        }
+        
+    }, [])
 
     const onFormSubmit = async (e) => {
         e.preventDefault();
@@ -88,4 +102,4 @@ const Edit = ({
     );
 };
 
-export default isAuth(Edit);
+export default Edit;

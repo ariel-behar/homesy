@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
 import Edit from '../Edit/Edit.js';
-import { useAuth } from '../../../contexts/AuthContext.js';
+import { useAuthContext } from '../../../contexts/AuthContext.js';
 import CreatorUserButtons from './CreatorUserButtons/CreatorUserButtons.js';
+import RouteGuard from '../../../hoc/RouteGuard.js';
 
 const Details = () => {
-    const { user } = useAuth();
+    const { isAuthorized } = useAuthContext();
 
     const { homeServiceId } = useParams();
     let [service, setService] = useState('');
@@ -34,11 +35,11 @@ const Details = () => {
                         <p className="card-text">{service.description}</p>
                         <p className="card-text">{service.price} BGN</p>
 
-                        { service.creator === user.userId 
-                            ?  <CreatorUserButtons service={service} homeServiceId={homeServiceId} />
-                            : ''
+                        {
+                            isAuthorized(service.creator) 
+                                ? <CreatorUserButtons service={service} homeServiceId={homeServiceId} /> 
+                                : ''
                         }
-                       
                     </div>
                     <div className="card-footer text-muted">[INSERT SOMETHING HERE]</div>
                 </div>
@@ -46,7 +47,9 @@ const Details = () => {
                 <p>Loading...</p>
             )}
             <Routes>
-                <Route path="/edit" element={<Edit service={service} homeServiceId={homeServiceId} renderEditedService={renderEditedService} />} />
+                <Route element={<RouteGuard />}>
+                    <Route path="/edit" element={<Edit service={service} homeServiceId={homeServiceId} renderEditedService={renderEditedService} />} />
+                </Route>
             </Routes>
         </>
     );

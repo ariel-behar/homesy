@@ -3,13 +3,21 @@ import {useContext, useEffect } from "react";
 
 import * as authService from "../../../services/authService.js";
 import {AuthContext} from "../../../contexts/AuthContext.js";
+import * as localStorageUtil from "../../../utils/localStorageUtil.js";
+import ErrorContext from "../../../contexts/ErrorContext.js";
 
 const Logout = () => {
     const { user, logout } = useContext(AuthContext);
+    const { displayError } = useContext(ErrorContext);
 
     useEffect(() => {
-        authService.logout(user.AUTH_TOKEN);
-        logout();
+        try {
+            localStorageUtil.clearLocalStorage();
+            authService.logout(user.AUTH_TOKEN);
+            logout();
+        } catch (error) {
+            displayError(error)
+        }
     })
 
     return (
