@@ -16,7 +16,6 @@ import Logout from './components//Users/Logout/Logout.js';
 
 import "./App.css";
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
-import RouteGuard from './hoc/RouteGuard.js';
 
 function App() {
     const [error, setError ] = useState('');
@@ -68,16 +67,16 @@ function App() {
             <AuthProvider>
                 <>
                     <Header />
-                    {error ? errorMessageTemplate(error) : ''}
+                    {error 
+                    ? errorMessageTemplate(error)
+                    : ''
+                    }
 
                     <main id="main" className="container">
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/home-services/all-listings" element={<AllListings />} />
-                            <Route element={<RouteGuard/>}>
-                                <Route path="/home-services/create" element={<Create />} />
-                            </Route>
-
+                            <Route path="/home-services/create" element={<Create />} />
                             <Route path="/home-services/:homeServiceId/*" element={<Details />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />

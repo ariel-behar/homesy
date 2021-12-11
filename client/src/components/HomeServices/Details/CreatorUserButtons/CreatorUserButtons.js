@@ -2,14 +2,14 @@ import {  Link, useNavigate } from 'react-router-dom';
 import * as homeServicesService from '../../../../services/homeServicesService.js';
 import ErrorContext from '../../../../contexts/ErrorContext.js';
 import { useContext } from 'react';
-import { useAuthContext } from '../../../../contexts/AuthContext.js';
+import { useAuth } from '../../../../contexts/AuthContext.js';
 
 function CreatorUserButtons({
     service,
     homeServiceId, 
 }) {
     const navigate = useNavigate();
-    const { user } = useAuthContext();
+    const { user } = useAuth();
     const { displayError } = useContext(ErrorContext);
 
     const onDeleteButtonClick = async e => {

@@ -1,7 +1,6 @@
-import { useState, useEffect, createContext, useContext } from 'react';
+import { useState, useEffect } from "react";
 
-import * as localStorageUtil from '../utils/localStorageUtil.js';
-import ErrorContext from './ErrorContext.js';
+import { createContext, useContext } from 'react';
 
 export const AuthContext = createContext();
 
@@ -15,42 +14,42 @@ const initialUserState = {
 export const AuthProvider = ({
     children
 }) => {
-    const [user, setUser] = useState(localStorageUtil.getLocalStorage(initialUserState));
-    const { displayError } = useContext(ErrorContext)
+    const [user, setUser] = useState(initialUserState);
+
+    useEffect(() => {
+        let userId = localStorage.getItem('userId');
+        let firstName = localStorage.getItem('firstName');
+        let email = localStorage.getItem('email');
+        let AUTH_TOKEN = localStorage.getItem('AUTH_TOKEN');
+
+        let userObj = {
+            userId,
+            firstName,
+            email,
+            AUTH_TOKEN,
+        };
+
+        if (userId && firstName && email && AUTH_TOKEN) {
+            setUser(userObj);
+        }
+    }, []);
 
     const login = (userData) => {
-        try {
-            localStorageUtil.setLocalStorage(userData);    
-            setUser(userData);
-        } catch (error) {
-            displayError(error);
-        }
-    };
+        setUser(userData)
+    }
 
     const logout = () => {
         setUser(initialUserState);
     }
 
-    const isAuthorized = (serviceCreatorId) => {
-        console.log(serviceCreatorId);
-        console.log(user.userId);
-        if(serviceCreatorId === user.userId) {
-            console.log('true');
-            return true;
-        } else {
-            console.log('He is not the creator');
-        }
-
-    }
-
     return (
-        <AuthContext.Provider value={{user, login, logout, isAuthenticated: Boolean(user.userId), isAuthorized}}>
+        <AuthContext.Provider value={{user, login, logout, isAuthenticated: Boolean(user.userId)}}>
             {children}
         </AuthContext.Provider>
     )
 }
 
-export const useAuthContext = () => {
+export const useAuth = () => {
     const authState = useContext(AuthContext);
 
     return authState;

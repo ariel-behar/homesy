@@ -4,11 +4,11 @@ import * as homeServicesService from '../../../services/homeServicesService.js';
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
 import { useContext } from 'react';
-import { useAuthContext } from '../../../contexts/AuthContext.js';
+import { useAuth } from '../../../contexts/AuthContext.js';
 import ErrorContext from '../../../contexts/ErrorContext.js';
 
 const Create = () => {
-    const { user } = useAuthContext();
+    const { user } = useAuth();
     const { displayError } = useContext(ErrorContext);
     const navigate = useNavigate();
 

@@ -1,12 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react'
 
-import { useAuthContext } from '../../../contexts/AuthContext.js';
+import { useAuth } from '../../../contexts/AuthContext.js';
 import * as authService from '../../../services/authService.js';
 import ErrorContext from '../../../contexts/ErrorContext.js';
 
 const Login = () => {
-    const { login } = useAuthContext();
+    const { login } = useAuth();
     const { displayError } = useContext(ErrorContext);
 
     const navigate = useNavigate();
@@ -24,6 +24,11 @@ const Login = () => {
         try {
             let userResponse = await authService.login(userObj);
 
+            localStorage.setItem('userId', userResponse.userId);
+            localStorage.setItem('firstName', userResponse.firstName);
+            localStorage.setItem('email', userResponse.email);
+            localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
+            
             login({
                 userId: userResponse.userId,
                 firstName: userResponse.firstName,

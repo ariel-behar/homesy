@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAuthContext } from "../../../contexts/AuthContext.js";
+import { useAuth } from "../../../contexts/AuthContext.js";
 import ErrorContext from '../../../contexts/ErrorContext.js';
 import * as authService from '../../../services/authService.js';
 
 const Register = () => {
-    const { login } = useAuthContext();
+    const { login } = useAuth();
     const { displayError } = useContext(ErrorContext);
     const navigate = useNavigate();
 
