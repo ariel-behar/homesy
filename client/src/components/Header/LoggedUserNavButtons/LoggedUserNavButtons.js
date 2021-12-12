@@ -8,6 +8,7 @@ function LoggedUserNavButtons() {
         <>
             <NavLink to="/home-services/create"> Create Listing </NavLink>
             <span>Hello, {user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1).toLowerCase()}</span>
+            <NavLink to="/my-profile"> My Profile </NavLink>
             <NavLink to="/logout"> Logout </NavLink>
         </>
     );

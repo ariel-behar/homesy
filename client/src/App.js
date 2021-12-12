@@ -17,6 +17,7 @@ import Logout from './components//Users/Logout/Logout.js';
 import "./App.css";
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
 import RouteGuard from './hoc/RouteGuard.js';
+import MyProfile from './components/MyProfile/MyProfile.js';
 
 function App() {
     const [error, setError ] = useState('');
@@ -77,8 +78,8 @@ function App() {
                             <Route element={<RouteGuard/>}>
                                 <Route path="/home-services/create" element={<Create />} />
                             </Route>
-
                             <Route path="/home-services/:homeServiceId/*" element={<Details />} />
+                            <Route path="/my-profile" element={<MyProfile />}/>
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
                             <Route path="/logout" element={<Logout />} />

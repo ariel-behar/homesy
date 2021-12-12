@@ -6,9 +6,10 @@ import Edit from '../Edit/Edit.js';
 import { useAuthContext } from '../../../contexts/AuthContext.js';
 import CreatorUserButtons from './CreatorUserButtons/CreatorUserButtons.js';
 import RouteGuard from '../../../hoc/RouteGuard.js';
+import AuthenticatedNonCreatorButtons from './AuthenticatedNonCreatorButtons/AuthenticatedNonCreatorButtons.js';
 
 const Details = () => {
-    const { isAuthorized } = useAuthContext();
+    const { isAuthenticated, isAuthorized } = useAuthContext();
 
     const { homeServiceId } = useParams();
     let [service, setService] = useState('');
@@ -38,7 +39,9 @@ const Details = () => {
                         {
                             isAuthorized(service.creator) 
                                 ? <CreatorUserButtons service={service} homeServiceId={homeServiceId} /> 
-                                : ''
+                                : isAuthenticated
+                                    ? <AuthenticatedNonCreatorButtons />
+                                    : ''
                         }
                     </div>
                     <div className="card-footer text-muted">[INSERT SOMETHING HERE]</div>
