@@ -4,6 +4,7 @@ import * as homeServicesService from '../../services/homeServicesService.js';
 import * as favoritesService from '../../services/favoritesService.js';
 import { useAuthContext} from '../../contexts/AuthContext.js'
 import ErrorContext from "../../contexts/ErrorContext.js";
+import ListingCard from '../../components/HomeServices/AllListings/ListingCard/ListingCard.js';
 
 function MyProfile() {
     const { user } = useAuthContext();
@@ -22,20 +23,23 @@ function MyProfile() {
                 displayError(err);
             });
     }, [])
-
-    const getFavorites = (e) => {
-        e.preventDefault();
-
-        favoritesService.getUserFavorites(user)
-    }
-
+    
     return (
         <div>
             <h3>My Listings</h3>
-            
-            <h3>My Favorite Listings</h3>
 
-            <button onClick={getFavorites}>Get User Favorites</button>
+            <div className="row">
+                {myListings.map(x => (
+                    <ListingCard key={x._id} service={x} />
+                ))}
+            </div>
+
+            <h3>My Favorite Listings</h3>
+            <div className="row">
+                {myFavorites.map(x => (
+                    <ListingCard key={x._id} service={x} />
+                ))}
+            </div>
         </div>
     );
 }
