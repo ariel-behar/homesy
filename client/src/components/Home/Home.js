@@ -1,34 +1,39 @@
+import { useContext, useState } from 'react';
+
 import styles from './Home.module.css';
+
+import ErrorContext from '../../contexts/ErrorContext.js';
+
 import typesOfServices from "../../data/typesOfServices.json";
 import SelectOptions from '../HomeServices/Create/SelectOptions/SelectOptions.js';
-import { useContext } from 'react';
-import ErrorContext from '../../contexts/ErrorContext.js';
 import * as homeServicesService from '../../services/homeServicesService.js';
+import ListingCard from "../HomeServices/AllListings/ListingCard/ListingCard.js";
 
 const Home = () => {
     const { displayError } = useContext(ErrorContext);
+    let [searchResults, setSearchResults ] = useState([])
 
     const onFormSubmitHanlder = async (e) => {
         e.preventDefault();
 
-        // TODO: THis part needs to be modified and all of the ones along the request chain
+        const { typeOfService, cityOfOperation } = Object.fromEntries(new FormData(e.currentTarget));
 
-        // const { typeOfService, cityOfOperation } = Object.fromEntries(new FormData(e.currentTarget));
+        try {
+            let result = await homeServicesService.search(typeOfService, cityOfOperation);
+            setSearchResults(result);
 
-        // try {
-        //     let result = await homeServicesService.get(typeOfService, cityOfOperation);
-        //     console.log('result:', result)
-
-        // } catch(error) {
-        //     displayError(await error);
-        // }
-
+        } catch(error) {
+            displayError(await error);
+        }
     }
 
     return (
         <section className={styles.homePageSection}>
+            <h1>Welcome to HOMEZY</h1>
+
             <p>Services</p>
             <form method="GET" action="" onSubmit={onFormSubmitHanlder}>
+                <label htmlFor="serviceType">What?</label>
                 <select name="typeOfService" id="serviceType">
                     {typesOfServices.map(x => {
                         return (
@@ -38,9 +43,18 @@ const Home = () => {
                         );
                     })}
                 </select>
-                <input type="text" name="cityOfOperation" placeholder="Where?" />
+                <label htmlFor="cityOfOperation">Where?</label>
+                <input type="text" name="cityOfOperation" id="cityOfOperation" placeholder="Where?" />
                 <input type="submit" />
             </form>
+
+            { 
+                searchResults.length > 0
+                    ?   searchResults.map(x => (
+                            <ListingCard key={x._id} service={x} />
+                        ))
+                    : ''
+            }
         </section>
     );
 };

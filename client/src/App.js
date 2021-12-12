@@ -45,7 +45,7 @@ function App() {
          
         setTimeout(() => {
             setError('');
-        }, 3000);
+        }, 5000);
     }
 
     const errorMessageTemplate = error => {

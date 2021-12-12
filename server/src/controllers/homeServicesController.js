@@ -30,6 +30,22 @@ router.post('/create',isAuth, async (req, res) => {
     }
 });
 
+
+router.get('/search', async (req, res) => {
+    const { typeOfService, cityOfOperation } = req.query;
+
+    try {
+        let result = await homeServicesService.search(typeOfService, cityOfOperation);
+
+        res.json(result); 
+    } catch (error) {
+        res.status(500).json(error);
+    }
+
+    res.end();
+});
+
+
 router.get('/:homeServiceId', async (req, res) => {
     let homeServiceId = req.params.homeServiceId;
     try {
@@ -40,6 +56,7 @@ router.get('/:homeServiceId', async (req, res) => {
         res.status(500).json(error);
     }
 });
+
 
 router.put('/:homeServiceId', isAuth, async (req, res) => {
     let homeServiceId = req.params.homeServiceId;

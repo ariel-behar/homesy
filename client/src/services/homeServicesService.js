@@ -9,6 +9,8 @@ export const getOne = homeServiceId => request(`${homeServicesUrl}/${homeService
 
 export const getAll = () => request(homeServicesUrl, 'GET');
 
+export const search = (typeOfService, cityOfOperation) => request(`${homeServicesUrl}/search?typeOfService=${typeOfService}&cityOfOperation=${cityOfOperation}`, 'GET');
+
 export const getAllbyUser = authToken => request(`${myProfileUrl}/`, 'GET', authToken);
 
 export const updateOne = (homeServiceId, homeService, authToken) => request(`${homeServicesUrl}/${homeServiceId}`, 'PUT', authToken, homeService);
