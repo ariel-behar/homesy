@@ -4,9 +4,14 @@ const { isAuth } = require('../middlewares/authMiddleware.js')
 const homeServicesService = require('../services/homeServicesService.js');
 
 router.get('/', async (req, res) => {
-    let result = await homeServicesService.getAll();
+    try {
+        let result = await homeServicesService.getAll();
 
-    res.json(result);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+    
 });
 
 router.post('/create',isAuth, async (req, res) => {
@@ -27,10 +32,13 @@ router.post('/create',isAuth, async (req, res) => {
 
 router.get('/:homeServiceId', async (req, res) => {
     let homeServiceId = req.params.homeServiceId;
+    try {
+        let result = await homeServicesService.getOne(homeServiceId);
 
-    let result = await homeServicesService.getOne(homeServiceId);
-
-    res.json(result);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json(error);
+    }
 });
 
 router.put('/:homeServiceId', isAuth, async (req, res) => {

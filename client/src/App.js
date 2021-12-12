@@ -23,6 +23,7 @@ function App() {
     const [error, setError ] = useState('');
     
     const displayError = (newError) => {
+        console.log('newError:', newError)
         if(newError.hasOwnProperty('errors')){
             let newErrors = [];
 
