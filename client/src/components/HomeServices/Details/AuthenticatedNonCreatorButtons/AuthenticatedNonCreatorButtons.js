@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useState, useEffect } from 'react';
 import ErrorContext from '../../../../contexts/ErrorContext.js';
 import * as homeServicesService from '../../../../services/homeServicesService.js';
+import * as favoritesService from '../../../../services/favoritesService.js';
 
 function AuthenticatedNonCreatorButtons({
     user,
@@ -23,7 +24,7 @@ function AuthenticatedNonCreatorButtons({
         e.preventDefault();
 
         try {
-            let addToFavoritesResponse = await homeServicesService.addToFavorites(homeServiceId, user);
+            let addToFavoritesResponse = await favoritesService.addToFavorites(homeServiceId, user);
             
             if(addToFavoritesResponse.favoriteOf.includes(user.userId)){
                 setUserLiked(true)
@@ -38,7 +39,7 @@ function AuthenticatedNonCreatorButtons({
         e.preventDefault();
 
         try {
-            let removeFromFavoritesResponse = await homeServicesService.removeFromFavorites(homeServiceId, user);
+            let removeFromFavoritesResponse = await favoritesService.removeFromFavorites(homeServiceId, user);
 
             if (!removeFromFavoritesResponse.favoriteOf.includes(user.userId)) {
                 setUserLiked(false);

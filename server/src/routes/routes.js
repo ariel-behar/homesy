@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const authController = require('../controllers/authController.js');
 const homeServicesController = require('../controllers/homeServicesController.js');
+const favoritesController = require('../controllers/favoritesController.js');
 const homeServicesService = require('../services/homeServicesService.js');
 const { isAuth } = require('../middlewares/authMiddleware.js');
 
 
 router.use('/users', authController);
 router.use('/home-services', homeServicesController)
+router.use('/home-services/favorites', favoritesController);
 
 router.get('/my-profile', isAuth, async (req, res) => {
     let userId = req.user.userId;

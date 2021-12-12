@@ -68,40 +68,6 @@ router.put('/:homeServiceId', isAuth, async (req, res) => {
     }
 });
 
-router.put('/:homeServiceId/favorites/add', isAuth, async (req, res) => {
-    let homeServiceId = req.params.homeServiceId;
-    let userId = req.body['userId'];
-
-    try {
-        let result = await homeServicesService.addToFavorites(homeServiceId, userId);
-
-        res.json(result);
-    } catch (error) {
-        if (error.code) {
-            res.status(error.code).json(error);
-        } else {
-            res.status(500).json(error);
-        }
-    }
-});
-
-router.put('/:homeServiceId/favorites/remove', isAuth, async (req, res) => {
-    let homeServiceId = req.params.homeServiceId;
-    let userId = req.body['userId'];
-
-    try {
-        let result = await homeServicesService.removeFromFavorites(homeServiceId, userId);
-
-        res.json(result);
-    } catch (error) {
-        if (error.code) {
-            res.status(error.code).json(error);
-        } else {
-            res.status(500).json(error);
-        }
-    }
-});
-
 router.delete('/:homeServiceId', isAuth, async (req, res) => {
     let homeServiceId = req.params.homeServiceId;
     try {

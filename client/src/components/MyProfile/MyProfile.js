@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 import * as homeServicesService from '../../services/homeServicesService.js';
+import * as favoritesService from '../../services/favoritesService.js';
 import { useAuthContext} from '../../contexts/AuthContext.js'
 import ErrorContext from "../../contexts/ErrorContext.js";
 
@@ -16,7 +17,7 @@ function MyProfile() {
         //     .then(res => {
         //         console.log(res);
         //     })
-        Promise.all([homeServicesService.getAllbyUser(user), homeServicesService.getAllUserFavorites(user)])
+        Promise.all([homeServicesService.getAllbyUser(user), getAllUserFavorites.getAllUserFavorites(user)])
             .then(res => {
                 console.log(res[0]);
             })
