@@ -1,9 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
+import "./App.css";
+
 import { AuthProvider } from './contexts/AuthContext.js';
 import ErrorContext from './contexts/ErrorContext.js';
 
+import Error from "./components/Error/Error.js";
 import Footer from './components/Footer/Footer.js';
 import Header from './components/Header/Header.js';
 import Home from "./components/Home/Home.js";
@@ -14,7 +17,7 @@ import Login from './components/Users/Login/Login.js';
 import Register from './components/Users/Register/Register.js';
 import Logout from './components//Users/Logout/Logout.js';
 
-import "./App.css";
+
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
 import RouteGuard from './hoc/RouteGuard.js';
 import MyProfile from './components/MyProfile/MyProfile.js';
@@ -23,7 +26,6 @@ function App() {
     const [error, setError ] = useState('');
     
     const displayError = (newError) => {
-        console.log('newError:', newError)
         if(newError.hasOwnProperty('errors')){
             let newErrors = [];
 
@@ -48,29 +50,15 @@ function App() {
         }, 5000);
     }
 
-    const errorMessageTemplate = error => {
-        return (
-            <>
-                <h3> Oops!</h3>
-
-                {error.map(error => {
-                    return (
-                        <p>
-                            {error.code ? `${error.code} : ` : ''} {error.message}{' '}
-                        </p>
-                    );
-                })}
-            </>
-        );
-    };
-
-
     return (
         <ErrorContext.Provider value={{ displayError }}>
             <AuthProvider>
                 <>
-                    <Header />
-                    {error ? errorMessageTemplate(error) : ''}
+                    <Header /> 
+                    {error
+                        ? <Error error={error} />
+                        : ''
+                    }
 
                     <main id="main" className="container">
                         <Routes>
