@@ -29,16 +29,25 @@ function MyProfile() {
             <h3>My Listings</h3>
 
             <div className="row">
-                {myListings.map(x => (
-                    <ListingCard key={x._id} service={x} />
-                ))}
+                {
+                    myListings.length > 0
+                        ? myListings.map(x => (
+                            <ListingCard key={x._id} service={x} />
+                        ))
+                        : 'You have not listed any services yet'
+                }
             </div>
 
             <h3>My Favorite Listings</h3>
             <div className="row">
-                {myFavorites.map(x => (
-                    <ListingCard key={x._id} service={x} />
-                ))}
+                {
+                    myFavorites.length > 0
+                        ? myFavorites.map(x => (
+                            <ListingCard key={x._id} service={x} />
+                        ))
+                        : 'You have not added any services to your favorites list yet'
+                }
+
             </div>
         </div>
     );
