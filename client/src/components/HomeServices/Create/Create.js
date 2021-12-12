@@ -15,15 +15,7 @@ const Create = () => {
     const onFormSubmit = async (e) => {
         e.preventDefault();
 
-        let formData = new FormData(e.currentTarget);
-        
-        let typeOfService = formData.get('typeOfService');
-        let description = formData.get('description');
-        let price = formData.get('price');
-        let cityOfOperation = formData.get('cityOfOperation');
-        let imageUrl = formData.get('imageUrl');
-
-        let isVaccinated = formData.get('isVaccinated');
+        let { typeOfService, description, price, cityOfOperation, imageUrl, isVaccinated } = Object.fromEntries(new FormData(e.currentTarget));
 
         let service = {
             typeOfService,

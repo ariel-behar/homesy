@@ -32,17 +32,9 @@ const Edit = ({
     const onFormSubmit = async (e) => {
         e.preventDefault();
 
-        let formData = new FormData(e.currentTarget);
-        
-        let typeOfService = formData.get('typeOfService');
-        let description = formData.get('description');
-        let price = formData.get('price');
-        let cityOfOperation = formData.get('cityOfOperation');
-        let imageUrl = formData.get('imageUrl');
+        let { typeOfService, description, price, cityOfOperation, imageUrl, isVaccinated } = Object.fromEntries(new FormData(e.currentTarget));
 
-        let isVaccinated = formData.get('isVaccinated');
-
-        let homeServiceObj = {
+         let homeServiceObj = {
             typeOfService,
             description,
             price,
@@ -52,9 +44,9 @@ const Edit = ({
         };
 
         try {
-            await homeServicesService.updateOne(homeServiceId, homeServiceObj, user.AUTH_TOKEN);
+            let editedServiceResponse = await homeServicesService.updateOne(homeServiceId, homeServiceObj, user.AUTH_TOKEN);
 
-            renderEditedService({ ...homeServiceObj, creator: service.creator, _id: homeServiceId });
+            renderEditedService(editedServiceResponse);
 
             navigate(`/home-services/${homeServiceId}`);
         } catch (error) {
