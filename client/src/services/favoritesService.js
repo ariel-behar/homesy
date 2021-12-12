@@ -6,4 +6,4 @@ export const addToFavorites = (homeServiceId, user) => request(`${homeServicesUr
 
 export const removeFromFavorites = (homeServiceId, user) => request(`${homeServicesUrl}/favorites/${homeServiceId}/remove`, 'PUT', user.AUTH_TOKEN, user);
 
-export const getUserFavorites = user => request(`${homeServicesUrl}/favorites`, 'GET', user.AUTH_TOKEN);
+export const getUserFavorites = authToken => request(`${homeServicesUrl}/favorites`, 'GET', authToken);

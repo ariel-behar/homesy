@@ -14,9 +14,9 @@ function MyProfile() {
     const [ myFavorites, setMyFavorites ] = useState([]);
 
     useEffect(() => {
-        Promise.all([homeServicesService.getAllbyUser(user), favoritesService.getUserFavorites(user)])
+        Promise.all([homeServicesService.getAllbyUser(user.AUTH_TOKEN), favoritesService.getUserFavorites(user.AUTH_TOKEN)])
             .then(res => {
-                setMyListings(res[0])
+                setMyListings(res[0]);
                 setMyFavorites(res[1]);
             })
             .catch(err => {
