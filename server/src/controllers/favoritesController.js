@@ -3,6 +3,23 @@ const router = require('express').Router();
 const favoritesService = require('../services/favoritesService.js')
 const {isAuth} = require('../middlewares/authMiddleware.js')
 
+router.get('/', isAuth, async (req, res) => {
+    let userId = req.user['userId'];
+
+    try {
+        let result = await favoritesService.getUserFavorites(userId);
+
+        res.json(result);
+    } catch (error) {
+        if (error.code) {
+            res.status(error.code).json(error);
+        } else {
+            res.status(500).json(error);
+        }
+    }
+
+})
+
 router.put('/:homeServiceId/add', isAuth, async (req, res) => {
     let homeServiceId = req.params.homeServiceId;
     let userId = req.body['userId'];

@@ -10,27 +10,34 @@ function MyProfile() {
     const { displayError } = useContext(ErrorContext)
 
     const [ myListings, setMyListings ] = useState([]);
-    const [ myFavories, setMyFavorites ] = useState([]);
+    const [ myFavorites, setMyFavorites ] = useState([]);
 
     useEffect(() => {
-        // homeServicesService.getAllbyUser(user)
-        //     .then(res => {
-        //         console.log(res);
-        //     })
-        Promise.all([homeServicesService.getAllbyUser(user), getAllUserFavorites.getAllUserFavorites(user)])
+        Promise.all([homeServicesService.getAllbyUser(user), favoritesService.getUserFavorites(user)])
             .then(res => {
-                console.log(res[0]);
+                setMyListings(res[0])
+                setMyFavorites(res[1]);
             })
             .catch(err => {
                 displayError(err);
             });
     }, [])
 
+    const getFavorites = (e) => {
+        e.preventDefault();
+
+        favoritesService.getUserFavorites(user)
+    }
+
     return (
         <div>
-            bls
+            <h3>My Listings</h3>
+            
+            <h3>My Favorite Listings</h3>
+
+            <button onClick={getFavorites}>Get User Favorites</button>
         </div>
-    )
+    );
 }
 
 export default MyProfile

@@ -7,8 +7,9 @@ const { isAuth } = require('../middlewares/authMiddleware.js');
 
 
 router.use('/users', authController);
-router.use('/home-services', homeServicesController)
 router.use('/home-services/favorites', favoritesController);
+router.use('/home-services', homeServicesController)
+
 
 router.get('/my-profile', isAuth, async (req, res) => {
     let userId = req.user.userId;

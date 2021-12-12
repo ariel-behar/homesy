@@ -14,7 +14,7 @@ const Listings = () => {
         }
 
         fetchData()
-    }, [services]);
+    }, []);
 
     return (
         <div className="row">
