@@ -14,3 +14,7 @@ export const getAll = () => request(homeServicesUrl, 'GET');
 export const updateOne = (homeServiceId, homeService, authToken) => request(`${homeServicesUrl}/${homeServiceId}`, 'PUT', authToken, homeService);
 
 export const deleteOne = (homeServiceId, authToken) => request(`${homeServicesUrl}/${homeServiceId}`, 'DELETE', authToken);
+
+export const addToFavorites = (homeServiceId, user) => request(`${homeServicesUrl}/${homeServiceId}/favorites/add`, 'PUT', user.AUTH_TOKEN, user);
+
+export const removeFromFavorites = (homeServiceId, user) => request(`${homeServicesUrl}/${homeServiceId}/favorites/remove`, 'PUT', user.AUTH_TOKEN, user);

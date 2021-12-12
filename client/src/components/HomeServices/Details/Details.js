@@ -9,7 +9,7 @@ import RouteGuard from '../../../hoc/RouteGuard.js';
 import AuthenticatedNonCreatorButtons from './AuthenticatedNonCreatorButtons/AuthenticatedNonCreatorButtons.js';
 
 const Details = () => {
-    const { isAuthenticated, isAuthorized } = useAuthContext();
+    const { user, isAuthenticated, isAuthorized } = useAuthContext();
 
     const { homeServiceId } = useParams();
     let [service, setService] = useState('');
@@ -40,7 +40,7 @@ const Details = () => {
                             isAuthorized(service.creator) 
                                 ? <CreatorUserButtons service={service} homeServiceId={homeServiceId} /> 
                                 : isAuthenticated
-                                    ? <AuthenticatedNonCreatorButtons />
+                                    ? <AuthenticatedNonCreatorButtons user={user} homeServiceId={homeServiceId} />
                                     : ''
                         }
                     </div>

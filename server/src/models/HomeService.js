@@ -29,6 +29,12 @@ const homeServiceSchema = mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User',
     },
+    favoriteOf: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'User',
+        },
+    ],
 });
 
 const HomeService = mongoose.model('HomeService', homeServiceSchema);

@@ -32,16 +32,15 @@ const request = (url, method, authToken, body) => {
         method: `${method}`,
         headers: {
             'Content-Type': 'application/json',
-            'Auth-Token': authToken
+            'Auth-Token': authToken,
         },
         body: JSON.stringify(body),
-    })
-        .then(res => {
-            if(!res.ok){
-                throw res.json();
-            }
-            return res.json();
-        })
+    }).then(res => {
+        if (!res.ok) {
+            throw res.json();
+        }
+        return res.json();
+    });
 
 };
 
