@@ -8,6 +8,7 @@ import ListingCard from '../../components/HomeServices/AllListings/ListingCard/L
 
 function MyProfile() {
     const { user } = useAuthContext();
+    console.log('user:', user)
     const { displayError } = useErrorContext()
 
     const [ myListings, setMyListings ] = useState([]);
@@ -25,32 +26,23 @@ function MyProfile() {
     }, [])
     
     return (
-        <div>
-            <h3>My Listings</h3>
-
-            <div className="row">
-                {
-                    myListings.length > 0
-                        ? myListings.map(x => (
-                            <ListingCard key={x._id} service={x} />
-                        ))
-                        : 'You have not listed any services yet'
-                }
+        <>
+            <div className="me-auto">
+                <h3>Name: {`${user.firstName.toUpperCase()} ${user.lastName.toUpperCase()}`}</h3>
+                <h5>E-mail: {user.email}</h5>
             </div>
 
-            <h3>My Favorite Listings</h3>
-            <div className="row">
-                {
-                    myFavorites.length > 0
-                        ? myFavorites.map(x => (
-                            <ListingCard key={x._id} service={x} />
-                        ))
-                        : 'You have not added any services to your favorites list yet'
-                }
+            <div>
+                <h3>My Listings</h3>
 
+                <div className="row">{myListings.length > 0 ? myListings.map(x => <ListingCard key={x._id} service={x} />) : 'You have not listed any services yet'}</div>
+
+                <h3>My Favorite Listings</h3>
+                <div className="row">{myFavorites.length > 0 ? myFavorites.map(x => <ListingCard key={x._id} service={x} />) : 'You have not added any services to your favorites list yet'}</div>
             </div>
-        </div>
+        </>
     );
+    
 }
 
 export default MyProfile
