@@ -21,10 +21,6 @@ const homeServiceSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    isVaccinated: {
-        type: String,
-        required: true,
-    },
     creator: {
         type: mongoose.Types.ObjectId,
         ref: 'User',

@@ -3,12 +3,12 @@ require('dotenv').config();
 
 const User = require('../models/User.js');
 
-exports.register = (firstName, lastName, email, password) => {
+exports.register = (firstName, lastName, email, password, gender) => {
     return bcrypt
             .hash(password, Number(process.env.JWT_SALT))
             .then(hash => {
                 password = hash;
-                return User.create({ firstName, lastName, email, password });
+                return User.create({ firstName, lastName, email, password, gender });
             })
             .catch(error => {
                 if (error.message === 'data and salt arguments required') {
@@ -33,6 +33,7 @@ exports.login = async (email, password) => {
             userId: user._id,
             firstName: user.firstName,
             email: user.email,
+            gender: user.gender
         };
     } else {
         throw { code: 400, message: 'Invalid username or password' };

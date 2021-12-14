@@ -15,7 +15,7 @@ const Create = () => {
     const onFormSubmit = async (e) => {
         e.preventDefault();
 
-        let { typeOfService, description, price, cityOfOperation, imageUrl, isVaccinated } = Object.fromEntries(new FormData(e.currentTarget));
+        let { typeOfService, description, price, cityOfOperation, imageUrl } = Object.fromEntries(new FormData(e.currentTarget));
 
         let service = {
             typeOfService,
@@ -23,17 +23,14 @@ const Create = () => {
             price,
             cityOfOperation,
             imageUrl,
-            isVaccinated,
-            creator: localStorage.getItem('userId')
+            creator: user.userId
         };
 
-        //Server not working error
         try {
             await homeServicesService.create(service, user.AUTH_TOKEN);
 
             navigate('/home-services/all-listings');
         } catch (error) {
-            
             displayError(await error);
         }
 
@@ -59,12 +56,6 @@ const Create = () => {
 
             <input type="text" name="imageUrl" placeholder="Insert Image URL" required />
 
-            <p>Are you vaccinated?</p>
-            <label htmlFor="YesIsVaccinated">Yes</label>
-            <input type="radio" name="isVaccinated" id="YesIsVaccinated" defaultValue="Yes" required />
-
-            <label htmlFor="NoIsVaccinated">No</label>
-            <input type="radio" name="isVaccinated" id="NoIsVaccinated" defaultValue="No" required />
             <input type="submit" />
         </form>
     );

@@ -21,7 +21,12 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength: [6, 'Password needs to be at least 8 characters long']
+        minLength: [6, 'Password needs to be at least 8 characters long'],
+    },
+    gender: {
+        type: String,
+        required: true,
+        enum: { values: ['Male', 'Female'], message: 'Male or Female gender needs to be chosen' },
     },
 });
 

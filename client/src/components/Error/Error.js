@@ -15,9 +15,6 @@ function Error() {
                         {error.map(error => {
                             return (
                                 <ErrorNotification key={uniqid()} error={error} />
-                                // <p key={uniqid()}>
-                                //     {error.code ? `${error.code} : ` : ''} {error.message}{' '}
-                                // </p>
                             );
                         })}
                     </ToastContainer>
