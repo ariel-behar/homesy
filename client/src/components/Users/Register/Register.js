@@ -1,8 +1,8 @@
-import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../../../contexts/AuthContext.js";
 import { useErrorContext } from '../../../contexts/ErrorContext.js';
+import { setLocalStorage } from "../../../utils/localStorageUtil.js";
 import * as authService from '../../../services/authService.js';
 
 const Register = () => {
@@ -13,30 +13,31 @@ const Register = () => {
     const onSubmitFormHandler = async (e) => {
         e.preventDefault();
 
-        let { firstName , lastName, email, password, repeatPassword} = Object.fromEntries(new FormData(e.currentTarget));
+        let { firstName , lastName, email, password, repeatPassword, gender} = Object.fromEntries(new FormData(e.currentTarget));
 
         let userObj = {
             firstName,
             lastName,
             email,
             password,
+            gender,
         };
 
         if(password === repeatPassword) {
             try {
                 let userResponse = await authService.register(userObj);
 
-                localStorage.setItem('userId', userResponse.userId);
-                localStorage.setItem('firstName', userResponse.firstName)
-                localStorage.setItem('email', userResponse.email);
-                localStorage.setItem('AUTH_TOKEN', userResponse.AUTH_TOKEN);
-
-                login({
+                let user = {
                     userId: userResponse.userId,
                     firstName: userResponse.firstName,
                     email: userResponse.email,
+                    gender: userResponse.gender,
                     AUTH_TOKEN: userResponse.AUTH_TOKEN,
-                });
+                };
+
+                setLocalStorage(user);
+
+                login(user);
 
                 navigate('/');
             } catch (error) {
@@ -61,6 +62,14 @@ const Register = () => {
 
                 <input type="password" name="password" placeholder="Password" required />
                 <input type="password" name="repeatPassword" placeholder="Repeat password" required />
+
+                <p>Gender</p>
+                <label htmlFor="male">Male</label>
+                <input type="radio" name="gender" id="male" defaultValue="Male" required />
+
+                <label htmlFor="female">Female</label>
+                <input type="radio" name="gender" id="female" defaultValue="Female" required />
+
                 <input type="submit" />
             </form>
 

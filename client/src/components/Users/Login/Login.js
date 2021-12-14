@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react'
 
 import { useAuthContext } from '../../../contexts/AuthContext.js';
 import * as authService from '../../../services/authService.js';
@@ -14,7 +13,7 @@ const Login = () => {
     const onSubmitFormHandler = async (e) => {
         e.preventDefault();
 
-        let { email, password} = Object.fromEntries(new FormData(e.currentTarget));
+        let { email, password } = Object.fromEntries(new FormData(e.currentTarget));
 
         let userObj = {
             email,
@@ -24,12 +23,15 @@ const Login = () => {
         try {
             let userResponse = await authService.login(userObj);
 
-            login({
+            let user = {
                 userId: userResponse.userId,
                 firstName: userResponse.firstName,
                 email: userResponse.email,
+                gender: userResponse.gender,
                 AUTH_TOKEN: userResponse.AUTH_TOKEN,
-            });
+            };
+
+            login(user);
 
             navigate('/');
         } catch (error) {

@@ -1,32 +1,19 @@
 export const getLocalStorage = initialUserState => {
     try {
-        let userId = localStorage.getItem('userId');
-        let firstName = localStorage.getItem('firstName');
-        let email = localStorage.getItem('email');
-        let AUTH_TOKEN = localStorage.getItem('AUTH_TOKEN');
+        let user = JSON.parse(localStorage.getItem('user'));
 
-        let userObj = {
-            
-            userId,
-            firstName,
-            email,
-            AUTH_TOKEN,
-        };
-
-        return (userId && firstName && email && AUTH_TOKEN) 
-            ? userObj 
+        return user
+            ? user 
             : initialUserState;
     } catch (error) {
+        console.log(error);
         throw new Error({code: 400, message: 'An error occured while retrieving user data'});
     }
 };
 
-export const setLocalStorage = ({userId, firstName, email, AUTH_TOKEN}) => {
+export const setLocalStorage = (user) => {
     try {
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('firstName', firstName);
-        localStorage.setItem('email', email);
-        localStorage.setItem('AUTH_TOKEN', AUTH_TOKEN);
+        localStorage.setItem('user', JSON.stringify(user));
     } catch (error) {
         throw new Error({ code: 400, message: 'An error occured while setting user data' });
     }

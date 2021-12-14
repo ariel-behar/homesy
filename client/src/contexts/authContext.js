@@ -9,6 +9,7 @@ const initialUserState = {
     userId: '',
     firstName: '',
     email: '',
+    gender: '',
     AUTH_TOKEN: '',
 };
 
@@ -19,6 +20,7 @@ export const AuthProvider = ({
     const { displayError } = useErrorContext()
 
     const login = (userData) => {
+        console.log('userData:', userData)
         try {
             localStorageUtil.setLocalStorage(userData);    
             setUser(userData);
