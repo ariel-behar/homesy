@@ -1,7 +1,7 @@
 import { useState, createContext, useContext } from 'react';
 
 import * as localStorageUtil from '../utils/localStorageUtil.js';
-import ErrorContext from './ErrorContext.js';
+import { useErrorContext } from './ErrorContext.js';
 
 export const AuthContext = createContext();
 
@@ -16,7 +16,7 @@ export const AuthProvider = ({
     children
 }) => {
     const [user, setUser] = useState(localStorageUtil.getLocalStorage(initialUserState));
-    const { displayError } = useContext(ErrorContext)
+    const { displayError } = useErrorContext()
 
     const login = (userData) => {
         try {

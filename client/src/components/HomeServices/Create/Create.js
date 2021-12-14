@@ -5,11 +5,11 @@ import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
 import { useContext } from 'react';
 import { useAuthContext } from '../../../contexts/AuthContext.js';
-import ErrorContext from '../../../contexts/ErrorContext.js';
+import { useErrorContext } from '../../../contexts/ErrorContext.js';
 
 const Create = () => {
     const { user } = useAuthContext();
-    const { displayError } = useContext(ErrorContext);
+    const { displayError } = useErrorContext();
     const navigate = useNavigate();
 
     const onFormSubmit = async (e) => {

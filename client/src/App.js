@@ -1,10 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 
 import "./App.css";
 
 import { AuthProvider } from './contexts/AuthContext.js';
-import ErrorContext from './contexts/ErrorContext.js';
+import {ErrorProvider} from './contexts/ErrorContext.js';
 
 import Error from "./components/Error/Error.js";
 import Footer from './components/Footer/Footer.js';
@@ -23,52 +22,22 @@ import RouteGuard from './hoc/RouteGuard.js';
 import MyProfile from './components/MyProfile/MyProfile.js';
 
 function App() {
-    const [error, setError ] = useState('');
-    
-    const displayError = (newError) => {
-        if(newError.hasOwnProperty('errors')){
-            let newErrors = [];
-
-            Object.keys(newError.errors).forEach(err => {
-                newErrors.push({
-                    message: `${newError.errors[err].message}`,
-                });
-            });
-
-            setError(newErrors);
-        } else {
-            if (newError.message === 'Failed to fetch') {
-                newError.code = 500;
-                newError.message = 'Communication with server has failed';
-            }
-
-            setError([newError]);
-        }
-         
-        setTimeout(() => {
-            setError('');
-        }, 5000);
-    }
-
     return (
-        <ErrorContext.Provider value={{ displayError }}>
+        <ErrorProvider>
             <AuthProvider>
                 <>
-                    <Header /> 
-                    {error
-                        ? <Error error={error} />
-                        : ''
-                    }
+                    <Header />
+                    <Error />
 
                     <main id="main" className="container">
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/home-services/all-listings" element={<AllListings />} />
-                            <Route element={<RouteGuard/>}>
+                            <Route element={<RouteGuard />}>
                                 <Route path="/home-services/create" element={<Create />} />
                             </Route>
                             <Route path="/home-services/:homeServiceId/*" element={<Details />} />
-                            <Route path="/my-profile" element={<MyProfile />}/>
+                            <Route path="/my-profile" element={<MyProfile />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
                             <Route path="/logout" element={<Logout />} />
@@ -79,7 +48,7 @@ function App() {
                     <Footer />
                 </>
             </AuthProvider>
-        </ErrorContext.Provider>
+        </ErrorProvider>
     );
 }
 

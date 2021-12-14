@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../../../contexts/AuthContext.js";
-import ErrorContext from '../../../contexts/ErrorContext.js';
+import { useErrorContext } from '../../../contexts/ErrorContext.js';
 import * as authService from '../../../services/authService.js';
 
 const Register = () => {
     const { login } = useAuthContext();
-    const { displayError } = useContext(ErrorContext);
+    const { displayError } = useErrorContext();
     const navigate = useNavigate();
 
     const onSubmitFormHandler = async (e) => {

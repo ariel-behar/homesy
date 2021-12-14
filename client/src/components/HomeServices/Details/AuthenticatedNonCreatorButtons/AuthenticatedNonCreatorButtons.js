@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useContext, useState, useEffect } from 'react';
-import ErrorContext from '../../../../contexts/ErrorContext.js';
+import { useState, useEffect } from 'react';
+
+import { useErrorContext } from '../../../../contexts/ErrorContext.js';
 import * as homeServicesService from '../../../../services/homeServicesService.js';
 import * as favoritesService from '../../../../services/favoritesService.js';
 
@@ -8,7 +9,7 @@ function AuthenticatedNonCreatorButtons({
     user,
     homeServiceId
 }) {
-    const { displayError } = useContext(ErrorContext);
+    const { displayError } = useErrorContext();
     const [userLiked, setUserLiked] = useState(false)
 
     useEffect(async () => {

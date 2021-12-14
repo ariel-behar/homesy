@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 import styles from './Home.module.css';
 
-import ErrorContext from '../../contexts/ErrorContext.js';
+import { useErrorContext } from '../../contexts/ErrorContext.js';
 
 import typesOfServices from "../../data/typesOfServices.json";
 import SelectOptions from '../HomeServices/Create/SelectOptions/SelectOptions.js';
@@ -10,7 +10,7 @@ import * as homeServicesService from '../../services/homeServicesService.js';
 import ListingCard from "../HomeServices/AllListings/ListingCard/ListingCard.js";
 
 const Home = () => {
-    const { displayError } = useContext(ErrorContext);
+    const { displayError } = useErrorContext();
     let [searchResults, setSearchResults ] = useState([])
 
     const onFormSubmitHanlder = async (e) => {

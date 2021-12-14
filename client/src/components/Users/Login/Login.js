@@ -3,11 +3,11 @@ import { useContext } from 'react'
 
 import { useAuthContext } from '../../../contexts/AuthContext.js';
 import * as authService from '../../../services/authService.js';
-import ErrorContext from '../../../contexts/ErrorContext.js';
+import { useErrorContext } from '../../../contexts/ErrorContext.js';
 
 const Login = () => {
     const { login } = useAuthContext();
-    const { displayError } = useContext(ErrorContext);
+    const { displayError } = useErrorContext();
 
     const navigate = useNavigate();
 

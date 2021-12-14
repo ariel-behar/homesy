@@ -1,18 +1,18 @@
 import { Link, useNavigate} from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../../contexts/AuthContext.js';
 
 import * as homeServicesService from '../../../services/homeServicesService.js';
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
-import ErrorContext from '../../../contexts/ErrorContext.js';
+import { useErrorContext } from '../../../contexts/ErrorContext.js';
 
 const Edit = ({
     homeServiceId,
     renderEditedService
 }) => {
     const { user, isAuthorized } = useAuthContext()
-    const { displayError } = useContext(ErrorContext);
+    const { displayError } = useErrorContext();
     const navigate = useNavigate();
 
     let [service, setService] = useState({});

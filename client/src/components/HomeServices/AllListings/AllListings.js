@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
-import ErrorContext from '../../../contexts/ErrorContext.js';
+import { useState, useEffect} from 'react';
+import { useErrorContext } from '../../../contexts/ErrorContext.js';
 import * as homeServicesService from '../../../services/homeServicesService.js'
 
 // import styles from './AllListings.module.css'
 import ListingCard from './ListingCard/ListingCard.js';
 
 const Listings = () => {
-    const {displayError } = useContext(ErrorContext)
+    const {displayError } = useErrorContext()
     let [ services, setServices ] = useState([]);
 
     useEffect(() => {

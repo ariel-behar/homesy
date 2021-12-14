@@ -2,13 +2,13 @@ import { Navigate } from "react-router-dom";
 import {useContext, useEffect } from "react";
 
 import * as authService from "../../../services/authService.js";
-import {AuthContext} from "../../../contexts/AuthContext.js";
+import {useAuthContext} from "../../../contexts/AuthContext.js";
 import * as localStorageUtil from "../../../utils/localStorageUtil.js";
-import ErrorContext from "../../../contexts/ErrorContext.js";
+import { useErrorContext } from "../../../contexts/ErrorContext.js";
 
 const Logout = () => {
-    const { user, logout } = useContext(AuthContext);
-    const { displayError } = useContext(ErrorContext);
+    const { user, logout } = useAuthContext();
+    const { displayError } = useErrorContext();
 
     useEffect(() => {
         try {
