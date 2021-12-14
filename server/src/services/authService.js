@@ -32,8 +32,9 @@ exports.login = async (email, password) => {
         return {
             userId: user._id,
             firstName: user.firstName,
+            lastName: user.lastName,
             email: user.email,
-            gender: user.gender
+            gender: user.gender,
         };
     } else {
         throw { code: 400, message: 'Invalid username or password' };

@@ -30,6 +30,7 @@ const Register = () => {
                 let user = {
                     userId: userResponse.userId,
                     firstName: userResponse.firstName,
+                    lastName: userResponse.lastName,
                     email: userResponse.email,
                     gender: userResponse.gender,
                     AUTH_TOKEN: userResponse.AUTH_TOKEN,

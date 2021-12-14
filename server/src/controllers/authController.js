@@ -17,8 +17,9 @@ router.post('/register', async (req, res) => {
             let user = {
                 userId: userResponse._id,
                 firstName: userResponse.firstName,
+                lastName: userResponse.lastName,
                 email: userResponse.email,
-                gender: userResponse.gender
+                gender: userResponse.gender,
             };
 
             let AUTH_TOKEN = logUserIn(user);
