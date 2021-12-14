@@ -6,8 +6,8 @@
     },
     {
         "_id": 2,
-        "value": "teaching",
-        "name": "Teaching"
+        "value": "languageLessons",
+        "name": "Language Lessons"
     },
     {
         "_id": 3,
@@ -18,5 +18,35 @@
         "_id": 4,
         "value": "homeRepairs",
         "name": "Home Repairs"
+    },
+    {
+        "_id": 5,
+        "value": "computerTechnician",
+        "name": "Computer Technician"
+    },
+    {
+        "_id": 6,
+        "value": "personalTrainer",
+        "name": "Personal Trainer"
+    },
+    {
+        "_id": 8,
+        "value": "gardener",
+        "name": "Gardener"
+    },
+    {
+        "_id": 9,
+        "value": "personalCook",
+        "name": "Personal Cook"
+    },
+    {
+        "_id": 10,
+        "value": "internetTechnician",
+        "name": "Internet Technician"
+    },
+    {
+        "_id": 11,
+        "value": "dancingTeacher",
+        "name": "Dancing Teacher"
     }
 ]   
