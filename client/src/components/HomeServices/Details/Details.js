@@ -33,6 +33,7 @@ const Details = () => {
                     <div className="card-body">
                         <img src={service.imageUrl} className="img-fluid" alt={`${service.typeOfService}`} />
                         <h5 className="card-title">{service.typeOfService}</h5>
+                        <p className="card-text">{service.cityOfOperation}</p>
                         <p className="card-text">{service.description}</p>
                         <p className="card-text">{service.price} BGN</p>
 
