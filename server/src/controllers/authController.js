@@ -8,16 +8,17 @@ const { isAuth } = require('../middlewares/authMiddleware.js')
 const logUserIn = require('../utils/logUserIn.js')
 
 router.post('/register', async (req, res) => {
-    let { firstName, lastName, email, password } = req.body;
+    let { firstName, lastName, email, password, gender } = req.body;
 
     try {
-        let userResponse = await authService.register(firstName, lastName, email, password);
+        let userResponse = await authService.register(firstName, lastName, email, password, gender);
 
         if (userResponse) {
             let user = {
                 userId: userResponse._id,
                 firstName: userResponse.firstName,
                 email: userResponse.email,
+                gender: userResponse.gender
             };
 
             let AUTH_TOKEN = logUserIn(user);
