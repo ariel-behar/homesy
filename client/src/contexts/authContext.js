@@ -20,7 +20,6 @@ export const AuthProvider = ({
     const { displayError } = useErrorContext()
 
     const login = (userData) => {
-        console.log('userData:', userData)
         try {
             localStorageUtil.setLocalStorage(userData);    
             setUser(userData);
@@ -40,8 +39,10 @@ export const AuthProvider = ({
         return false;
     }
 
+    const isAuthenticated = Boolean(user.userId);
+
     return (
-        <AuthContext.Provider value={{user, login, logout, isAuthenticated: Boolean(user.userId), isAuthorized}}>
+        <AuthContext.Provider value={{user, login, logout, isAuthenticated, isAuthorized}}>
             {children}
         </AuthContext.Provider>
     )

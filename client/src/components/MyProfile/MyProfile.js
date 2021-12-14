@@ -8,7 +8,6 @@ import ListingCard from '../../components/HomeServices/AllListings/ListingCard/L
 
 function MyProfile() {
     const { user } = useAuthContext();
-    console.log('user:', user)
     const { displayError } = useErrorContext()
 
     const [ myListings, setMyListings ] = useState([]);

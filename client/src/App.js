@@ -17,7 +17,8 @@ import Register from './components/Users/Register/Register.js';
 import Logout from './components//Users/Logout/Logout.js';
 
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
-import RouteGuard from './hoc/RouteGuard.js';
+import IsAuthRouteGuard from './hoc/IsAuthRouteGuard.js';
+import IsGuestRouteGuard from './hoc/IsGuestRouteGuard.js';
 import MyProfile from './components/MyProfile/MyProfile.js';
 
 function App() {
@@ -32,14 +33,20 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/home-services/all-listings" element={<AllListings />} />
-                            <Route element={<RouteGuard />}>
+
+                            <Route element={<IsAuthRouteGuard />}>
                                 <Route path="/home-services/create" element={<Create />} />
+                                <Route path="/logout" element={<Logout />} />
+                                <Route path="/my-profile" element={<MyProfile />} />
                             </Route>
+                            
                             <Route path="/home-services/:homeServiceId/*" element={<Details />} />
-                            <Route path="/my-profile" element={<MyProfile />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                            <Route path="/logout" element={<Logout />} />
+
+                            <Route element={<IsGuestRouteGuard />}>
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/register" element={<Register />} />
+                            </Route>
+
                             <Route path="*" element={<PageNotFound />} />
                         </Routes>
                     </main>
