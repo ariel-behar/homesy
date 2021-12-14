@@ -10,15 +10,15 @@ function AuthenticatedNonCreatorButtons({
     homeServiceId
 }) {
     const { displayError } = useErrorContext();
-    const [userLiked, setUserLiked] = useState(false)
+    const [userFavorite, setUserFavorite] = useState(false)
 
     useEffect(async () => {
-        let homeService = await homeServicesService.getOne(homeServiceId);
-
-        if (homeService.favoriteOf.includes(user.userId)) {
-            setUserLiked(true);
-        }
-
+        homeServicesService.getOne(homeServiceId)
+            .then(homeService => {
+                if (homeService.favoriteOf.includes(user.userId)) {
+                    setUserFavorite(true);
+                }
+            })
     }, [])
 
     const addToFavoritesHandler = async (e) =>{ 
@@ -28,7 +28,7 @@ function AuthenticatedNonCreatorButtons({
             let addToFavoritesResponse = await favoritesService.addToFavorites(homeServiceId, user);
             
             if(addToFavoritesResponse.favoriteOf.includes(user.userId)){
-                setUserLiked(true)
+                setUserFavorite(true)
             }
 
         } catch (error) {
@@ -43,7 +43,7 @@ function AuthenticatedNonCreatorButtons({
             let removeFromFavoritesResponse = await favoritesService.removeFromFavorites(homeServiceId, user);
 
             if (!removeFromFavoritesResponse.favoriteOf.includes(user.userId)) {
-                setUserLiked(false);
+                setUserFavorite(false);
             }
         } catch (error) {
             displayError(await error);
@@ -67,7 +67,7 @@ function AuthenticatedNonCreatorButtons({
     return (
         <>
             {
-                userLiked 
+                userFavorite 
                     ? removeFromFavoritesButton
                     : addToFavoritesButton
             }

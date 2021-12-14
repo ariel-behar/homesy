@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
+import { useAuthContext } from '../../../contexts/AuthContext.js';
+import { useErrorContext } from '../../../contexts/ErrorContext.js';
+
 import * as homeServicesService from '../../../services/homeServicesService.js';
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
-import { useContext } from 'react';
-import { useAuthContext } from '../../../contexts/AuthContext.js';
-import { useErrorContext } from '../../../contexts/ErrorContext.js';
 
 const Create = () => {
     const { user } = useAuthContext();
