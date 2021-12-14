@@ -33,7 +33,6 @@ const Login = () => {
 
             navigate('/');
         } catch (error) {
-            console.log(await error)
             displayError(await error);
         }
     };

@@ -16,7 +16,6 @@ import Login from './components/Users/Login/Login.js';
 import Register from './components/Users/Register/Register.js';
 import Logout from './components//Users/Logout/Logout.js';
 
-
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
 import RouteGuard from './hoc/RouteGuard.js';
 import MyProfile from './components/MyProfile/MyProfile.js';
@@ -27,9 +26,9 @@ function App() {
             <AuthProvider>
                 <>
                     <Header />
-                    <Error />
 
                     <main id="main" className="container">
+                        <Error />
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/home-services/all-listings" element={<AllListings />} />
