@@ -87,10 +87,17 @@ router.put('/:homeServiceId', isAuth, async (req, res) => {
 
 router.delete('/:homeServiceId', isAuth, async (req, res) => {
     let homeServiceId = req.params.homeServiceId;
-    try {
-        let result = await homeServicesService.deleteOne(homeServiceId);
 
-        res.json(result);
+    try {
+        let service = await homeServicesService.getOne(homeServiceId);
+
+        if(service.creator == req.user.userId) {
+            let result = await homeServicesService.deleteOne(homeServiceId);
+
+            res.json(result);
+        } else {
+            throw { code: 401, message: 'Unauthorized request' };
+        }
     } catch (error) {
         res.status(500).json(error)
     }
