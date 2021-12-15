@@ -5,7 +5,7 @@ import "./App.css";
 import { AuthProvider } from './contexts/AuthContext.js';
 import {ErrorProvider} from './contexts/ErrorContext.js';
 
-import Error from "./components/Error/Error.js";
+import Error from "./components/Common/Error/Error.js";
 import Footer from './components/Footer/Footer.js';
 import Header from './components/Header/Header.js';
 import Home from "./components/Home/Home.js";

@@ -1,7 +1,7 @@
 import uniqid from "uniqid";
 import ToastContainer from 'react-bootstrap/ToastContainer';
 
-import { useErrorContext } from "../../contexts/ErrorContext.js";
+import { useErrorContext } from "../../../contexts/ErrorContext.js";
 import ErrorNotification from "./ErrorNotification/ErrorNotification.js";
 
 function Error() {
