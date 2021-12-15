@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
     let { firstName, lastName, email, password, gender } = req.body;
 
     try {
-        let userResponse = await authService.register(firstName, lastName, email, password, gender);
+        let userResponse = await authService.register({firstName, lastName, email, password, gender});
 
         if (userResponse) {
             let user = {

@@ -1,23 +1,8 @@
 const bcrypt = require('bcrypt');
-require('dotenv').config();
 
 const User = require('../models/User.js');
 
-exports.register = (firstName, lastName, email, password, gender) => {
-    return bcrypt
-            .hash(password, Number(process.env.JWT_SALT))
-            .then(hash => {
-                password = hash;
-                return User.create({ firstName, lastName, email, password, gender });
-            })
-            .catch(error => {
-                if (error.message === 'data and salt arguments required') {
-                    throw { code: 500, message: 'An error occurred while attempting to sign you up. Please try again ' };
-                }
-                
-                throw error;
-            });
-};
+exports.register = (user) => User.create(user);
 
 exports.login = async (email, password) => {
     let user = await User.findOne({email}).lean();
@@ -39,8 +24,7 @@ exports.login = async (email, password) => {
     } else {
         throw { code: 400, message: 'Invalid username or password' };
     }
-    
-    
+       
 }
 
 
