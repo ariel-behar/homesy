@@ -1,8 +1,10 @@
 import {  Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 import * as homeServicesService from '../../../../services/homeServicesService.js';
 import { useErrorContext } from '../../../../contexts/ErrorContext.js';
 import { useAuthContext } from '../../../../contexts/AuthContext.js';
+import ConfirmationModal from '../../../Common/ConfirmationModal/ConfirmationModal.js';
 
 function CreatorUserButtons({
     service,
@@ -11,20 +13,23 @@ function CreatorUserButtons({
     const navigate = useNavigate();
     const { user } = useAuthContext();
     const { displayError } = useErrorContext();
+    const [ showModal, setShowModal ] = useState(false)
 
     const onDeleteButtonClick = async e => {
         e.preventDefault();
 
-        let userResponse = window.confirm('Are you sure you want to delete this service?');
+        setShowModal(true);
+    };
 
-        if (userResponse) {
-            try {
-                await homeServicesService.deleteOne(homeServiceId, user.AUTH_TOKEN);
+    const deleteHandler = async () => {
+        setShowModal(false);
 
-                navigate('/home-services/all-listings');
-            } catch (error) {
-                displayError(await error);
-            }
+        try {
+            await homeServicesService.deleteOne(homeServiceId, user.AUTH_TOKEN);
+
+            navigate('/home-services/all-listings');
+        } catch (error) {
+            displayError(await error);
         }
     };
 
@@ -36,6 +41,15 @@ function CreatorUserButtons({
             <button className="btn btn-danger" onClick={onDeleteButtonClick}>
                 Delete
             </button>
+            {showModal
+                ? <ConfirmationModal 
+                    showModal={showModal} 
+                    onClose={() => setShowModal(false)} 
+                    onSave={deleteHandler}
+                    />
+                : ''
+            
+            }
         </>
     );
 }

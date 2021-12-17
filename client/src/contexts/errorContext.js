@@ -6,6 +6,7 @@ export const ErrorProvider = ({ children }) => {
     const [error, setError] = useState('');
 
     const displayError = newError => {
+        console.log('newError:', newError)
         if (newError.hasOwnProperty('errors')) {
             let newErrors = [];
 
@@ -21,7 +22,6 @@ export const ErrorProvider = ({ children }) => {
                 newError.code = 500;
                 newError.message = 'Communication with server has failed';
             }
-
             setError([newError]);
         }
 
