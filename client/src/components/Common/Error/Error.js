@@ -16,7 +16,7 @@ function Error() {
                     <ToastContainer position={'top-end'} className='mt-2' className={styles.zIndex}>
                         {error.map(error => {
                             return (
-                                <ErrorNotification key={uniqid()} error={error} />
+                                <ErrorNotification key={uniqid()} error={error}/>
                             );
                         })}
                     </ToastContainer>
