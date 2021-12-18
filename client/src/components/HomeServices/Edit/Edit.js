@@ -1,11 +1,17 @@
-import { Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useAuthContext } from '../../../contexts/AuthContext.js';
 
-import * as homeServicesService from '../../../services/homeServicesService.js';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+import styles from './Edit.module.scss';
+
+import { useAuthContext } from '../../../contexts/AuthContext.js';
+import { useErrorContext } from '../../../contexts/ErrorContext.js';
+
 import SelectOptions from '../Create/SelectOptions/SelectOptions.js';
 import typesOfServices from '../../../data/typesOfServices.json';
-import { useErrorContext } from '../../../contexts/ErrorContext.js';
+import * as homeServicesService from '../../../services/homeServicesService.js';
 
 const Edit = ({
     homeServiceId,
@@ -54,34 +60,50 @@ const Edit = ({
     }
 
     return (
-        <>
+        <section className={styles.editComponentSection}>
             {service ? (
-                <form method="POST" action="" onSubmit={onFormSubmit}>
-                    <select name="typeOfService" id="serviceType" defaultValue={service.typeOfService}>
-                        {typesOfServices.map(x => {
-                            return (
-                                <SelectOptions key={x._id} value={x.value}>
-                                    {x.name}
-                                </SelectOptions>
-                            );
-                        })}
-                    </select>
+                <Form method="POST" action="" onSubmit={onFormSubmit}>
+                    <Form.Group controlId="typeOfService">
+                        <Form.Label>Type of Service</Form.Label>
+                        <Form.Select name="typeOfService" defaultValue={service.typeOfService}>
+                            {typesOfServices.map(x => {
+                                return (
+                                    <SelectOptions key={x._id} value={x.value}>
+                                        {x.name}
+                                    </SelectOptions>
+                                );
+                            })}
+                        </Form.Select>
+                    </Form.Group>
 
-                    <textarea name="description" placeholder="Elaborate further about your service..." cols="30" rows="5" defaultValue={service.description}></textarea>
+                    <Form.Group className="mb-3" controlId="description">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control as="textarea" rows={3} cols={30} name="description" placeholder="Elaborate further about your service..." defaultValue={service.description} />
+                    </Form.Group>
 
-                    <input type="number" name="price" placeholder="Price" defaultValue={service.price} required />
+                    <Form.Group className="mb-3" controlId="price">
+                        <Form.Label>Price </Form.Label>
+                        <Form.Control type="number" name="price" placeholder="Service price in BGN" defaultValue={service.price} required />
+                    </Form.Group>
 
-                    <input type="text" name="cityOfOperation" placeholder="City of Operation" defaultValue={service.cityOfOperation} required />
+                    <Form.Group className="mb-3" controlId="cityOfOperation">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control type="text" name="cityOfOperation" placeholder="The city in which you operate" defaultValue={service.cityOfOperation} required />
+                    </Form.Group>
 
-                    <input type="text" name="imageUrl" placeholder="Insert Image URL" defaultValue={service.imageUrl} required />
+                    <Form.Group className="mb-3" controlId="imageUrl">
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control type="text" name="imageUrl" placeholder="Image URL" defaultValue={service.imageUrl} required />
+                    </Form.Group>
 
-                    <input type="submit" className="btn btn-primary" />
-                    <Link to={`/home-services/${homeServiceId}`} className="btn btn-danger">Cancel</Link>
-                </form>
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
             ) : (
                 <p>Loading...</p>
             )}
-        </>
+        </section>
     );
 };
 
