@@ -1,4 +1,5 @@
 .cardStyles {
     height: 100%;
     width: 18rem;
+    justify-self: center;
 }
