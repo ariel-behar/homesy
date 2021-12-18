@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import styles from './Home.module.scss';
 
 import { useErrorContext } from '../../contexts/ErrorContext.js';
@@ -63,7 +65,7 @@ const Home = () => {
 
             <Form method="GET" action="" onSubmit={onFormSubmitHanlder}>
                 <Form.Group controlId="typeOfService">
-                    <Form.Label>What?</Form.Label>
+                    <Form.Label>What professeional service?</Form.Label>
                     <Form.Select name="typeOfService">
                         {typesOfServices.map(x => {
                             return (
@@ -76,12 +78,13 @@ const Home = () => {
                 </Form.Group>
 
                 <Form.Group controlId="cityOfOperation">
-                    <Form.Label>Where?</Form.Label>
-                    <Form.Control type="text" name="cityOfOperation" placeholder="Where?" />
+                    <Form.Label>In which city?</Form.Label>
+                    <Form.Control type="text" name="cityOfOperation" placeholder="Enter city..." />
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Find!
+                    Find! &nbsp;
+                    <FontAwesomeIcon icon="search" size="md" />
                 </Button>
             </Form>
 

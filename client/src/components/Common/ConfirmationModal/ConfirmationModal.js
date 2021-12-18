@@ -17,12 +17,12 @@ function ConfirmationModal({
                 <Modal.Body>Are you sure you want to delete this service?</Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={onClose}>
-                        Cancel
-                        <FontAwesomeIcon icon="times" size="lg" pull="right" />
+                        Cancel &nbsp;
+                        <FontAwesomeIcon icon="times" size="md" />
                     </Button>
                     <Button variant="danger" onClick={onSave}>
-                        Delete
-                        <FontAwesomeIcon icon="eraser" size="lg" pull="right" />
+                        Delete &nbsp;
+                        <FontAwesomeIcon icon="eraser" size="md" />
                     </Button>
                 </Modal.Footer>
             </Modal>

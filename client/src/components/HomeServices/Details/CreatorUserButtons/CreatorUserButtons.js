@@ -42,18 +42,15 @@ function CreatorUserButtons({
     return (
         <div className={styles.buttons}>
             <button className="btn btn-danger" onClick={onDeleteButtonClick}>
-                Delete
-                <FontAwesomeIcon icon="eraser" size="lg" pull="right" />
+                Delete &nbsp;
+                <FontAwesomeIcon icon="eraser" size="md" />
             </button>
             <Link to={`/home-services/${service._id}/edit`} className="btn btn-primary">
-                Edit
-                <FontAwesomeIcon icon="pencil-alt" size="lg" pull="right" />
+                Edit &nbsp;
+                <FontAwesomeIcon icon="pencil-alt" size="md" />
             </Link>
 
-            {showModal 
-                ? <ConfirmationModal showModal={showModal} onClose={() => setShowModal(false)} onSave={deleteHandler} /> 
-                : ''
-            }
+            {showModal ? <ConfirmationModal showModal={showModal} onClose={() => setShowModal(false)} onSave={deleteHandler} /> : ''}
         </div>
     );
 }

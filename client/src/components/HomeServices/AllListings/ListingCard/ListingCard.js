@@ -13,7 +13,7 @@ const ListingCard = ({
                 <p className="card-text">{service.cityOfOperation}</p>
                 <p className="card-text">{service.price} BGN</p>
                 <Link to={`/home-services/${service._id}`} state={{ from: service }} className="btn btn-primary">
-                    See more
+                    See more...
                 </Link>
             </div>
         </div>

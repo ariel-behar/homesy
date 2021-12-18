@@ -101,13 +101,13 @@ const Edit = ({
                     <div className={styles.buttons}>
                         <Link to={`/home-services/${homeServiceId}`}>
                             <Button variant="danger" type="submit">
-                                Cancel
-                                <FontAwesomeIcon icon="times" size="lg" pull="right" />
+                                Cancel &nbsp;
+                                <FontAwesomeIcon icon="times" size="md" />
                             </Button>
                         </Link>
                         <Button variant="primary" type="submit">
-                            Submit Changes
-                            <FontAwesomeIcon icon="check" size="lg" pull="right" />
+                            Submit Changes &nbsp;
+                            <FontAwesomeIcon icon="check" size="md" />
                         </Button>
                     </div>
                 </Form>
