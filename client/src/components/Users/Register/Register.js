@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import styles from './Register.module.css';
+import styles from './Register.module.scss';
 
 import { useAuthContext } from "../../../contexts/AuthContext.js";
 import { useErrorContext } from '../../../contexts/ErrorContext.js';

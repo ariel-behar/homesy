@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import "./App.css";
+import "./App.scss";
 
 import { AuthProvider } from './contexts/AuthContext.js';
 import {ErrorProvider} from './contexts/ErrorContext.js';

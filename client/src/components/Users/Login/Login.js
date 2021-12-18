@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import styles from './Login.module.css'
+import styles from './Login.module.scss'
 
 import { useAuthContext } from '../../../contexts/AuthContext.js';
 import * as authService from '../../../services/authService.js';
