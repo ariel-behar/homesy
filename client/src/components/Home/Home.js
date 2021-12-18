@@ -62,7 +62,7 @@ const Home = () => {
             </div>
 
             <Form method="GET" action="" onSubmit={onFormSubmitHanlder}>
-                <Form.Group controlId="serviceType">
+                <Form.Group controlId="typeOfService">
                     <Form.Label>What?</Form.Label>
                     <Form.Select name="typeOfService">
                         {typesOfServices.map(x => {
@@ -85,11 +85,7 @@ const Home = () => {
                 </Button>
             </Form>
 
-            <div className={styles['cardsDiv']}>
-                {searchResults.length > 0 
-                    ? searchResults.map(x => <ListingCard key={x._id} service={x} />) 
-                    : <p>Your results will appear here</p>}
-                </div>
+            <div className={styles['cardsDiv']}>{searchResults.length > 0 ? searchResults.map(x => <ListingCard key={x._id} service={x} />) : <p>Your results will appear here</p>}</div>
         </section>
     );
 };

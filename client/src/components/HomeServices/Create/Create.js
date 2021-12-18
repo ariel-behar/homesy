@@ -1,5 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+import styles from './Create.module.scss'
+
 import { useAuthContext } from '../../../contexts/AuthContext.js';
 import { useErrorContext } from '../../../contexts/ErrorContext.js';
 
@@ -33,31 +38,49 @@ const Create = () => {
         } catch (error) {
             displayError(await error);
         }
-
     }
 
     return (
-        <form method="POST" action="" onSubmit={onFormSubmit}>
-            <select name="typeOfService" id="serviceType">
-                {typesOfServices.map(x => {
-                    return (
-                        <SelectOptions key={x._id} value={x.value}>
-                            {x.name}
-                        </SelectOptions>
-                    );
-                })}
-            </select>
+        <section className={styles.createComponentSection}>
+            <Form method="POST" action="" onSubmit={onFormSubmit}>
+                <Form.Group controlId="typeOfService">
+                    <Form.Label>Type of Service</Form.Label>
+                    <Form.Select name="typeOfService">
+                        {typesOfServices.map(x => {
+                            return (
+                                <SelectOptions key={x._id} value={x.value}>
+                                    {x.name}
+                                </SelectOptions>
+                            );
+                        })}
+                    </Form.Select>
+                </Form.Group>
 
-            <textarea name="description" placeholder="Elaborate further about your service..." cols="30" rows="5"></textarea>
+                <Form.Group className="mb-3" controlId="description">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control as="textarea" rows={3} cols={30} name="description" placeholder="Elaborate further about your service..." />
+                </Form.Group>
 
-            <input type="number" name="price" placeholder="Price" required />
+                <Form.Group className="mb-3" controlId="price">
+                    <Form.Label>Price </Form.Label>
+                    <Form.Control type="number" name="price" placeholder="Service price in BGN" required />
+                </Form.Group>
 
-            <input type="text" name="cityOfOperation" placeholder="City of Operation" required />
+                <Form.Group className="mb-3" controlId="cityOfOperation">
+                    <Form.Label>City</Form.Label>
+                    <Form.Control type="text" name="cityOfOperation" placeholder="The city in which you operate" required />
+                </Form.Group>
 
-            <input type="text" name="imageUrl" placeholder="Insert Image URL" required />
+                <Form.Group className="mb-3" controlId="imageUrl">
+                    <Form.Label>Image</Form.Label>
+                    <Form.Control type="text" name="imageUrl" placeholder="Image URL" required />
+                </Form.Group>
 
-            <input type="submit" />
-        </form>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </section>
     );
 };
 
