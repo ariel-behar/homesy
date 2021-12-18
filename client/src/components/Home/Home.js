@@ -50,10 +50,12 @@ const Home = () => {
         <section className={styles.homePageSection}>
             <h1>Welcome to HOMEZY</h1>
 
-            <div className='profession-div'>
+            <div className={styles['profession-div']}>
                 <h3>Tell us what you are looking for? </h3>
-                <img src={`/img/professions/${profession.image}`} className="img-fluid" />
-                <p>{profession.name}</p>
+                <div className={styles['profession-image-div']} >
+                    <img src={`/img/professions/${profession.image}`} className="img-fluid" />
+                    <p>{profession.name}</p>
+                </div>
             </div>
 
             <form method="GET" action="" onSubmit={onFormSubmitHanlder}>
@@ -72,7 +74,9 @@ const Home = () => {
                 <input type="submit" />
             </form>
 
-            {searchResults.length > 0 ? searchResults.map(x => <ListingCard key={x._id} service={x} />) : ''}
+            <div className={styles['cardsDiv']}>
+                {searchResults.length > 0 ? searchResults.map(x => <ListingCard key={x._id} service={x} />) : ''}
+            </div>
         </section>
     );
 };

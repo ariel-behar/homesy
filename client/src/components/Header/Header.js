@@ -11,7 +11,7 @@ const Header = () => {
     
     return (
         <header>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="container">
                     <NavLink to="/" > Home </NavLink>
                     <NavLink to="/home-services/all-listings" > All Listings </NavLink>

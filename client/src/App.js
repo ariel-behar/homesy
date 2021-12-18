@@ -28,7 +28,7 @@ function App() {
                 <>
                     <Header />
 
-                    <main id="main" className="container">
+                    <main>
                         <Error />
                         <Routes>
                             <Route path="/" element={<Home />} />

@@ -1,14 +1,48 @@
-#root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: beige;
+body {
+    width: 100vw;
+    min-height: auto;
 }
 
-#main {
-    flex-grow: 1;
+#root {
+    background-color: beige;
+
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    grid-template-rows: 50px auto 50px;
+    grid-template-areas: "header" "main" "footer";
+}
+
+header, main, footer {
+    grid-area: header;
+    width: 80vw;
     min-height: 100%;
-    display: flex;
-    justify-content: center;
-    position: relative;
+}
+
+header {
+    grid-area: header;
+
+    background-color: lightcoral;
+
+    justify-self: center;
+    align-self: center;
+}
+
+main {
+    grid-area: main;
+
+    background-color: lightgreen;
+
+    justify-self: center;
+    align-self: center;
+}
+
+footer {
+    grid-area: footer;
+
+    background-color: lightcoral;
+
+    justify-self: center;
+    align-self: center;
 }

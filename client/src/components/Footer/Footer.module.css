@@ -1,10 +1,4 @@
-footer {
-    background-color: red;
-    height: 60px;
-    margin-top: 10px;
-}
-
-footer div {
+footer  {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -18,13 +12,14 @@ footer span {
 }
 
 footer span a {
-    color: #82867C;
+    color: #4e4e4d;
     padding-left: 5px;
     padding-right: 5px;
 }
 
 footer span a img{
     margin-left: 5px;
+    max-width: 25px;
 }
 
 footer span a:hover {
