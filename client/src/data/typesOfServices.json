@@ -2,56 +2,73 @@
     {
         "_id": 1,
         "value": "hairdresser",
-        "name": "Hairdresser"
+        "name": "Hairdresser",
+        "image": ""
     },
     {
         "_id": 2,
         "value": "languageLessons",
-        "name": "Language Lessons"
+        "name": "Language Lessons",
+        "image": ""
     },
     {
         "_id": 3,
         "value": "cleaning",
-        "name": "Cleaning"
+        "name": "Cleaning",
+        "image": ""
     },
     {
         "_id": 4,
         "value": "homeRepairs",
-        "name": "Home Repairs"
+        "name": "Home Repairs",
+        "image": "home-repairs.png"
     },
     {
         "_id": 5,
         "value": "computerTechnician",
-        "name": "Computer Technician"
+        "name": "Computer Technician",
+        "image": ""
     },
     {
         "_id": 6,
         "value": "personalTrainer",
-        "name": "Personal Trainer"
+        "name": "Personal Trainer",
+        "image": ""
+    },
+    {
+        "_id": 7,
+        "value": "gardener",
+        "name": "Gardener",
+        "image": "gardener.png"
     },
     {
         "_id": 8,
-        "value": "gardener",
-        "name": "Gardener"
+        "value": "personalCook",
+        "name": "Personal Cook",
+        "image": "cook.png"
     },
     {
         "_id": 9,
-        "value": "personalCook",
-        "name": "Personal Cook"
+        "value": "internetTechnician",
+        "name": "Internet Technician",
+        "image": ""
     },
     {
         "_id": 10,
-        "value": "internetTechnician",
-        "name": "Internet Technician"
+        "value": "dancingTeacher",
+        "name": "Dancing Teacher",
+        "image": ""
     },
     {
         "_id": 11,
-        "value": "dancingTeacher",
-        "name": "Dancing Teacher"
+        "value": "doctor",
+        "name": "Doctor",
+        "image": "doctor.png"
     },
     {
         "_id": 12,
-        "value": "doctor",
-        "name": "Doctor"
+        "value": "romanticDinnerWaiter",
+        "name": "Romantic Dinner Waiter",
+        "image": "waiter.png"
     }
 ]   

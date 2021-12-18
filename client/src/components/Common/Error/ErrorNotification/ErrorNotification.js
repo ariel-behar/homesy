@@ -7,7 +7,6 @@ function ErrorNotification({
     error,
 }) {
     const [show, setShow] = useState(true);
-    
 
     return (
         <Toast bg={'warning'} onClose={() => setShow(false)} show={show}>

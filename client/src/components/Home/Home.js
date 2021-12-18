@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import styles from './Home.module.css';
 
@@ -12,6 +12,7 @@ import ListingCard from "../HomeServices/AllListings/ListingCard/ListingCard.js"
 const Home = () => {
     const { displayError } = useErrorContext();
     let [searchResults, setSearchResults ] = useState([])
+    let [profession, setProfession] = useState('');
 
     const onFormSubmitHanlder = async (e) => {
         e.preventDefault();
@@ -27,11 +28,34 @@ const Home = () => {
         }
     }
 
+    useEffect(() => {
+        changeProfessionImage();
+    }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            changeProfessionImage();
+        }, 10000);
+    }, [profession]);
+
+    const changeProfessionImage = () => {
+        let servicesWithImages = typesOfServices.filter(x => x.image != '' && x.image != profession);
+        let randomServiceIndex = Math.floor(Math.random() * (servicesWithImages.length - 1));
+
+        setProfession(servicesWithImages[randomServiceIndex]);
+        
+    }
+
     return (
         <section className={styles.homePageSection}>
             <h1>Welcome to HOMEZY</h1>
 
-            <p>Services</p>
+            <div className='profession-div'>
+                <h3>Tell us what you are looking for? </h3>
+                <img src={`/img/professions/${profession.image}`} className="img-fluid" />
+                <p>{profession.name}</p>
+            </div>
+
             <form method="GET" action="" onSubmit={onFormSubmitHanlder}>
                 <label htmlFor="serviceType">What?</label>
                 <select name="typeOfService" id="serviceType">
@@ -48,13 +72,7 @@ const Home = () => {
                 <input type="submit" />
             </form>
 
-            { 
-                searchResults.length > 0
-                    ?   searchResults.map(x => (
-                            <ListingCard key={x._id} service={x} />
-                        ))
-                    : ''
-            }
+            {searchResults.length > 0 ? searchResults.map(x => <ListingCard key={x._id} service={x} />) : ''}
         </section>
     );
 };
