@@ -46,7 +46,7 @@ const Login = () => {
     };
 
     return (
-        <section className={styles.loginPageSection}>
+        <section className={styles.loginComponentSection}>
             <h3>Login</h3>
 
             <Form method="POST" action="" onSubmit={onSubmitFormHandler}>

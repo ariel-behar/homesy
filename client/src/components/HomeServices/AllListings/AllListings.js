@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useErrorContext } from '../../../contexts/ErrorContext.js';
 import * as homeServicesService from '../../../services/homeServicesService.js';
 
-import styles from './AllListings.module.css'
+import styles from './AllListings.module.scss'
 import ListingCard from './ListingCard/ListingCard.js';
 
 const Listings = () => {

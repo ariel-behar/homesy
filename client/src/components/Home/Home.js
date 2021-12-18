@@ -50,7 +50,7 @@ const Home = () => {
     };
 
     return (
-        <section className={styles.homePageSection}>
+        <section className={styles.homeComponentSection}>
             <h1>Welcome to HOMEZY</h1>
 
             <div className={styles['profession-div']}>

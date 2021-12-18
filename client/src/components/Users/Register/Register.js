@@ -58,7 +58,7 @@ const Register = () => {
     }
 
     return (
-        <section className={styles.registerPageSection}>
+        <section className={styles.registerComponentSection}>
             <h3>Register</h3>
 
             <Form method="POST" onSubmit={onSubmitFormHandler}>
