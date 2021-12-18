@@ -7,9 +7,9 @@ import reportWebVitals from './reportWebVitals';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faEraser, faPencilAlt, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faHeart);
+library.add(faHeart, faEraser, faPencilAlt, faTimes, faCheck);
 
 ReactDOM.render(
     <React.StrictMode>

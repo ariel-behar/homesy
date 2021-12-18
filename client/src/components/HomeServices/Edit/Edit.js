@@ -1,5 +1,7 @@
-import {useNavigate} from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -96,9 +98,18 @@ const Edit = ({
                         <Form.Control type="text" name="imageUrl" placeholder="Image URL" defaultValue={service.imageUrl} required />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
+                    <div className={styles.buttons}>
+                        <Link to={`/home-services/${homeServiceId}`}>
+                            <Button variant="danger" type="submit">
+                                Cancel
+                                <FontAwesomeIcon icon="times" size="lg" pull="right" />
+                            </Button>
+                        </Link>
+                        <Button variant="primary" type="submit">
+                            Submit Changes
+                            <FontAwesomeIcon icon="check" size="lg" pull="right" />
+                        </Button>
+                    </div>
                 </Form>
             ) : (
                 <p>Loading...</p>

@@ -1,9 +1,15 @@
 import {  Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
-import * as homeServicesService from '../../../../services/homeServicesService.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import styles from './CreatorUser.module.scss'
+
 import { useErrorContext } from '../../../../contexts/ErrorContext.js';
 import { useAuthContext } from '../../../../contexts/AuthContext.js';
+
+import * as homeServicesService from '../../../../services/homeServicesService.js';
+
 import ConfirmationModal from '../../../Common/ConfirmationModal/ConfirmationModal.js';
 
 function CreatorUserButtons({
@@ -34,23 +40,21 @@ function CreatorUserButtons({
     };
 
     return (
-        <>
-            <Link to={`/home-services/${service._id}/edit`} className="btn btn-primary">
-                Edit
-            </Link>
+        <div className={styles.buttons}>
             <button className="btn btn-danger" onClick={onDeleteButtonClick}>
                 Delete
+                <FontAwesomeIcon icon="eraser" size="lg" pull="right" />
             </button>
-            {showModal
-                ? <ConfirmationModal 
-                    showModal={showModal} 
-                    onClose={() => setShowModal(false)} 
-                    onSave={deleteHandler}
-                    />
+            <Link to={`/home-services/${service._id}/edit`} className="btn btn-primary">
+                Edit
+                <FontAwesomeIcon icon="pencil-alt" size="lg" pull="right" />
+            </Link>
+
+            {showModal 
+                ? <ConfirmationModal showModal={showModal} onClose={() => setShowModal(false)} onSave={deleteHandler} /> 
                 : ''
-            
             }
-        </>
+        </div>
     );
 }
 
