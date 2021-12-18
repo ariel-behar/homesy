@@ -58,8 +58,9 @@
         border-top: 1px solid black;
         padding: 10px;
 
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        
     }
 }
 

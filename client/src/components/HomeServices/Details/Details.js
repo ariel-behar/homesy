@@ -18,6 +18,7 @@ const Details = () => {
     
 
     const renderEditedService = (editedService) => {
+        toggleOwnerButtons();
         setService(editedService);
     }
 

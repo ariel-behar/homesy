@@ -41,7 +41,7 @@ const Home = () => {
     useEffect(() => {
         setTimeout(() => {
             changeProfessionImage();
-        }, 10000);
+        }, 5000);
     }, [profession]);
 
     const changeProfessionImage = () => {
@@ -88,7 +88,11 @@ const Home = () => {
                 </Button>
             </Form>
 
-            <div className={styles['cardsDiv']}>{searchResults.length > 0 ? searchResults.map(x => <ListingCard key={x._id} service={x} />) : <p>Your results will appear here</p>}</div>
+            <div className={styles['cardsDiv']}>{
+                searchResults.length > 0 
+                    ? searchResults.map(x => <ListingCard key={x._id} service={x} />) 
+                    : <p>Your results will appear here...</p>
+                }</div>
         </section>
     );
 };
