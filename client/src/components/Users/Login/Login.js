@@ -1,5 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+import styles from './Login.module.css'
+
 import { useAuthContext } from '../../../contexts/AuthContext.js';
 import * as authService from '../../../services/authService.js';
 import { useErrorContext } from '../../../contexts/ErrorContext.js';
@@ -41,18 +46,29 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <section className={styles.loginPageSection}>
             <h3>Login</h3>
-            <form method="POST" action="" onSubmit={onSubmitFormHandler}>
-                <input type="text" name="email" placeholder="Email" required />
-                <input type="password" name="password" placeholder="Password" required />
-                <input type="submit" />
-            </form>
+
+            <Form method="POST" action="" onSubmit={onSubmitFormHandler}>
+                <Form.Group className="mb-3" controlId="email">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="text" name="email" placeholder="Email" required />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" name="password" placeholder="Password" required />
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
 
             <p>
                 You don't have an account yet? <Link to="/register">Register here</Link>
             </p>
-        </div>
+        </section>
     );
 };
 
