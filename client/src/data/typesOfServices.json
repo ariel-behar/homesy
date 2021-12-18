@@ -48,5 +48,10 @@
         "_id": 11,
         "value": "dancingTeacher",
         "name": "Dancing Teacher"
+    },
+    {
+        "_id": 12,
+        "value": "doctor",
+        "name": "Doctor"
     }
 ]   

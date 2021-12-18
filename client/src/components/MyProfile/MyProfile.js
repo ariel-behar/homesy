@@ -27,6 +27,7 @@ function MyProfile() {
     return (
         <>
             <div className="me-auto">
+                <img src={`/img/${user.gender}-avatar.png`} alt={`${user.gender} Avatar`} />
                 <h3>Name: {`${user.firstName.toUpperCase()} ${user.lastName.toUpperCase()}`}</h3>
                 <h5>E-mail: {user.email}</h5>
             </div>
