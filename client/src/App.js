@@ -50,7 +50,6 @@ function App() {
                                 }
                             />
 
-
                             <Route element={<IsGuestRouteGuard />}>
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/register" element={<Register />} />

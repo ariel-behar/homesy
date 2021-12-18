@@ -7,7 +7,7 @@ import typesOfServices from '../../../../data/typesOfServices.json';
 const ListingCard = ({ 
     service
 }) => {
-    return (
+     return (
         <div className={`card ${styles.cardStyles}`}>
             <img className="card-img-top" src={service.imageUrl} alt="Card" />
             <div className="card-body">
