@@ -1,0 +1,13 @@
+.cardComponent {
+    margin: 10px 0;
+
+    .card-header {
+        text-align: center;    
+    }
+
+    .card-body {
+        img {
+            max-width: 400px;
+        }
+    }
+}
