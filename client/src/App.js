@@ -20,6 +20,7 @@ import PageNotFound from './components/PageNotFound/PageNotFound.js';
 import IsAuthRouteGuard from './hoc/IsAuthRouteGuard.js';
 import IsGuestRouteGuard from './hoc/IsGuestRouteGuard.js';
 import MyProfile from './components/MyProfile/MyProfile.js';
+import { OnwerButtonsProvider } from './contexts/OwnerButtonsContext.js';
 
 function App() {
     return (
@@ -39,8 +40,16 @@ function App() {
                                 <Route path="/logout" element={<Logout />} />
                                 <Route path="/my-profile" element={<MyProfile />} />
                             </Route>
-                            
-                            <Route path="/home-services/:homeServiceId/*" element={<Details />} />
+
+                            <Route
+                                path="/home-services/:homeServiceId/*"
+                                element={
+                                    <OnwerButtonsProvider>
+                                        <Details />
+                                    </OnwerButtonsProvider>
+                                }
+                            />
+
 
                             <Route element={<IsGuestRouteGuard />}>
                                 <Route path="/login" element={<Login />} />

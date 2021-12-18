@@ -1,5 +1,5 @@
 import {  Link, useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -7,19 +7,23 @@ import styles from './CreatorUser.module.scss'
 
 import { useErrorContext } from '../../../../contexts/ErrorContext.js';
 import { useAuthContext } from '../../../../contexts/AuthContext.js';
+import { useOwnerButtonsContext } from '../../../../contexts/OwnerButtonsContext.js';
 
 import * as homeServicesService from '../../../../services/homeServicesService.js';
 
 import ConfirmationModal from '../../../Common/ConfirmationModal/ConfirmationModal.js';
 
+
 function CreatorUserButtons({
     service,
     homeServiceId, 
+    refreshOnwerButtonsToggler
 }) {
     const navigate = useNavigate();
     const { user } = useAuthContext();
     const { displayError } = useErrorContext();
     const [ showModal, setShowModal ] = useState(false)
+    let { showOwnerButtons,toggleOwnerButtons } = useOwnerButtonsContext();
 
     const onDeleteButtonClick = async e => {
         e.preventDefault();
@@ -38,20 +42,39 @@ function CreatorUserButtons({
             displayError(await error);
         }
     };
+    
 
     return (
-        <div className={styles.buttons}>
-            <button className="btn btn-danger" onClick={onDeleteButtonClick}>
-                Delete &nbsp;
-                <FontAwesomeIcon icon="eraser" size="md" />
-            </button>
-            <Link to={`/home-services/${service._id}/edit`} className="btn btn-primary">
-                Edit &nbsp;
-                <FontAwesomeIcon icon="pencil-alt" size="md" />
-            </Link>
+        <>
+        {
+            showOwnerButtons
+            ? (
+                 <div className={styles.buttons}>
+                    {
+                        toggleOwnerButtons
+                    }
+                    <button className="btn btn-danger" onClick={onDeleteButtonClick}>
+                        Delete &nbsp;
+                        <FontAwesomeIcon icon="eraser" size="md" />
+                    </button>
+                    <Link to={`/home-services/${service._id}/edit`} className="btn btn-primary" onClick={toggleOwnerButtons}>
+                        Edit &nbsp;
+                        <FontAwesomeIcon icon="pencil-alt" size="md" />
+                    </Link>
 
-            {showModal ? <ConfirmationModal showModal={showModal} onClose={() => setShowModal(false)} onSave={deleteHandler} /> : ''}
-        </div>
+                    {showModal 
+                        ? <ConfirmationModal 
+                            showModal={showModal} 
+                            onClose={() => setShowModal(false)} 
+                            onSave={deleteHandler} 
+                        /> 
+                        : ''}
+                </div>
+            ) : ''
+            
+        }
+        </>
+       
     );
 }
 

@@ -17,7 +17,8 @@ import * as homeServicesService from '../../../services/homeServicesService.js';
 
 const Edit = ({
     homeServiceId,
-    renderEditedService
+    renderEditedService,
+    refreshOnwerButtonsToggler
 }) => {
     const { user, isAuthorized } = useAuthContext()
     const { displayError } = useErrorContext();
@@ -100,7 +101,7 @@ const Edit = ({
 
                     <div className={styles.buttons}>
                         <Link to={`/home-services/${homeServiceId}`}>
-                            <Button variant="danger" type="submit">
+                            <Button variant="danger" onClick={refreshOnwerButtonsToggler}>
                                 Cancel &nbsp;
                                 <FontAwesomeIcon icon="times" size="md" />
                             </Button>
