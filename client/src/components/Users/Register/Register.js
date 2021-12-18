@@ -1,5 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+import styles from './Register.module.css';
+
 import { useAuthContext } from "../../../contexts/AuthContext.js";
 import { useErrorContext } from '../../../contexts/ErrorContext.js';
 import { setLocalStorage } from "../../../utils/localStorageUtil.js";
@@ -53,31 +58,50 @@ const Register = () => {
     }
 
     return (
-        <div>
+        <section className={styles.registerPageSection}>
             <h3>Register</h3>
-            <form method="POST" onSubmit={onSubmitFormHandler}>
-                <input type="text" name="firstName" placeholder="First Name" required />
-                <input type="text" name="lastName" placeholder="Last Name" required />
 
-                <input type="text" name="email" placeholder="Email" required />
+            <Form method="POST" onSubmit={onSubmitFormHandler}>
+                <Form.Group className="mb-3" controlId="firstName">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control type="text" name="firstName" placeholder="First Name" required />
+                </Form.Group>
 
-                <input type="password" name="password" placeholder="Password" required />
-                <input type="password" name="repeatPassword" placeholder="Repeat password" required />
+                <Form.Group className="mb-3" controlId="lastName">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control type="text" name="lastName" placeholder="Last Name" required />
+                </Form.Group>
 
-                <p>Gender</p>
-                <label htmlFor="male">Male</label>
-                <input type="radio" name="gender" id="male" defaultValue="Male" required />
+                <Form.Group className="mb-3" controlId="email">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="text" name="email" placeholder="Email address" required />
+                </Form.Group>
 
-                <label htmlFor="female">Female</label>
-                <input type="radio" name="gender" id="female" defaultValue="Female" required />
+                <Form.Group className="mb-3" controlId="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" name="password" placeholder="Password" required />
+                </Form.Group>
 
-                <input type="submit" />
-            </form>
+                <Form.Group className="mb-3" controlId="repeatPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" name="repeatPassword" placeholder="Repeat password" required />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="gender">
+                    <Form.Label className="d-block">Gender</Form.Label>
+                    <Form.Check inline label="Male" name="gender" type="radio" defaultValue="Male" id="male" />
+                    <Form.Check inline label="Female" name="gender" type="radio" defaultValue="Female" id="female" />
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
 
             <p>
                 Already have an account? <Link to="/login">Log in here</Link>
             </p>
-        </div>
+        </section>
     );
 };
 
