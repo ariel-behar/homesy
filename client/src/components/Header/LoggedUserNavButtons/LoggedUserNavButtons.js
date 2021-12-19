@@ -10,20 +10,24 @@ function LoggedUserNavButtons({
 
     return (
         <>
-            {navItemCreateListing ? <NavLink to="/home-services/create"> Create Service</NavLink> : ''}
+            {navItemCreateListing ? <NavLink to="/home-services/create">Create Service</NavLink> : ''}
 
-            {email
-                ? <span>Hello, {user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1).toLowerCase()}</span>
-                : ""
-            }
+            {email ? (
+                <span>
+                    Hello, <i>{user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1).toLowerCase()}!</i>
+                </span>
+            ) : (
+                ''
+            )}
 
-            {navItemsProfileLogout
-                ? <>
-                    <NavLink to="/my-profile"> My Profile </NavLink>
-                    <NavLink to="/logout"> Logout </NavLink>
-                  </>
-                : ""
-            }
+            {navItemsProfileLogout ? (
+                <>
+                    <NavLink to="/my-profile">My Profile</NavLink>
+                    <NavLink to="/logout">Logout</NavLink>
+                </>
+            ) : (
+                ''
+            )}
         </>
     );
 }

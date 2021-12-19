@@ -11,33 +11,21 @@ const Header = () => {
     const { user } = useAuthContext();
     
     return (
-        <header className={styles.headerCustomStyles}>
+        <header className={styles.headerCustomStyles} >
             <nav className={`navbar navbar-expand-lg ${styles.navbarCustomStyles}`}>
                 <div>
-                    <NavLink to="/" activeClassName={styles.selected}> Home </NavLink>
-                    <NavLink to="/home-services/all-listings" > All Services </NavLink>
+                    <NavLink to="/">
+                        Home
+                    </NavLink>
+                    <NavLink to="/home-services/all-listings">All Services</NavLink>
 
-                    { user.firstName !== ''
-                        ? <LoggedUserNavButtons navItemCreateListing={true}/> 
-                        : ''
-                    }
+                    {user.firstName !== '' ? <LoggedUserNavButtons navItemCreateListing={true} /> : ''}
                 </div>
-                <div>
-                    { user.firstName !== ''
-                        ? <LoggedUserNavButtons email={user.email}/> 
-                        : ''
-                    }
-                </div>
+                <div>{user.firstName !== '' ? <LoggedUserNavButtons email={user.email} /> : ''}</div>
 
-                <div>
-                    { user.firstName !== ''
-                        ? <LoggedUserNavButtons navItemsProfileLogout={true}/> 
-                        : <GuestNavButtons /> 
-                    }
-                </div>
+                <div>{user.firstName !== '' ? <LoggedUserNavButtons navItemsProfileLogout={true} /> : <GuestNavButtons />}</div>
             </nav>
         </header>
-
     );
 };
 

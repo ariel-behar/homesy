@@ -1,15 +1,27 @@
+/*
+colors: 
+    header: back-#5a447b little-elements-#776099
+    header-links: rgb(233, 232, 232);
+    header-name: rgb(235, 231, 24);
+
+    cards: #212529;
+
+*/
+
 body {
     width: 100vw;
-    min-height: auto;
+    min-height: auto;  
 
     #root {
-        background-color: beige;
+        background-color: rgb(128, 128, 128);
+        padding: 10px 0 0;
 
         min-height: 100vh;
 
         display: grid;
+        row-gap: 10px;
         grid-template-columns: repeat(1, auto);
-        grid-template-rows: 50px auto 50px;
+        grid-template-rows: 80px auto 50px;
         grid-template-areas: "header" "main" "footer";
     }
 
@@ -27,7 +39,12 @@ body {
 
     main {
         grid-area: main;
-        background-color: lightgreen;
+        background-color: #5a447b;
+        background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23776099' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+        border: 3px solid white;
+        color: rgb(233, 232, 232);
+        border-radius: 20px;
     }
 
     footer {
