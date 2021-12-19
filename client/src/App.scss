@@ -11,6 +11,7 @@ colors:
 body {
     width: 100vw;
     min-height: auto;  
+    overflow-x: hidden;
 
     #root {
         background-color: rgb(128, 128, 128);
@@ -21,7 +22,7 @@ body {
         display: grid;
         row-gap: 10px;
         grid-template-columns: repeat(1, auto);
-        grid-template-rows: 80px auto 50px;
+        grid-template-rows: 80px auto 60px;
         grid-template-areas: "header" "main" "footer";
     }
 
@@ -31,10 +32,12 @@ body {
         
         justify-self: center;
         align-self: center;
+
     }
 
     header {
         grid-area: header;
+        width: 85vw;
     }
 
     main {
@@ -49,7 +52,6 @@ body {
 
     footer {
         grid-area: footer;
-        background-color: lightcoral;
     }
 }
 
