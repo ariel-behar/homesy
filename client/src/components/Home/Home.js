@@ -56,7 +56,7 @@ const Home = () => {
             <h1>Welcome to HOMEZY</h1>
 
             <div className={styles['profession-div']}>
-                <h3>Tell us what you are looking for? </h3>
+                <h3>Tell us what you are looking for... </h3>
                 <div className={styles['profession-image-div']}>
                     <img src={`/img/professions/${profession.image}`} className="img-fluid" />
                     <p>{profession.name}</p>
@@ -65,7 +65,7 @@ const Home = () => {
 
             <Form method="GET" action="" onSubmit={onFormSubmitHanlder}>
                 <Form.Group controlId="typeOfService">
-                    <Form.Label>What professeional service?</Form.Label>
+                    <Form.Label>What professional service?</Form.Label>
                     <Form.Select name="typeOfService">
                         {typesOfServices.map(x => {
                             return (
