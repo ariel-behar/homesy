@@ -1,0 +1,49 @@
+.myProfileComponentSection {
+    margin: 10px 0;
+    display: grid;
+    
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 100px repeat(2, auto);
+    grid-template-areas: 
+        "title title title title"  
+        "userProfile allListings allListings allListings"  
+        "userProfile allListings allListings allListings"
+    ;
+    row-gap: 10px;
+
+    >h3 {
+        grid-area: title;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .userProfile {
+        grid-area: userProfile;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        img {
+            max-width: 200px;
+        }
+        
+    }
+
+    .allListings {
+        grid-area: allListings;
+        h4 {
+            text-align: center;
+        }
+
+        >div {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            row-gap: 10px;
+        }
+
+    }
+    
+   
+}

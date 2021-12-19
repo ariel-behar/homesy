@@ -9,12 +9,12 @@ const ListingCard = ({
 }) => {
      return (
         <div className={`card ${styles.cardStyles}`}>
-            <img className="card-img-top" src={service.imageUrl} alt="Card" />
-            <div className="card-body">
+            <img className="card-img-top" src={service.imageUrl} alt="Card" className="img-fluid"/>
+            <div className={`card-body ${styles.cardBody}`}>
                 <h5 className="card-title">{typesOfServices.find(x => x.value == service.typeOfService).name}</h5>
                 <p className="card-text">{service.cityOfOperation}</p>
                 <p className="card-text">{service.price} BGN</p>
-                <Link to={`/home-services/${service._id}`} state={{ from: service }} className="btn btn-primary">
+                <Link to={`/home-services/${service._id}`} state={{ from: service }} className={`btn btn-primary ${styles.cardButton}`}>
                     See more...
                 </Link>
             </div>

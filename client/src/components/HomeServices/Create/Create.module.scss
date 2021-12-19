@@ -1,16 +1,36 @@
 .createComponentSection {
+    margin: 10px 0;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
-    form {
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    
+    grid-template-areas:
+        "title"
+        "form";
+
+    h3 {
+        grid-area: title;
+        
+        justify-self: center;
+        align-self: center;
+    }
+
+    >div {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-        button {
-            align-self: center;
+        form {
+            display: flex;
+            flex-direction: column;
+
+            button {
+                align-self: center;
+            }
         }
     }
+
+    
 }
