@@ -65,53 +65,56 @@ const Edit = ({
     return (
         <section className={styles.editComponentSection}>
             {service ? (
-                <Form method="POST" action="" onSubmit={onFormSubmit}>
-                    <Form.Group controlId="typeOfService">
-                        <Form.Label>Type of Service</Form.Label>
-                        <Form.Select name="typeOfService" defaultValue={service.typeOfService}>
-                            {typesOfServices.map(x => {
-                                return (
-                                    <SelectOptions key={x._id} value={x.value}>
-                                        {x.name}
-                                    </SelectOptions>
-                                );
-                            })}
-                        </Form.Select>
-                    </Form.Group>
+                <>
+                    <h5>Enter Service Details</h5>
+                    <Form method="POST" action="" onSubmit={onFormSubmit}>
+                        <Form.Group controlId="typeOfService">
+                            <Form.Label>Type of Service</Form.Label>
+                            <Form.Select name="typeOfService" defaultValue={service.typeOfService}>
+                                {typesOfServices.map(x => {
+                                    return (
+                                        <SelectOptions key={x._id} value={x.value}>
+                                            {x.name}
+                                        </SelectOptions>
+                                    );
+                                })}
+                            </Form.Select>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="description">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} cols={30} name="description" placeholder="Elaborate further about your service..." defaultValue={service.description} />
-                    </Form.Group>
+                        <Form.Group className="mb-3" controlId="description">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control as="textarea" rows={3} cols={30} name="description" placeholder="Elaborate further about your service..." defaultValue={service.description} />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="price">
-                        <Form.Label>Price </Form.Label>
-                        <Form.Control type="number" name="price" placeholder="Service price in BGN" defaultValue={service.price} required />
-                    </Form.Group>
+                        <Form.Group className="mb-3" controlId="price">
+                            <Form.Label>Price </Form.Label>
+                            <Form.Control type="number" name="price" placeholder="Service price in BGN" defaultValue={service.price} required />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="cityOfOperation">
-                        <Form.Label>City</Form.Label>
-                        <Form.Control type="text" name="cityOfOperation" placeholder="The city in which you operate" defaultValue={service.cityOfOperation} required />
-                    </Form.Group>
+                        <Form.Group className="mb-3" controlId="cityOfOperation">
+                            <Form.Label>City</Form.Label>
+                            <Form.Control type="text" name="cityOfOperation" placeholder="The city in which you operate" defaultValue={service.cityOfOperation} required />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="imageUrl">
-                        <Form.Label>Image</Form.Label>
-                        <Form.Control type="text" name="imageUrl" placeholder="Image URL" defaultValue={service.imageUrl} required />
-                    </Form.Group>
+                        <Form.Group className="mb-3" controlId="imageUrl">
+                            <Form.Label>Image</Form.Label>
+                            <Form.Control type="text" name="imageUrl" placeholder="Image URL" defaultValue={service.imageUrl} required />
+                        </Form.Group>
 
-                    <div className={styles.buttons}>
-                        <Link to={`/home-services/${homeServiceId}`}>
-                            <Button variant="danger" onClick={refreshOnwerButtonsToggler}>
-                                Cancel &nbsp;
-                                <FontAwesomeIcon icon="times" size="md" />
+                        <div className={styles.buttons}>
+                            <Link to={`/home-services/${homeServiceId}`}>
+                                <Button variant="danger" onClick={refreshOnwerButtonsToggler}>
+                                    Cancel &nbsp;
+                                    <FontAwesomeIcon icon="times" size="md" />
+                                </Button>
+                            </Link>
+                            <Button variant="primary" type="submit">
+                                Submit Changes &nbsp;
+                                <FontAwesomeIcon icon="check" size="md" />
                             </Button>
-                        </Link>
-                        <Button variant="primary" type="submit">
-                            Submit Changes &nbsp;
-                            <FontAwesomeIcon icon="check" size="md" />
-                        </Button>
-                    </div>
-                </Form>
+                        </div>
+                    </Form>
+                </>
             ) : (
                 <p>Loading...</p>
             )}
