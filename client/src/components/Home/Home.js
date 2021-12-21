@@ -55,40 +55,53 @@ const Home = () => {
         <section className={styles.homeComponentSection}>
             <h1>Welcome to HOMEZY</h1>
 
-            <div className={styles['profession-div']}>
+            <div className={styles['form-div']}>
                 <h3>Tell us what you are looking for... </h3>
+                <Form method="GET" action="" onSubmit={onFormSubmitHanlder}>
+                    <Form.Group controlId="typeOfService">
+                        <Form.Label>What professional service?</Form.Label>
+                        <Form.Select name="typeOfService">
+                            {typesOfServices.map(x => {
+                                return (
+                                    <SelectOptions key={x._id} value={x.value}>
+                                        {x.name}
+                                    </SelectOptions>
+                                );
+                            })}
+                        </Form.Select>
+                    </Form.Group>
+
+                    <Form.Group controlId="cityOfOperation">
+                        <Form.Label>In which city?</Form.Label>
+                        <Form.Control type="text" name="cityOfOperation" placeholder="Enter city..." />
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Find! &nbsp;
+                        <FontAwesomeIcon icon="search" size="md" />
+                    </Button>
+                </Form>
+            </div>
+
+            <div className={styles['profession-div']}>
                 <div className={styles['profession-image-div']}>
                     <img src={`/img/professions/${profession.image}`} className="img-fluid" />
-                    <p>{profession.name}</p>
+                    <h4>{profession.name}</h4>
                 </div>
             </div>
 
-            <Form method="GET" action="" onSubmit={onFormSubmitHanlder}>
-                <Form.Group controlId="typeOfService">
-                    <Form.Label>What professional service?</Form.Label>
-                    <Form.Select name="typeOfService">
-                        {typesOfServices.map(x => {
-                            return (
-                                <SelectOptions key={x._id} value={x.value}>
-                                    {x.name}
-                                </SelectOptions>
-                            );
-                        })}
-                    </Form.Select>
-                </Form.Group>
-
-                <Form.Group controlId="cityOfOperation">
-                    <Form.Label>In which city?</Form.Label>
-                    <Form.Control type="text" name="cityOfOperation" placeholder="Enter city..." />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Find! &nbsp;
-                    <FontAwesomeIcon icon="search" size="md" />
-                </Button>
-            </Form>
-
-            <div className={styles['cardsDiv']}>{searchResults.length > 0 ? searchResults.map(x => <ListingCard key={x._id} service={x} />) : <p>Your results will appear here...</p>}</div>
+            <div className={styles['cardsDivRow']}>
+                {searchResults.length > 0 ? 
+                    <>
+                        <h5>Results: </h5>
+                        <div className={styles['cardsDiv']}>
+                            {searchResults.map(x => <ListingCard key={x._id} service={x} />)}
+                        </div>
+                    </>
+                 : (
+                    <h5>Your results will appear here...</h5>
+                )}
+            </div>
         </section>
     );
 };

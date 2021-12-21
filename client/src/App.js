@@ -27,39 +27,41 @@ function App() {
         <ErrorProvider>
             <AuthProvider>
                 <>
-                    <Header />
+                    <div style={{ backgroundImage: `url(../img/app-background.png)` }}>
+                        <Header />
 
-                    <main>
-                        <Error />
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/home-services/all-listings" element={<AllListings />} />
+                        <main>
+                            <Error />
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/home-services/all-listings" element={<AllListings />} />
 
-                            <Route element={<IsAuthRouteGuard />}>
-                                <Route path="/home-services/create" element={<Create />} />
-                                <Route path="/logout" element={<Logout />} />
-                                <Route path="/my-profile" element={<MyProfile />} />
-                            </Route>
+                                <Route element={<IsAuthRouteGuard />}>
+                                    <Route path="/home-services/create" element={<Create />} />
+                                    <Route path="/logout" element={<Logout />} />
+                                    <Route path="/my-profile" element={<MyProfile />} />
+                                </Route>
 
-                            <Route
-                                path="/home-services/:homeServiceId/*"
-                                element={
-                                    <OnwerButtonsProvider>
-                                        <Details />
-                                    </OnwerButtonsProvider>
-                                }
-                            />
+                                <Route
+                                    path="/home-services/:homeServiceId/*"
+                                    element={
+                                        <OnwerButtonsProvider>
+                                            <Details />
+                                        </OnwerButtonsProvider>
+                                    }
+                                />
 
-                            <Route element={<IsGuestRouteGuard />}>
-                                <Route path="/login" element={<Login />} />
-                                <Route path="/register" element={<Register />} />
-                            </Route>
+                                <Route element={<IsGuestRouteGuard />}>
+                                    <Route path="/login" element={<Login />} />
+                                    <Route path="/register" element={<Register />} />
+                                </Route>
 
-                            <Route path="*" element={<PageNotFound />} />
-                        </Routes>
-                    </main>
+                                <Route path="*" element={<PageNotFound />} />
+                            </Routes>
+                        </main>
 
-                    <Footer />
+                        <Footer />
+                    </div>
                 </>
             </AuthProvider>
         </ErrorProvider>

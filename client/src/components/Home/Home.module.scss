@@ -2,18 +2,41 @@
     display: grid;
     height: 100%;
 
-    grid-template-rows: 200px auto 100px auto;
-    /* grid-template-columns: repeat(auto); */
+    grid-template-rows: 200px repeat(2, 150px) 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
-        "title title title"
-        "professionDiv professionDiv professionDiv"
-        "form form form"
+        ". title ."
+        ". form professionDiv"
+        ". form professionDiv"
         "cardsDiv cardsDiv cardsDiv"
     ;
     h1 {
         grid-area: title;
         align-self: center;
         justify-self: center;
+    }
+
+    .form-div {
+        grid-area: form;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h3 {
+            text-align: center;
+        }
+
+        form {
+            align-self: center;
+            justify-self: center;
+            display: flex;
+            align-items: flex-end;
+
+            div {
+                display: inline-block;
+                margin: 0 5px;
+            }
+        }
     }
 
     .profession-div {
@@ -27,7 +50,7 @@
         justify-content: center;
 
         .profession-image-div {
-            height: 150px;
+            height: 250px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -38,28 +61,25 @@
         }
     }
     
-    form {
-        grid-area: form;
+   
 
-        align-self: center;
-        justify-self: center;
-        display: flex;
-        align-items: flex-end;
-
-        div {
-            display: inline-block;
-            margin: 0 5px;
-        }
-    }
-
-    .cardsDiv {
+    .cardsDivRow {
         grid-area: cardsDiv;
+        border-top: 1px dotted white;
 
-        border-top: 1px solid black;
         padding: 10px;
+        margin: 10px;
 
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        h5 {
+            grid-column: 1/4;
+            text-align: center;
+        }
+
+        .cardsDiv {
+            display: grid;
+            grid-template-rows: 1fr auto;
+            grid-template-columns: repeat(3, 1fr);
+        }
         
     }
 }
