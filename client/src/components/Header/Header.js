@@ -11,10 +11,10 @@ const Header = () => {
     const { user } = useAuthContext();
     
     return (
-        <header className={styles.headerCustomStyles} >
+        <header className={styles.headerCustomStyles}>
             <nav className={`navbar navbar-expand-lg ${styles.navbarCustomStyles}`}>
                 <div>
-                    <NavLink to="/">
+                    <NavLink to="/" activeClassName="selected">
                         Home
                     </NavLink>
                     <NavLink to="/home-services/all-listings">All Services</NavLink>

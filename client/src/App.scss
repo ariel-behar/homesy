@@ -38,6 +38,10 @@ body {
     header {
         grid-area: header;
         width: 85vw;
+
+        .active {
+            border-bottom: 3px solid white;
+        }
     }
 
     main {

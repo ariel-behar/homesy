@@ -9,23 +9,29 @@
     background-color: #5a447b;
     background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23776099' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 
-        .navbarCustomStyles {
-            width: 100%;
-            
-            display: grid;
-            grid-template-rows: 1fr;
-            grid-template-columns: repeat(3, 1fr);
+    .navbarCustomStyles {
+        width: 100%;
+        
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(3, 1fr);
 
-            >div {
-                
-                span {
-                    color: rgb(235, 231, 24);
-                    font-size: 30px;
-                }
+        >div {
+            span {
+                color: rgb(235, 231, 24);
+                font-size: 30px;
+            }
+
             a {
                 margin: 0 70px; 
                 font-size: 1.2rem;
                 color: rgb(233, 232, 232);
+                font-weight: bold;
+                text-decoration: none;
+                
+                &:hover {
+                    color: rgb(141, 141, 141);
+                }
 
                 &:first-child{
                     margin-left: 0;

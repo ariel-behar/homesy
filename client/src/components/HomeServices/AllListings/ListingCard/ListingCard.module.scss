@@ -3,11 +3,17 @@
     width: 18rem;
     justify-self: center;
     color: #212529;
+    
+    img {
+        max-height: 190px;
+    }
 
     .cardBody {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+
+
 
         .cardButton {
             margin-top: auto;
