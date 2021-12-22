@@ -26,7 +26,7 @@ export const ErrorProvider = ({ children }) => {
 
         setTimeout(() => {
             setError('');
-        }, 10000);
+        }, 7000);
     };
 
     return (

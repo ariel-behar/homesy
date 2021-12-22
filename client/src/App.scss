@@ -49,6 +49,8 @@ body {
     }
 
     main {
+        position: relative;
+
         grid-area: main;
 
         background-color: #5a447bfa;
