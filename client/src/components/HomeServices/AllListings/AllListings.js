@@ -25,9 +25,12 @@ const AllListings = () => {
             </div>
 
             <div className={styles['cardsDiv']}>
-                {services.map(x => (
-                    <ListingCard key={x._id} service={x} />
-                ))}
+                { services.length > 0 
+                    ? services.map(x => (
+                        <ListingCard key={x._id} service={x} />
+                        ))
+                    : <p>Currently there are no listed services in our database</p>
+                }
             </div>
         </section>
     );

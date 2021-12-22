@@ -79,7 +79,7 @@ const Home = () => {
 
                     <Form.Group controlId="cityOfOperation">
                         <Form.Label>In which city?</Form.Label>
-                        <Form.Control type="text" name="cityOfOperation" placeholder="Enter city..." />
+                        <Form.Control type="text" name="cityOfOperation" placeholder="Enter city or leave blank..." />
                     </Form.Group>
 
                     <Button variant="primary" type="submit">

@@ -18,6 +18,7 @@
 
     .cardsDiv {
         grid-area: cardsDiv;
+        padding: 0 10px;
 
         display: grid;
         grid-template-columns: repeat(3, 1fr);
