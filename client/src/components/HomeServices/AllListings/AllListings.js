@@ -19,10 +19,15 @@ const AllListings = () => {
 
     return (
         <section className={styles.allListingsSection}>
-            <h3>All Services</h3>
+            <div>
+                <h3>All Services</h3>
+                <img src="/img/divider.png" alt="Divider" />
+            </div>
 
             <div className={styles['cardsDiv']}>
-                {services.map(x => <ListingCard key={x._id} service={x} />)}
+                {services.map(x => (
+                    <ListingCard key={x._id} service={x} />
+                ))}
             </div>
         </section>
     );

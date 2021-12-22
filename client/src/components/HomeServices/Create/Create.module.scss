@@ -9,12 +9,15 @@
         "title"
         "form";
 
-    h3 {
+    >div:nth-child(1) {
         grid-area: title;
         
         justify-self: center;
         align-self: center;
+
+        text-align: center;
     }
+   
 
     >div {
         display: flex;

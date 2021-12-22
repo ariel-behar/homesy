@@ -8,16 +8,25 @@ colors:
 
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fira+Sans+Condensed:wght@300&display=swap');
 
 body {
     width: 100vw;
     min-height: auto;  
     overflow-x: hidden;
 
+    
+
     #root {
-        
+
         font-family: 'Fira Sans Condensed', sans-serif;
+
+        a {
+            color: white;
+            &:hover {
+                color: rgb(206, 206, 206);
+            }
+        }
 
         >div {
             background-size: cover;

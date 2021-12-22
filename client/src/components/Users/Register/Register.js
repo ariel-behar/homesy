@@ -59,7 +59,10 @@ const Register = () => {
 
     return (
         <section className={styles.registerComponentSection}>
-            <h3>Register</h3>
+            <div>
+                <h3>Register</h3>
+                <img src="/img/divider.png" alt="Divider" />
+            </div>
 
             <Form method="POST" onSubmit={onSubmitFormHandler}>
                 <Form.Group className="mb-3" controlId="firstName">

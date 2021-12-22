@@ -11,10 +11,12 @@
     ;
    
 
-    >h3 {
+    >div:nth-child(1) {
         grid-area: title;
         align-self: center;
         justify-self: center;
+
+        text-align: center;
     }
 
     .userProfile {

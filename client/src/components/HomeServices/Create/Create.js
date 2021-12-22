@@ -42,7 +42,11 @@ const Create = () => {
 
     return (
         <section className={styles.createComponentSection}>
-            <h3>Create Service</h3>
+            <div>
+                <h3>Create Service</h3>
+                <img src="/img/divider.png" alt="Divider" />
+            </div>
+
             <div>
                 <h5>Enter Service Details</h5>
                 <Form method="POST" action="" onSubmit={onFormSubmit}>

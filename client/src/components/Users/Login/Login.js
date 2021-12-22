@@ -47,7 +47,10 @@ const Login = () => {
 
     return (
         <section className={styles.loginComponentSection}>
-            <h3>Login</h3>
+            <div>
+                <h3>Login</h3>
+                <img src="/img/divider.png" alt="Divider" />
+            </div>
 
             <Form method="POST" action="" onSubmit={onSubmitFormHandler}>
                 <Form.Group className="mb-3" controlId="email">

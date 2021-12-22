@@ -30,30 +30,23 @@ function MyProfile() {
     
     return (
         <section className={styles.myProfileComponentSection}>
-            <h3>My Profile</h3>
+            <div>
+                <h3>My Profile</h3>
+                <img src="/img/divider.png" alt="Divider" />
+            </div>
 
             <div className={styles.userProfile}>
-                <img src={`/img/${user.gender}-avatar.png`} alt={`${user.gender} Avatar`} className="img-fluid"/>
+                <img src={`/img/${user.gender}-avatar.png`} alt={`${user.gender} Avatar`} className="img-fluid" />
                 <h3>Name: {`${user.firstName.toUpperCase()} ${user.lastName.toUpperCase()}`}</h3>
                 <h5>E-mail: {user.email}</h5>
             </div>
 
             <div className={styles.allListings}>
                 <h4>My Listings</h4>
-                <div>
-                    {myListings.length > 0 
-                        ? myListings.map(x => <ListingCard key={x._id} service={x} />) 
-                        : 'You have not listed any services yet'
-                    }
-                </div>
-                
+                <div>{myListings.length > 0 ? myListings.map(x => <ListingCard key={x._id} service={x} />) : 'You have not listed any services yet'}</div>
+
                 <h4>My Favorite Listings</h4>
-                <div>
-                    {myFavorites.length > 0 
-                        ? myFavorites.map(x => <ListingCard key={x._id} service={x} />) 
-                        : 'You have not added any services to your favorites list yet'
-                    }
-                </div>
+                <div>{myFavorites.length > 0 ? myFavorites.map(x => <ListingCard key={x._id} service={x} />) : 'You have not added any services to your favorites list yet'}</div>
             </div>
         </section>
     );

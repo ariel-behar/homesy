@@ -54,8 +54,11 @@ const Home = () => {
     return (
         <section className={styles.homeComponentSection}>
             <div>
-                <h1>Welcome to <span>HOMEZY</span></h1>
-                <p>Your one stop shop for home services in your area</p>
+                <h1>
+                    Welcome to <span>HOMEZY</span>
+                </h1>
+                <img src="/img/divider.png" alt="Divider" />
+                <p>THE one stop shop for home services in your area</p>
             </div>
 
             <div className={styles['form-div']}>
