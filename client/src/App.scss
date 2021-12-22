@@ -8,12 +8,17 @@ colors:
 
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&display=swap');
+
 body {
     width: 100vw;
     min-height: auto;  
     overflow-x: hidden;
 
     #root {
+        
+        font-family: 'Fira Sans Condensed', sans-serif;
+
         >div {
             background-size: cover;
             padding: 10px 0 0;
