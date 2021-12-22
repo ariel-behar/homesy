@@ -11,7 +11,7 @@ const Header = () => {
     const { user } = useAuthContext();
     
     return (
-        <header className={styles.headerCustomStyles}>
+        <header className={styles.headerCustomStyles} style={{ backgroundImage: `url(../img/app-background-mosaic.svg)` }}>
             <nav className={`navbar navbar-expand-lg ${styles.navbarCustomStyles}`}>
                 <div>
                     <NavLink to="/" activeClassName="selected">

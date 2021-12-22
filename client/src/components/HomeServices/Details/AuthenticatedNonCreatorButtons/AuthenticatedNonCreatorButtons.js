@@ -52,14 +52,14 @@ function AuthenticatedNonCreatorButtons({
     }
 
     const addToFavoritesButton = (
-        <button onClick={addToFavoritesHandler}>
+        <button onClick={addToFavoritesHandler} className="btn btn-primary">
             Add to Favorites
             <FontAwesomeIcon icon="heart" size="lg" pull="right" />
         </button>
-    )
+    );
 
     const removeFromFavoritesButton = (
-        <button onClick={removeFromFavoritesHandler}>
+        <button onClick={removeFromFavoritesHandler} className="btn btn-primary">
             Remove from Favorites
         </button>
     );

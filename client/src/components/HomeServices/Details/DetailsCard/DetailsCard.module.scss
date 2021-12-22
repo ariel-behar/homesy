@@ -5,17 +5,35 @@
 
     .card-header {
         text-align: center;    
+        font-weight: bold;
+        font-size: 30px;
     }
 
     .card-body {
         display: flex;
         flex-direction: column;
+        h5 {
+            font-weight: bold;
+
+        }
         img {
             max-width: 400px;
             align-self: center;
         }
-        button {
-            margin: 5px 0;
+        span {
+            font-weight: bold;
         }
+
+        >div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            button {
+                margin: 5px 0;
+            }
+        }
+      
     }
 }

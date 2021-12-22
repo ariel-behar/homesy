@@ -42,11 +42,29 @@ function MyProfile() {
             </div>
 
             <div className={styles.allListings}>
-                <h4>My Listings</h4>
-                <div>{myListings.length > 0 ? myListings.map(x => <ListingCard key={x._id} service={x} />) : 'You have not listed any services yet'}</div>
+                <div>
+                    <h4>My Listings</h4>
+                    <img src="/img/divider.png" alt="Divider" />
 
-                <h4>My Favorite Listings</h4>
-                <div>{myFavorites.length > 0 ? myFavorites.map(x => <ListingCard key={x._id} service={x} />) : 'You have not added any services to your favorites list yet'}</div>
+                    <div>
+                        {myListings.length > 0 
+                            ? myListings.map(x => <ListingCard key={x._id} service={x} />) 
+                            : 'You have not listed any services of your own yet...'
+                        }
+                    </div>
+                </div>
+
+                <div>
+                    <h4>My Favorite Listings</h4>
+                    <img src="/img/divider.png" alt="Divider" />
+
+                    <div>
+                        {myFavorites.length > 0 
+                            ? myFavorites.map(x => <ListingCard key={x._id} service={x} />) 
+                            : 'You have not added any services to your favorites list yet...'
+                        }
+                    </div>
+                </div>
             </div>
         </section>
     );

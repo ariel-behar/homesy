@@ -30,7 +30,7 @@ function App() {
                     <div style={{ backgroundImage: `url(../img/app-background.png)` }}>
                         <Header />
 
-                        <main>
+                        <main style={{ backgroundImage: `url(../img/app-background-mosaic.svg)` }}>
                             <Error />
                             <Routes>
                                 <Route path="/" element={<Home />} />
