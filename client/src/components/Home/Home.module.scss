@@ -2,7 +2,7 @@
     display: grid;
     height: 100%;
 
-    grid-template-rows: 200px repeat(2, 150px) 1fr;
+    grid-template-rows: 250px repeat(2, 125px) 1fr;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
         ". title ."
@@ -10,10 +10,18 @@
         ". form professionDiv"
         "cardsDiv cardsDiv cardsDiv"
     ;
-    h1 {
+    >div:nth-child(1) {
         grid-area: title;
         align-self: center;
         justify-self: center;
+        text-align: center;
+
+        h1 {
+            span {
+                // font-style: italic;
+                font-size: 4rem;
+            }
+        }
     }
 
     .form-div {
@@ -24,6 +32,7 @@
 
         h3 {
             text-align: center;
+            margin-bottom: 25px;
         }
 
         form {
@@ -68,7 +77,7 @@
         border-top: 1px dotted white;
 
         padding: 10px;
-        margin: 10px;
+        margin: 20px;
 
         h5 {
             grid-column: 1/4;

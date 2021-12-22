@@ -53,7 +53,10 @@ const Home = () => {
 
     return (
         <section className={styles.homeComponentSection}>
-            <h1>Welcome to HOMEZY</h1>
+            <div>
+                <h1>Welcome to <span>HOMEZY</span></h1>
+                <p>Your one stop shop for home services in your area</p>
+            </div>
 
             <div className={styles['form-div']}>
                 <h3>Tell us what you are looking for... </h3>
@@ -91,14 +94,16 @@ const Home = () => {
             </div>
 
             <div className={styles['cardsDivRow']}>
-                {searchResults.length > 0 ? 
+                {searchResults.length > 0 ? (
                     <>
                         <h5>Results: </h5>
                         <div className={styles['cardsDiv']}>
-                            {searchResults.map(x => <ListingCard key={x._id} service={x} />)}
+                            {searchResults.map(x => (
+                                <ListingCard key={x._id} service={x} />
+                            ))}
                         </div>
                     </>
-                 : (
+                ) : (
                     <h5>Your results will appear here...</h5>
                 )}
             </div>
