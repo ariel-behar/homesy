@@ -3,17 +3,14 @@
 
 ## Project description
 
-The application is a platform that connects home services' seekers and home services' providers. A user can search for a specific service, which is currently being offerred, and order it. The provider would then come to client's home and provide the service. The application is an additional channel through which business owners or freelancers can boost their income, by offering their services to potential clients, which are looking to consume them in a home environment. 
+The application is a platform that connects home services' seekers with home services' providers. A user can search for a specific service (applicable for consumption in a home environment) and will eventually be able to order it. The provider would then come to client's home and provide the service. 
 
-## Technologies used - FRONT-END
+The application is a channel, through which business owners or freelancers can boost their income by offering their services to potential clients, which are looking to save time, efforts, comute and money, by consuming services in the comfort of their home. 
 
-### `HTML`
-### `CSS` / `SCSS`
-### `Javascript`
-### REACT
+### Technologies used (FRONT-END)
 
-## Technologies used - BACK-END
+`HTML` - `CSS` / `SCSS` - `Javascript` - `REACT`
 
-### `NODE.js`
-### `Express`
-### `MongoDB` / `Mongoose`
+## Technologies used (BACK-END)
+
+`NODE.js` - `Express` - `MongoDB` / `Mongoose`
