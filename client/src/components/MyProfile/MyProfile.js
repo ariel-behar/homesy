@@ -61,7 +61,7 @@ function MyProfile() {
                     <div>
                         {myFavorites.length > 0 
                             ? myFavorites.map(x => <ListingCard key={x._id} service={x} />) 
-                            : 'You haven\'t added any services to your favorites list yet...'
+                            : 'No services have been added to your favorites list yet...'
                         }
                     </div>
                 </div>

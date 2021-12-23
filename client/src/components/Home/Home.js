@@ -99,7 +99,7 @@ const Home = () => {
 
             <div className={styles['profession-div']}>
                 <div className={styles['profession-image-div']}>
-                    <img src={`/img/professions/${profession.image}`} className="img-fluid" />
+                    <img src={`/img/professions/${profession.image}`} className="img-fluid" alt="Profession"/>
                     <h4>{profession.name}</h4>
                 </div>
             </div>
