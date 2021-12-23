@@ -49,10 +49,12 @@ const Home = () => {
             changeProfessionImage();
         }, 5000);
     }, [profession]);
+    
 
     const changeProfessionImage = () => {
-        let servicesWithImages = typesOfServices.filter(x => x.image != '' && x.image != profession);
-        let randomServiceIndex = Math.floor(Math.random() * (servicesWithImages.length - 1));
+        let servicesWithImages = typesOfServices.filter(x => x.image != '' && x.image != profession.image);
+
+        let randomServiceIndex = Math.floor(Math.random() * servicesWithImages.length);
 
         setProfession(servicesWithImages[randomServiceIndex]);
     };
@@ -101,11 +103,7 @@ const Home = () => {
                     <h4>{profession.name}</h4>
                 </div>
             </div>
-            {/* {searchClick
-                    ? <h5>Your results will appear here...</h5>
-                    : ''
-                } */}
-                
+
 
             <div className={styles['cardsDivRow']}>
                 {searchResults.results.length > 0 ? (

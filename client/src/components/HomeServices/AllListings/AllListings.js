@@ -14,7 +14,7 @@ const AllListings = () => {
             .getAll()
             .then(res => setServices(res))
             .catch(err => displayError(err));
-    }, []);
+    });
     
 
     return (
@@ -29,7 +29,7 @@ const AllListings = () => {
                     ? services.map(x => (
                         <ListingCard key={x._id} service={x} />
                         ))
-                    : <p>Currently there are no listed services in our database</p>
+                    : <p>Currently there are no listed services</p>
                 }
             </div>
         </section>

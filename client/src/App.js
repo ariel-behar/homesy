@@ -27,7 +27,7 @@ function App() {
         <ErrorProvider>
             <AuthProvider>
                 <>
-                    <div style={{ backgroundImage: `url(../img/app-background.png)` }}>
+                    <div style={{ backgroundImage: `url(../img/main-background.png)` }}>
                         <Header />
 
                         <main style={{ backgroundImage: `url(../img/app-background-mosaic.svg)` }}>

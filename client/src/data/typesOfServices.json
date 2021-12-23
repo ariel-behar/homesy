@@ -70,5 +70,11 @@
         "value": "romanticDinnerWaiter",
         "name": "Romantic Dinner Waiter",
         "image": "waiter.png"
+    },
+    {
+        "_id": 13,
+        "value": "florist",
+        "name": "Florist",
+        "image": "florist.png"
     }
 ]   
