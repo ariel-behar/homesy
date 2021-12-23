@@ -1,8 +1,8 @@
-import styles from './Footer.module.css';
+import styles from './Footer.module.scss';
 
 const Footer = () => {
     return (
-        <footer>
+        <footer className={styles.footerCustomStyles}>
             <span>
                 © 2021 All Rights Reserved
                 <a href="http://www.arielbehar.com">

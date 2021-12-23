@@ -18,7 +18,10 @@ import ListingCard from '../HomeServices/AllListings/ListingCard/ListingCard.js'
 
 const Home = () => {
     const { displayError } = useErrorContext();
-    let [searchResults, setSearchResults] = useState([]);
+    let [searchResults, setSearchResults] = useState({
+        clicked: false,
+        results: [],
+    });
     let [profession, setProfession] = useState('');
 
     const onFormSubmitHanlder = async e => {
@@ -28,7 +31,10 @@ const Home = () => {
 
         try {
             let result = await homeServicesService.search(typeOfService, cityOfOperation);
-            setSearchResults(result);
+            setSearchResults({
+                clicked: true,
+                results: result,
+            });
         } catch (error) {
             displayError(await error);
         }
@@ -95,20 +101,26 @@ const Home = () => {
                     <h4>{profession.name}</h4>
                 </div>
             </div>
+            {/* {searchClick
+                    ? <h5>Your results will appear here...</h5>
+                    : ''
+                } */}
+                
 
             <div className={styles['cardsDivRow']}>
-                {searchResults.length > 0 ? (
+                {searchResults.results.length > 0 ? (
                     <>
                         <h5>Results: </h5>
                         <div className={styles['cardsDiv']}>
-                            {searchResults.map(x => (
+                            {searchResults.results.map(x => (
                                 <ListingCard key={x._id} service={x} />
                             ))}
                         </div>
                     </>
-                ) : (
-                    <h5>Your results will appear here...</h5>
-                )}
+                ) : searchResults.clicked 
+                    ? <h5>No results were found. Please try again with different input</h5>
+                    : <h5>Your results will appear here...</h5>
+                }
             </div>
         </section>
     );
