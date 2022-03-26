@@ -1,6 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 todos.js
 /raw-images
+/DB_exports
+Atlas Cloud database credentials.docx
 
 # dependencies
 /client/node_modules
